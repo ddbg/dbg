@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+    <!-- 이 html에 추가되는 CSS -->
+    {% block css %}
+    <style>        
+    
+        /* 현재 카테고리 설명하는 부분 */
+        .currentCategory{
+            margin: 30px;
+            color:#BEB5D3;
+            text-align: center;
+        }
+    
+    </style>
+
+
+    {% endblock %}
+    <!--본문 내용-->
+    {% block content %}
+
+        <div class="container">
+            <div class="currentCategory">
+                <h1>"<br>자유로운 영혼</h1><br>
+                <h6> 길고양이, 유기견, 로드킬 등으로 세상을 떠나<br>장례를 치르기 어려운 동물들을 추모할 수 있는 공간입니다.</h6>
+            </div>
+            <br>
+
+        </div>
+
+        <div class="registerLetter">
+            <form action="">
+                
+
+            </form>
+        </div>
+    {% endblock %}
