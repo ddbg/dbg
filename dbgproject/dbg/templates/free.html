@@ -76,7 +76,32 @@
             box-shadow: 2px 4px 12px 0 rgb(0 0 0 / 14%);
 
         }
-
+        
+        .card-overlay{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            width:230px; height:300px;
+            border-radius: 10px 10px 0 0;
+            z-index: 10;
+            background-color: rgba(162, 149, 172, 0.356);
+            opacity: 0;
+        }
+        .card-overlay:hover{ 
+            opacity: 1;
+            transition: all 0.25s;
+        }
+        .card-overlay span{
+            position: absolute;
+            top: 40%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.9);
+            background-color: rgba(162, 149, 172, 0.575);
+            border: 2px solid white;
+            border-radius: 5px;
+            padding: 4px 8px;
+            font-size: 15px;
+        }
         /* 카드 속 동물 이미지 */
         .card-img-top{ 
             position:absolute;
@@ -85,11 +110,6 @@
             object-fit: cover;
             border-radius: 10px 10px 0 0 ;   
             box-shadow: 2px 4px 12px 0 rgb(0 0 0 / 14%);
-        }
-        .card-img-top-inactive{
-            position:absolute;
-            background-color:rgba(255, 255, 255, 0.2); 
-            z-index:10; height:100%; width:100%;
         }
         /* 카드 속 설명 */
         .card-body{
@@ -173,7 +193,9 @@
                     <li>
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
-                            <div class="card-img-top-inactive"></div>
+                            <div class="card-overlay">
+                                <a href="{% url 'home' %}"><span>MORE</span></a>
+                            </div>
                             <img src="https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="card-img-top" >
                             <div class="card-body">
                                 <!--
@@ -191,7 +213,9 @@
                     </li>
                     <li>
                         <div class="card">
-                            <div class="card-img-top-inactive"></div>
+                            <div class="card-overlay">
+                                <a href="{% url 'home' %}"><span>MORE</span></a>
+                            </div>
                             <img src="http://placehold.it" class="card-img-top" >
                             <div class="card-body">
                                 <span>
@@ -203,7 +227,9 @@
                     </li>                    
                     <li>
                         <div class="card">
-                            <div class="card-img-top-inactive"></div>
+                            <div class="card-overlay">
+                                <a href="{% url 'home' %}"><span>MORE</span></a>
+                            </div>
                             <img src="http://placehold.it" class="card-img-top" >
                             <div class="card-body">
                                 <span>
@@ -215,7 +241,9 @@
                     </li>                    
                     <li>
                         <div class="card">
-                            <div class="card-img-top-inactive"></div>
+                            <div class="card-overlay">
+                                <a href="{% url 'home' %}"><span>MORE</span></a>
+                            </div>
                             <img src="http://placehold.it" class="card-img-top" >
                             <div class="card-body">
                                 <span>
@@ -227,7 +255,9 @@
                     </li>                    
                     <li>
                         <div class="card">
-                            <div class="card-img-top-inactive"></div>
+                            <div class="card-overlay">
+                                <a href="{% url 'home' %}"><span>MORE</span></a>
+                            </div>
                             <img src="http://placehold.it" class="card-img-top" >
                             <div class="card-body">
                                 <span>
@@ -239,7 +269,9 @@
                     </li>                    
                     <li>
                         <div class="card">
-                            <div class="card-img-top-inactive"></div>
+                            <div class="card-overlay">
+                                <a href="{% url 'home' %}"><span>MORE</span></a>
+                            </div>
                             <img src="http://placehold.it" class="card-img-top" >
                             <div class="card-body">
                                 <span>
@@ -251,7 +283,9 @@
                     </li>                    
                     <li>
                         <div class="card">
-                            <div class="card-img-top-inactive"></div>
+                            <div class="card-overlay">
+                                <a href="{% url 'home' %}"><span>MORE</span></a>
+                            </div>
                             <img src="http://placehold.it" class="card-img-top" >
                             <div class="card-body">
                                 <span>
@@ -263,7 +297,9 @@
                     </li>
                     <li>
                         <div class="card">
-                            <div class="card-img-top-inactive"></div>
+                            <div class="card-overlay">
+                                <a href="{% url 'home' %}"><span>MORE</span></a>
+                            </div>
                             <img src="http://placehold.it" class="card-img-top" >
                             <div class="card-body">
                                 <span>
@@ -296,7 +332,9 @@
         <div class="animals">
             <span>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="{% url 'home' %}"><span>MORE</span></a>
+                    </div>
                     <img src="https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -307,7 +345,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="{% url 'home' %}"><span>MORE</span></a>
+                    </div>
                     <img src="https://images.mypetlife.co.kr/content/uploads/2019/09/09153001/dog-panting-1024x683.jpg" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -317,7 +357,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="{% url 'home' %}"><span>MORE</span></a>
+                    </div>
                     <img src="http://placehold.it" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -327,7 +369,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="{% url 'home' %}"><span>MORE</span></a>
+                    </div>
                     <img src="http://placehold.it" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -337,7 +381,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="{% url 'home' %}"><span>MORE</span></a>
+                    </div>
                     <img src="http://placehold.it" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -347,7 +393,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="{% url 'home' %}"><span>MORE</span></a>
+                    </div>
                     <img src="http://placehold.it" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -357,7 +405,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="{% url 'home' %}"><span>MORE</span></a>
+                    </div>
                     <img src="http://placehold.it" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -367,7 +417,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="{% url 'home' %}"><span>MORE</span></a>
+                    </div>
                     <img src="http://placehold.it" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -377,7 +429,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="{% url 'home' %}"><span>MORE</span></a>
+                    </div>
                     <img src="http://placehold.it" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -387,7 +441,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="{% url 'home' %}"><span>MORE</span></a>
+                    </div>
                     <img src="http://placehold.it" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -397,7 +453,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="{% url 'home' %}"><span>MORE</span></a>
+                    </div>
                     <img src="http://placehold.it" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -407,7 +465,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="{% url 'home' %}"><span>MORE</span></a>
+                    </div>
                     <img src="http://placehold.it" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -417,7 +477,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="{% url 'home' %}"><span>MORE</span></a>
+                    </div>
                     <img src="http://placehold.it" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -427,7 +489,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="{% url 'home' %}"><span>MORE</span></a>
+                    </div>
                     <img src="http://placehold.it" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -437,7 +501,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="{% url 'home' %}"><span>MORE</span></a>
+                    </div>
                     <img src="http://placehold.it" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -447,7 +513,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="{% url 'home' %}"><span>MORE</span></a>
+                    </div>
                     <img src="http://placehold.it" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -458,7 +526,9 @@
                 </div>
                 <!--
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="{% url 'home' %}"><span>MORE</span></a>
+                    </div>
                     <img src="http://placehold.it" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -468,7 +538,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="{% url 'home' %}"><span>MORE</span></a>
+                    </div>
                     <img src="http://placehold.it" class="card-img-top" >
                     <div class="card-body">
                         <span>
