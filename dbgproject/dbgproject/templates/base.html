@@ -283,8 +283,11 @@
 
             <!--검색창-->
             <span class="searchForm">
-                <form action="">
-                    <input type="text" class="searchInput">
+                <form action="{% url 'searchResult' %}" method="post">
+                    <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
+                    {%csrf_token%}
+                    
+                    <input type="text" class="searchInput" name="searchInput">
                     <input type="submit" value="Search" class="searchBtn">
                 </form>
             </span>

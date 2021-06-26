@@ -29,3 +29,9 @@ def aboutUs(request):
 def searchMap(request):
     return render(request, "searchMap.html")
 
+def searchResult(request):
+
+    searchWord=request.POST['searchInput']
+
+    return render(request, "searchResult.html",{"searchWord":searchWord})
+

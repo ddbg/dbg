@@ -10,4 +10,5 @@ urlpatterns = [
     path('freeRegistered/',freeRegistered, name="freeRegistered"),
     path('aboutUs/',aboutUs, name="aboutUs"),
     path('searchMap/',searchMap,name="searchMap"),
+    path('searchResult/',searchResult, name='searchResult'),
 ]
