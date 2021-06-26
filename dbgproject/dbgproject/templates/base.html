@@ -201,6 +201,7 @@
 
         /* 우측에 고정된 위아래로 가는 버튼 */
         #toUpDown{
+            z-index:50;
             display: flex;
             flex-direction: column;
             position:fixed;
@@ -236,6 +237,7 @@
     <title>또바기</title>
 </head>
 <body>
+
     <header>
         <!--상단바-->
         <div class="dbgHeader">  
@@ -254,7 +256,7 @@
                 <div class="menuItem"><a href="{% url 'free' %}">자유로운 영혼</a></div>
                 <div class="menuItem">반려동물 장례 장소 검색</div>
                 <div class="menuItem">고객센터</div>
-                <div class="menuItem">About Us</div>
+                <div class="menuItem"><a href="{% url 'aboutUs' %}">About Us</a></div>
             </div>
             
             <h1 class="serviceTitle"><a href="{% url 'home' %}">또바기</a></h1>

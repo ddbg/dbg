@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from datetime import datetime
 from django.utils.dateformat import DateFormat
 from django.core.paginator import Paginator
@@ -11,6 +11,9 @@ def freeRegister(request):
     return render(request, "freeRegister.html")
 
 
+def freeRegistered(request):
+    return redirect('free')
+
 def free(request):
 
     # 오늘 월, 일 계산
@@ -19,5 +22,8 @@ def free(request):
     day=today[2:]
     
     return render(request, "free.html",{"month":month, "day":day})
+
+def aboutUs(request):
+    return render(request, "aboutUs.html")
 
 

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -120,7 +121,17 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# static 파일을 모으기 전에 현재 static 파일들이 어디있는 지 경로 써줌
+STATICFILES_DIRS =[
+    os.path.join(BASE_DIR,'dbg','static')
+]
+# static 파일을 어디에 모을건지
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
