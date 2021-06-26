@@ -26,4 +26,6 @@ def free(request):
 def aboutUs(request):
     return render(request, "aboutUs.html")
 
+def searchMap(request):
+    return render(request, "searchMap.html")
 

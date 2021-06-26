@@ -12,7 +12,14 @@
     
     <style>
 
-        body{margin:0; }             
+        @font-face {
+            font-family: 'GmarketSansLight';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body{margin:0; font-family: 'GmarketSansLight', cursive;}          
 
         /* 링크 걸었을 때 밑줄 표시 없도록 */ 
         a{text-decoration: none;} 
@@ -129,8 +136,7 @@
         .loginBtn{
             font-size:5px;
             color:white;
-            padding: 2px 10px;
-
+            padding: 3px 10px 2px;
             background-color: #BEB5D3;
             border: 2px solid white;
             border-radius: 3px;
@@ -254,7 +260,7 @@
                 <div class="menuItem">마이페이지</div>
                 <div class="menuItem">명예관</div>
                 <div class="menuItem"><a href="{% url 'free' %}">자유로운 영혼</a></div>
-                <div class="menuItem">반려동물 장례 장소 검색</div>
+                <div class="menuItem"><a href="{% url 'searchMap' %}">반려동물 장례 장소 검색</a></div>
                 <div class="menuItem">고객센터</div>
                 <div class="menuItem"><a href="{% url 'aboutUs' %}">About Us</a></div>
             </div>

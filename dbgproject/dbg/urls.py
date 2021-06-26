@@ -9,4 +9,5 @@ urlpatterns = [
     path('freeRegister/',freeRegister, name="freeRegister"),
     path('freeRegistered/',freeRegistered, name="freeRegistered"),
     path('aboutUs/',aboutUs, name="aboutUs"),
+    path('searchMap/',searchMap,name="searchMap"),
 ]
