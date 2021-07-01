@@ -4,7 +4,22 @@ from django.utils.dateformat import DateFormat
 from django.core.paginator import Paginator
 
 def home(request):
-    return render(request, "home.html")
+
+    # 오늘 월, 일 계산
+    today = DateFormat(datetime.now()).format('md')
+    month=today[1] if today[0]=='0' else today[:2]
+    day=today[2:]
+    return render(request, "home.html",{"month":month, "day":day})
+
+def honor(request):
+    return render(request,"honor.html") 
+
+def honorRegister(request):
+    return render(request, "honorRegister.html")
+
+
+def honorRegistered(request):
+    return redirect('honor')
 
 
 def freeRegister(request):
