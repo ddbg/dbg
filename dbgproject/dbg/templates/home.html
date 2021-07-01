@@ -3,9 +3,6 @@
     <!-- 이 html에 추가되는 CSS -->
     {% block css %}
     <style>
-        a:link{color:#BEB5D3;}
-        a:visited{color:#BEB5D3;}
-
         .container{
             height:1700px;
         }
@@ -438,7 +435,7 @@
         <br>
         <!--자유로운 영혼-->
         <div class="freeStar">
-            <h3><a href="{% url 'free' %}">자유로운 영혼</a></h3>
+            <h3><a href="{% url 'free' %}" style="color:#BEB5D3;">자유로운 영혼</a></h3>
             
             <!--자유로운 영혼 슬라이드-->
             <div class="free-slide_wrapper">
@@ -613,7 +610,7 @@
         <br>
         <!--명예관-->
         <div class="honorStar">
-            <h3><a href="{% url 'honor' %}">명예관</a></h3>
+            <h3><a href="{% url 'honor' %}" style="color:#BEB5D3;">명예관</a></h3>
             
             <!--명예관 아이들 슬라이드-->
             <div class="honor-slide_wrapper">
