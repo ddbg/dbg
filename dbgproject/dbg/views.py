@@ -35,3 +35,16 @@ def searchResult(request):
 
     return render(request, "searchResult.html",{"searchWord":searchWord})
 
+
+def mypage(request):
+    return render(request, "mypage.html")
+
+def mypageDiary(request):
+    return render(request, "mypageDiary.html")
+
+def mypagePhoto(request):
+    return render(request, "mypagePhoto.html")
+
+def test(request):
+    return render(request, "test.html")    
+

@@ -11,4 +11,9 @@ urlpatterns = [
     path('aboutUs/',aboutUs, name="aboutUs"),
     path('searchMap/',searchMap,name="searchMap"),
     path('searchResult/',searchResult, name='searchResult'),
+    path('mypage/',mypage,name="mypage"),
+    path('mypageDiary/',mypageDiary,name="mypageDiary"),
+    path('mypagePhoto/',mypagePhoto,name="mypagePhoto"),
+    path('test/',test,name="test"),
+    
 ]
