@@ -11,4 +11,7 @@ urlpatterns = [
     path('aboutUs/',aboutUs, name="aboutUs"),
     path('searchMap/',searchMap,name="searchMap"),
     path('searchResult/',searchResult, name='searchResult'),
-]
+    path('enroll/',enroll, name="enroll"),
+    path('enroll2/',enroll2, name="enroll2"),
+    path('caaard/', caaard, name="caaard"),
+] 

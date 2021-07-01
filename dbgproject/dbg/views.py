@@ -14,6 +14,15 @@ def freeRegister(request):
 def freeRegistered(request):
     return redirect('free')
 
+def enroll(request):
+    return render(request, "enroll.html")
+
+def enroll2(request):
+    return render(request, "enroll2.html")
+
+def caaard(request):
+    return render(request, "caaard.html")
+
 def free(request):
 
     # 오늘 월, 일 계산
