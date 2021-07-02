@@ -142,6 +142,7 @@
 
             .Photo-list-img{
                 position:absoulte;
+                object-fit: cover;
                 width:100%;
                 height:100%;
                 object-fit: cover;
@@ -158,8 +159,9 @@
                 overflow: auto;
             }
             ul.tabs li{
-                background: none;
-                color: #222;
+                margin-left: -5px;
+                width : 110px;
+                height: 100px;
                 display: inline-block;
                 padding: 10px 15px;
                 cursor: pointer;
@@ -229,28 +231,33 @@
                     
                     <!-- 갤러리 탭 부분 -->
                     <ul class="tabs">
-                        <li class="tab-link current" data-tab="tab-1"><img src = "https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="Photo-list-img"></li>
-                        <li class="tab-link" data-tab="tab-2"><img src = "https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="Photo-list-img"></li>
-                        <li class="tab-link" data-tab="tab-3"><img src = "https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="Photo-list-img"></li>
-                        <!-- <li class="tab-link" data-tab="tab-4"><img src = "https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="Photo-list-img"></li>
-                        <li class="tab-link" data-tab="tab-5"><img src = "https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="Photo-list-img"></li>
-                        <li class="tab-link" data-tab="tab-6"><img src = "https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="Photo-list-img"></li>
-                        <li class="tab-link" data-tab="tab-7"><img src = "https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="Photo-list-img"></li> -->
-                    </ul>
+                        <li class="tab-link current" data-tab="tab-1">
+                            <img src = "https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="Photo-list-img">
+                        </li>
+                        <li class="tab-link" data-tab="tab-2">
+                            <img src = "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDEyMzBfNzMg%2FMDAxNjA5MzMyNDM1MDY3._qNgcfzB0xJhDexJmKY6MOyC2sDwmg64R6TWMRmbF_cg.cTvWDgOn0hkdzXrZCQTFYQXnOCsZ3dk4LlXYH2FtCDgg.JPEG.kyy0006%2F1609127688261%25A3%25AD2.jpg&type=sc960_832" class="Photo-list-img">
+                        </li>
+                        <li class="tab-link" data-tab="tab-3">
+                            <img src = "https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2F20131125_76%2Fsnap_nara_13853648245568IyAi_PNG%2FGAL_8268.png&type=sc960_832" class="Photo-list-img">
+                        </li>
+                        </ul>
                     <div class="line"></div>
 
                     <!-- 갤러리 -->
                     <div id="tab-1" class="tab-content current">
-                       1 <!-- <img src = "https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="Photo-img">
                         <img src = "https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="Photo-img">
-                        <img src = "https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="Photo-img">
-                        <img src = "https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="Photo-img">
-                        <img src = "https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="Photo-img">
-                        <img src = "https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="Photo-img"> -->
+                        <img src = "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTA4MjRfMjMz%2FMDAxNTY2NjUwNzg3MzQy.e4EpKAO9GptNckSIKpezdpaB1KbSHm0De1LxcPK2TlAg.pnL8FqXZxT8MhAWY1d8Y-oY2j7MiURuKdVynJqeormMg.JPEG.judyseve7%2FIMG_9481.JPG&type=sc960_832" class="Photo-img">
+                        <img src = "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA1MDNfMTcw%2FMDAxNTg4NDQ3NDEwNTUw.mQYQ6y_02SMsJLE-MvBkbiKXbDPSMiLFoPs9zHXZ2Vsg.HSmvA0iQ6jo0WoVMhFstHHoejys0WeL_-gfU11O3_Gog.JPEG.migol888%2FIMG_5340.JPG&type=sc960_832" class="Photo-img">
+                        <img src = "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20160312_98%2Fgkco_1457764939669I025a_JPEG%2FNaverBlog_20160312_154219_00.jpg&type=sc960_832" class="Photo-img">
+                        <img src = "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTAzMDVfMzIg%2FMDAxNjE0OTE2Mzk2MTQ5.6-R3ODVH40V-fnjrAGBIl5gY9wcwSacK6Yj7b1ZTMD0g.mSd6bQ82sIm3V5zC68aBWUgg00rPfHn2lxPn4NAJy28g.JPEG.dodam8787%2F20210306%2528%25C5%25E4%2529_%25C6%25F7%25B8%25DE_%25B9%25B0%25B0%25B3%25C4%25C6002.jpg&type=sc960_832" class="Photo-img">
                     </div>
 
                     <div id="tab-2" class="tab-content">
-                        사진2
+                        <img src = "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxOTA4MjRfMjMz%2FMDAxNTY2NjUwNzg3MzQy.e4EpKAO9GptNckSIKpezdpaB1KbSHm0De1LxcPK2TlAg.pnL8FqXZxT8MhAWY1d8Y-oY2j7MiURuKdVynJqeormMg.JPEG.judyseve7%2FIMG_9481.JPG&type=sc960_832" class="Photo-img">
+                        <img src = "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20160312_98%2Fgkco_1457764939669I025a_JPEG%2FNaverBlog_20160312_154219_00.jpg&type=sc960_832" class="Photo-img">
+                        <img src = "https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="Photo-img">
+                        <img src = "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTAzMDVfMzIg%2FMDAxNjE0OTE2Mzk2MTQ5.6-R3ODVH40V-fnjrAGBIl5gY9wcwSacK6Yj7b1ZTMD0g.mSd6bQ82sIm3V5zC68aBWUgg00rPfHn2lxPn4NAJy28g.JPEG.dodam8787%2F20210306%2528%25C5%25E4%2529_%25C6%25F7%25B8%25DE_%25B9%25B0%25B0%25B3%25C4%25C6002.jpg&type=sc960_832" class="Photo-img">
+                        <img src = "https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDA1MDNfMTcw%2FMDAxNTg4NDQ3NDEwNTUw.mQYQ6y_02SMsJLE-MvBkbiKXbDPSMiLFoPs9zHXZ2Vsg.HSmvA0iQ6jo0WoVMhFstHHoejys0WeL_-gfU11O3_Gog.JPEG.migol888%2FIMG_5340.JPG&type=sc960_832" class="Photo-img">
                     </div>
 
                     <div id="tab-3" class="tab-content">

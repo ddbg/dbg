@@ -31,21 +31,28 @@
                 background-color: #726C7B;
             }
 
+            .MainImage{
+                width:450px;
+                height:190px;
+                margin-bottom: 30px;
+                border-radius: 10px;
+            }
+
             .profile-img{
                 position:absoulte;
                 width:110%;
                 height:50%;
                 object-fit: cover;
                 border-radius: 50px;
-                box-shadow: 2px 4px 12px 0 rgb(0 0 0 / 14%);
+                
             }
             .img-thumbnail{
                 position:absoulte;
-                width: 105%;
-                height:200px;
+                width: 100%;
+                height:100%;
                 object-fit:cover;
                 border-radius: 10px;
-                box-shadow: 2px 4px 12px 0 rgb(0 0 0 / 14%);
+               
             }
             .mypage-menu{
                 margin: -5px;
@@ -126,15 +133,6 @@
 
     </head>
     <body onresize="parent.resizeTo(870,660)" onload="parent.resizeTo(870,660)" link="#726C7B", vlink="#726C7B", alink="#726C7B">
-        <!-- <table width="830" height="445">
-            <tbody>
-                <tr>
-                    <td width="10"></td>
-                    <td class="left"></td>
-                    <td width="450" height="445" background="./images/rightBackground.jpg"></td>
-                </tr>
-            </tbody>
-        </table> -->
         <!-- 기본 모양 --> 
         <div class="mypageShape">
 
@@ -191,17 +189,12 @@
                                 <a href = "{%url 'mypagePhoto'%}"><img src ="https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class = "Missyou-img" alt=""></a>
 
                             <td width = "100">
-                                <a href = "{%url 'mypagePhoto'%}"><img src ="https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class = "Missyou-img" alt=""></a>
+                                <a href = "{%url 'mypagePhoto'%}"><img src ="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDEyMzBfNzMg%2FMDAxNjA5MzMyNDM1MDY3._qNgcfzB0xJhDexJmKY6MOyC2sDwmg64R6TWMRmbF_cg.cTvWDgOn0hkdzXrZCQTFYQXnOCsZ3dk4LlXYH2FtCDgg.JPEG.kyy0006%2F1609127688261%25A3%25AD2.jpg&type=sc960_832" class = "Missyou-img" alt=""></a>
                             </td>
 
                             <td width = "100">
-                                <a href = "{%url 'mypagePhoto'%}"><img src ="https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class = "Missyou-img" alt=""></a>
+                                <a href = "{%url 'mypagePhoto'%}"><img src ="https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2F20131125_76%2Fsnap_nara_13853648245568IyAi_PNG%2FGAL_8268.png&type=sc960_832" class = "Missyou-img" alt=""></a>
                             </td>
-
-                            <td width = "100">
-                                <a href = "{%url 'mypagePhoto'%}"><img src ="https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class = "Missyou-img" alt=""></a>
-                            </td>
-
                         </tbody>
                     </table>
             </div>
@@ -225,7 +218,7 @@
                 </div>
                 <br>
                 <br>
-                <div class = "Nonshowtag" >
+                <div class = "Nonshowtag">
                     <strong>&nbsp;&nbsp;레옹</strong>
                 </div>
 
