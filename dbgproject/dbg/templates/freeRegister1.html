@@ -100,13 +100,13 @@
 
         <div class="container">
             <div class="currentCategory">
-                <h1>"<br>수고했어</h1><br>
-                <h6> 마약탐지견, 경찰견, 시각장애인안내견 등 수고한 동물들을 추모하는 공간입니다.</h6>
+                <h1>"<br>자유로운 영혼</h1><br>
+                <h6> 길고양이, 유기견, 로드킬 등으로 세상을 떠나<br>장례를 치르기 어려운 동물들을 추모할 수 있는 공간입니다.</h6>
             </div>
             <br>
 
             <div class="registerLetter">
-                <form action="{% url 'freeRegistered' %}" method="post">
+                <form action="{% url 'freeRegister2' %}" method="post">
                     <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
                     {%csrf_token%}
 
@@ -128,12 +128,42 @@
                         <option value="햄스터"></option>
                         </datalist>
                     </div>
+
+                    <div class="infoBox">
+                      <label for="animalType">너가 태어난 날을 기억할게</label>
+                      <br>
+          
+                      <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+                      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+                      <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+          
+                      <script>
+                          $(function() {
+                          $( "#birthday" ).datepicker({
+                              dateFormat: 'yy.mm.dd',
+                              prevText: '이전 달',
+                              nextText: '다음 달',
+                              monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                              monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                              dayNames: ['일','월','화','수','목','금','토'],
+                              dayNamesShort: ['일','월','화','수','목','금','토'],
+                              dayNamesMin: ['일','월','화','수','목','금','토'],
+                              showMonthAfterYear: true,
+                              changeMonth: true,
+                              changeYear: true,
+                              yearSuffix: '년'
+                          });
+                          });
+                      </script>
+                      생년월일: <input type="text" id="birthday" name="birthday">
+                          
+                  </div>
                     
                     <div class="infoBox">
                         <label>너의 모습을 기억할게</label>
                         <br>
                         <div id='img_preview'>
-                            <input type='file' id='imgUpload' name="animalImg" multiple='multiple' style="display: none;">
+                            <input type='file' id='imgUpload' name="animalImg" multiple='multiple' style="display: none;"/>
                             <div id='att_zone' data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'>
                                 <label for="imgUpload">+</label>
                             </div>
@@ -143,7 +173,7 @@
                     <div class="infoBox">
                         <label>너에게 하고 싶은 말</label>
                         <br>
-                        <textarea name="animalTalking" placeholder="하고싶은 말이 있다면 적어주세요."></textarea>
+                        <textarea name="animalTalking"></textarea>
                     </div>
 
                     <div class="infoBox">
@@ -157,115 +187,12 @@
                     </div>
                     
                     <div class="submitBtn">
-                        <button type="submit">보내주기</button>
+                        <button type="submit">다음장으로</button>
                     </div>
                 </form>
             </div>
 
         </div>
         
-        <!--이미지 업로드 스크립트 -->
-        <script>
-            ( /* att_zone : 이미지들이 들어갈 위치 id, btn : file tag id */
-              imageView = function imageView(att_zone, btn){
-            
-                var attZone = document.getElementById(att_zone);
-                var img_upload = document.getElementById(btn)
-                var sel_files = [];
-                
-                // 이미지와 체크 박스를 감싸고 있는 div 속성
-                var div_style = 'display:inline-block;position:relative;'
-                              + 'width:150px;height:120px;margin:5px;border:1px solid #00f;z-index:1';
-                // 미리보기 이미지 속성
-                var img_style = 'width:100%;height:100%;z-index:none';
-                // 이미지안에 표시되는 체크박스의 속성
-                var chk_style = 'width:30px;height:30px;position:absolute;font-size:24px;'
-                              + 'right:0px;bottom:0px;z-index:999;background-color:rgba(255,255,255,0.1);color:#f00';
-              
-                img_upload.onchange = function(e){
-                  var files = e.target.files;
-                  var fileArr = Array.prototype.slice.call(files)
-                  for(f of fileArr){
-                    imageLoader(f);
-                  }
-                }  
-                
-              
-                // 탐색기에서 드래그앤 드롭 사용
-                attZone.addEventListener('dragenter', function(e){
-                  e.preventDefault();
-                  e.stopPropagation();
-                }, false)
-                
-                attZone.addEventListener('dragover', function(e){
-                  e.preventDefault();
-                  e.stopPropagation();
-                  
-                }, false)
-              
-                attZone.addEventListener('drop', function(e){
-                  var files = {};
-                  e.preventDefault();
-                  e.stopPropagation();
-                  var dt = e.dataTransfer;
-                  files = dt.files;
-                  for(f of files){
-                    imageLoader(f);
-                  }
-                  
-                }, false)
-                
-            
-                
-                /*첨부된 이미리즐을 배열에 넣고 미리보기 */
-                imageLoader = function(file){
-                  sel_files.push(file);
-                  var reader = new FileReader();
-                  reader.onload = function(ee){
-                    let img = document.createElement('img')
-                    img.setAttribute('style', img_style)
-                    img.src = ee.target.result;
-                    attZone.appendChild(makeDiv(img, file));
-                  }
-                  
-                  reader.readAsDataURL(file);
-                }
-                
-                /*첨부된 파일이 있는 경우 checkbox와 함께 attZone에 추가할 div를 만들어 반환 */
-                makeDiv = function(img, file){
-                  var div = document.createElement('div')
-                  div.setAttribute('style', div_style)
-                  
-                  var btn = document.createElement('input')
-                  btn.setAttribute('type', 'button')
-                  btn.setAttribute('value', 'x')
-                  btn.setAttribute('delFile', file.name);
-                  btn.setAttribute('style', chk_style);
-                  btn.onclick = function(ev){
-                    var ele = ev.srcElement;
-                    var delFile = ele.getAttribute('delFile');
-                    for(var i=0 ;i<sel_files.length; i++){
-                      if(delFile== sel_files[i].name){
-                        sel_files.splice(i, 1);      
-                      }
-                    }
-                    
-                    dt = new DataTransfer();
-                    for(f in sel_files) {
-                      var file = sel_files[f];
-                      dt.items.add(file);
-                    }
-                    img_upload.files = dt.files;
-                    var p = ele.parentNode;
-                    attZone.removeChild(p)
-                  }
-                  div.appendChild(img)
-                  div.appendChild(btn)
-                  return div
-                }
-              }
-            )('att_zone', 'imgUpload')
-            
-        </script>
 
     {% endblock %}

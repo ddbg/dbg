@@ -14,17 +14,22 @@ def home(request):
 def honor(request):
     return render(request,"honor.html") 
 
-def honorRegister(request):
-    return render(request, "honorRegister.html")
+def honorRegister1(request):
+    return render(request, "honorRegister1.html")
+
+def honorRegister2(request):
+    return render(request, "honorRegister2.html")
 
 
 def honorRegistered(request):
     return redirect('honor')
 
 
-def freeRegister(request):
-    return render(request, "freeRegister.html")
+def freeRegister1(request):
+    return render(request, "freeRegister1.html")
 
+def freeRegister2(request):
+    return render(request, "freeRegister2.html")
 
 def freeRegistered(request):
     return redirect('free')
@@ -34,6 +39,9 @@ def enroll(request):
 
 def enroll2(request):
     return render(request, "enroll2.html")
+
+def enrolled(request):
+    return redirect('home')
 
 def caaard(request):
     return render(request, "caaard.html")
