@@ -100,67 +100,98 @@
 
         <div class="container">
             <div class="currentCategory">
-                <h1>"<br>자유로운 영혼</h1><br>
-                <h6> 길고양이, 유기견, 로드킬 등으로 세상을 떠나<br>장례를 치르기 어려운 동물들을 추모할 수 있는 공간입니다.</h6>
+                <h1>"<br>수고했어</h1><br>
+                <h6> 마약탐지견, 경찰견, 시각장애인안내견 등 수고한 동물들을 추모하는 공간입니다.</h6>
             </div>
             <br>
 
+
             <div class="registerLetter">
-                <form action="{% url 'freeRegistered' %}" method="post">
-                    <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
-                    {%csrf_token%}
+              <form action="{% url 'honorRegister2' %}" method="post">
+                  <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
+                  {%csrf_token%}
 
-                    <div class="nameBox">
-                        <label for="to">To. </label>
-                        <input type="text" id="to" name="animalName" placeholder="이름을 적어주세요">
-                    </div>
-                    
-                    <div class="infoBox">
-                        <label for="animalType">어떤 동물인가요?</label>
-                        <br>
-                        <input type="text" name="animalType" placeholder="직접 입력해주세요" list="fruits" />
-                        <datalist id="fruits">
-                        <option value="강아지"></option>
-                        <option value="고양이"></option>
-                        <option value="새"></option>
-                        <option value="토끼"></option>
-                        <option value="물고기"></option>
-                        <option value="햄스터"></option>
-                        </datalist>
-                    </div>
-                    
-                    <div class="infoBox">
-                        <label>너의 모습을 기억할게</label>
-                        <br>
-                        <div id='img_preview'>
-                            <input type='file' id='imgUpload' name="animalImg" multiple='multiple' style="display: none;"/>
-                            <div id='att_zone' data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'>
-                                <label for="imgUpload">+</label>
-                            </div>
-                        </div>
-                    </div>
+                  <div class="nameBox">
+                      <label for="to">To. </label>
+                      <input type="text" id="to" name="animalName" placeholder="이름을 적어주세요">
+                  </div>
+                  
+                  <div class="infoBox">
+                      <label for="animalType">어떤 동물인가요?</label>
+                      <br>
+                      <input type="text" name="animalType" placeholder="직접 입력해주세요" list="fruits" />
+                      <datalist id="fruits">
+                      <option value="강아지"></option>
+                      <option value="고양이"></option>
+                      <option value="새"></option>
+                      <option value="토끼"></option>
+                      <option value="물고기"></option>
+                      <option value="햄스터"></option>
+                      </datalist>
+                  </div>
 
-                    <div class="infoBox">
-                        <label>너에게 하고 싶은 말</label>
-                        <br>
-                        <textarea name="animalTalking"></textarea>
-                    </div>
+                  <div class="infoBox">
+                    <label for="animalType">너가 태어난 날을 기억할게</label>
+                    <br>
+        
+                    <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+                    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+                    <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+        
+                    <script>
+                        $(function() {
+                        $( "#birthday" ).datepicker({
+                            dateFormat: 'yy.mm.dd',
+                            prevText: '이전 달',
+                            nextText: '다음 달',
+                            monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                            monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                            dayNames: ['일','월','화','수','목','금','토'],
+                            dayNamesShort: ['일','월','화','수','목','금','토'],
+                            dayNamesMin: ['일','월','화','수','목','금','토'],
+                            showMonthAfterYear: true,
+                            changeMonth: true,
+                            changeYear: true,
+                            yearSuffix: '년'
+                        });
+                        });
+                    </script>
+                    생년월일: <input type="text" id="birthday" name="birthday">
+                        
+                </div>
+                  
+                  <div class="infoBox">
+                      <label>너의 모습을 기억할게</label>
+                      <br>
+                      <div id='img_preview'>
+                          <input type='file' id='imgUpload' name="animalImg" multiple='multiple' style="display: none;"/>
+                          <div id='att_zone' data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'>
+                              <label for="imgUpload">+</label>
+                          </div>
+                      </div>
+                  </div>
 
-                    <div class="infoBox">
-                        <label>상세 정보</label>
-                        <br>
-                        <textarea name="animalTalking"></textarea>
-                    </div>
-                       
-                    <div class="from">
-                        <span>From. 닉네임</span>
-                    </div>
-                    
-                    <div class="submitBtn">
-                        <button type="submit">보내주기</button>
-                    </div>
-                </form>
-            </div>
+                  <div class="infoBox">
+                      <label>너에게 하고 싶은 말</label>
+                      <br>
+                      <textarea name="animalTalking"></textarea>
+                  </div>
+
+                  <div class="infoBox">
+                      <label>상세 정보</label>
+                      <br>
+                      <textarea name="animalTalking"></textarea>
+                  </div>
+                     
+                  <div class="from">
+                      <span>From. 닉네임</span>
+                  </div>
+                  
+                  <div class="submitBtn">
+                      <button type="submit">다음장으로</button>
+                  </div>
+              </form>
+          </div>
 
         </div>
         
