@@ -2,6 +2,7 @@
 
     <!-- 이 html에 추가되는 CSS -->
     {% block css %}
+    
 
     <style>
 
@@ -10,6 +11,27 @@
             margin: 30px;
             color:#BEB5D3;
             text-align: center;
+        }
+        .registerLetter{
+            position: relative;
+            background-color: #FAF8F8;
+            padding: 50px 70px 80px 70px ;
+            width: 80%;
+            margin: 10%;
+            top: -50px;
+        }
+        .registerLetter input{
+            font-size: 13px;
+            width: 250px; height: 35px;
+            border: 3px solid #a19da7;
+            border-radius: 5px;
+        }
+
+        .nameBox label{
+            font-size: 35px;
+            font-weight: bold;
+            color:#726C7B;
+            margin-right: 10px;
         }
 
         .nameBox label{
@@ -83,7 +105,7 @@
          .slide_wrapper{
             position: relative;
             left: 10px;
-            height: 320px;
+            height: 220px;
             margin: 30px auto;
             overflow: hidden;
 
@@ -126,7 +148,7 @@
         
          /* 각 카드 */
         .card{
-            width:230px; height:300px;
+            width:150px; height:220px;
             margin: 0 20px 50px 0;
             background-color: #EFECF4;
             border-radius: 10px 10px 0 0;
@@ -139,7 +161,7 @@
             position: relative;
             display: flex;
             justify-content: center;
-            width:230px; height:300px;
+            width:150px; height:220px;
             border-radius: 10px 10px 0 0;
             z-index: 10;
             background-color: rgba(162, 149, 172, 0.356);
@@ -158,7 +180,7 @@
             border: 2px solid white;
             border-radius: 5px;
             padding: 4px 8px;
-            font-size: 15px;
+            font-size: 7px;
         }
         /* 카드 속 동물 이미지 */
         .card-img-top{ 
@@ -179,8 +201,10 @@
         .slides .card-body{padding-left: 25px;}
 
         .card-title{
+            font-size:15px;
             font-weight: bold;
             color: #9184b1;
+            position:relative;
         }
         .card-text{
             font-size:15px;
@@ -189,14 +213,34 @@
         }
         /* 빈 카드 */
         .emptyCard{
-            width:230px; height:300px;
+            width:150px; height:220px;
             margin: 0 20px 20px 0;
             background-color: rgba(0, 0, 0, 0.0);
         }
 
+        /*이전으로 버튼*/
+        .config_cancel{
+            display:flex;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        .config_cancel input{
+            flex-basis:10%;
+        }
+        .config_cancel button{
+            border: 3px solid #BEB5D3;
+            border-radius: 6px;
+            color: rgb(156, 145, 173);
+            font-weight: bold;
+            background-color: rgba(0,0,0,0);
+        }
+        .config_cancel button:hover{
+            background-color: #BEB5D3;
+            color: white;
+        }
+
     
     </style>
-
     {% endblock %}
 
     <!--본문 내용-->
@@ -206,40 +250,47 @@
     
 
     <div class = "container">
-        <form action="{% url 'freeRegistered' %}" method="post">
-            <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
-            {%csrf_token%}
-
+        
         <div class="currentCategory">
             <h1>"<br> 
             <h6> The best and most beautiful things in the world cannot be seen or even <br>touched - they must be felt with the heart.</h6>
         </div>
         <br>
+
+
+    <div class="registerLetter">
+        <form action="{% url 'freeRegistered' %}" method="post">
+            <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
+            {%csrf_token%}
         
 
-        <div class="nameBox">
+            <div class="nameBox">
             <label for="to"><strong>To.</strong> </label>
             <input type="text" id="to" name="animalName" placeholder="이름을 적어주세요">
-        </div>
+            </div>
 
-        <div class="infoBox">
+            
+        
+
+        <div class =" season">    
+
+            <div class="infoBox">
             <label for="animalType">너가 좋아하던 계절이야</label>
             <br>
-            <!--너에게 주고싶은 물건 슬라이드-->
+            <!--너에게 주고싶은 계절 슬라이드-->
             <div class="slide_wrapper">
-                <ul class="slides">
+                
+                
                     <li>
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                                <a href="" class="thumbnail"><span>선택하기</span></a>
                             </div>
                             <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA0MDhfMzcg%2FMDAxNjE3ODgyNDQzNjIy.tBnLPO1y34HqFk-BGtlREKIZ1h5PuVWUBO4sg9U19GMg.GGkf8UbuICUdMzRu30NtdykG1fU7IZ_0ap7Gchu1GFwg.JPEG.rosetearoom%2FKakaoTalk_20210408_153626321_01.jpg&type=sc960_832" class="card-img-top" >
                             <div class="card-body">
                                 <span>
                                     <h5 class="card-title">봄</h5>
-                                    
-                                    
                                 </span>
                             </div>
                         </div>
@@ -286,27 +337,87 @@
                             </div>
                         </div>
                     </li>                    
+                 
+                
+            </div>
+             
+        </div>
+    </div>
+
+
+        <div class="infoBox">
+            <label>꽃다발을 선택해 주세요</label>
+            <br>
+            
+            
+            <!--꽃 선택 슬라이드-->
+            <div class="slide_wrapper">
+            
+                
+                    <li>
+                        <!--bootstrap 카드 컴포넌트-->
+                        <div class="card">
+                            <div class="card-overlay">
+                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                            </div>
+                            <img src="http://www.flowerrepublic.co.kr/shopimages/sungmo9160/0070010003772.jpg?1507351606" class="card-img-top" >
+                            <div class="card-body">
+                                <span>
+                                    <h5 class="card-title">분홍장미꽃다발</h5>
+                                   
+                                </span>
+                            </div>
+                        </div>
+                    </li>
                     <li>
                         <div class="card">
                             <div class="card-overlay">
                                 <a href="#" class="thumbnail"><span>선택하기</span></a>
                             </div>
-                            <img src="https://th.bing.com/th/id/OIP.JOT250d3N6gKIxhq7SO6FwHaFS?w=244&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
+                            <img src="https://www.mdeco.co.kr/shop/data/goods/1482819650281s0.jpg" class="card-img-top" >
                             <div class="card-body">
                                 <span>
-                                    <h5 class="card-title">루비</h5>
+                                    <h5 class="card-title">물망초꽃다발</h5>
                                     
                                 </span>
                             </div>
                         </div>
                     </li>                    
-                                  
-                   
-                </ul>
+                    <li>
+                        <div class="card">
+                            <div class="card-overlay">
+                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                            </div>
+                            <img src="http://eppflower.com/web/product/big/202104/faee82d154fcc1d14a2f5bca135ff645.jpg" class="card-img-top" >
+                            <div class="card-body">
+                                <span>
+                                    <h5 class="card-title">파란장미꽃다발</h5>
+                                    
+                                </span>
+                            </div>
+                        </div>
+                    </li>                    
+                    <li>
+                        <div class="card">
+                            <div class="card-overlay">
+                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                            </div>
+                            <img src="http://m.eppflower.com/web/product/big/201703/1501_shop1_129413.jpg" class="card-img-top" >
+                            <div class="card-body">
+                                <span>
+                                    <h5 class="card-title">프리지아꽃다발</h5>
+                                    
+                                </span>
+                            </div>
+                        </div>
+                    </li> 
+                               
+                
             </div>
+        
+         </div>
 
-
-        </div>
+        
 
         <div class="infoBox">
             <label for="animalType">너에게 주고싶은 물건이야</label>
@@ -314,7 +425,7 @@
 
               <!--너에게 주고싶은 물건 슬라이드-->
             <div class="slide_wrapper">
-                <ul class="slides">
+                
                     <li>
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
@@ -372,27 +483,15 @@
                             </div>
                         </div>
                     </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="https://th.bing.com/th/id/OIP.JOT250d3N6gKIxhq7SO6FwHaFS?w=244&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">루비</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                                  
-                   
-                </ul>
+                    
+                
             </div>
 
-            
+        </form>   
         </div>
+     
+
+        
 
         <div class="infoBox">
             <label for="animalType">묘비모양을 골라주세요</label>
@@ -400,119 +499,124 @@
 
             <!--묘비모양 슬라이드-->
             <div class="slide_wrapper">
-            <ul class="slides">
-            <li>
-            <!--bootstrap 카드 컴포넌트-->
-            <div class="card">
-                <div class="card-overlay">
-                    <a href="#" class="thumbnail"><span>선택하기</span></a>
-                </div>
-                <img src="https://image5.unit808.com/data/100mc_data/images/product/28/37/39/73/23/b_2837397323.gif?v=2021070117" class="card-img-top" >
-                <div class="card-body">
-                    <span>
-                        <h5 class="card-title">발바닥 모양</h5>
-                        
-                    </span>
-                </div>
+                
+                    <li>
+                        <!--bootstrap 카드 컴포넌트-->
+                        <div class="card">
+                            <div class="card-overlay">
+                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                            </div>
+                            <img src="https://image5.unit808.com/data/100mc_data/images/product/28/37/39/73/23/b_2837397323.gif?v=2021070117" class="card-img-top" >
+                            <div class="card-body">
+                                <span>
+                                    <h5 class="card-title">발바닥 모양</h5>
+                                    
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="card">
+                            <div class="card-overlay">
+                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                            </div>
+                            <img src="https://image8.unit808.com/data/100mc_data/images/product/28/21/41/89/37/b_2821418937.gif?v=2021070117" class="card-img-top" >
+                            <div class="card-body">
+                                <span>
+                                    <h5 class="card-title">하트 모양</h5>
+                                    
+                                </span>
+                            </div>
+                        </div>
+                    </li>                    
+                    <li>
+                        <div class="card">
+                            <div class="card-overlay">
+                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                            </div>
+                            <img src="http://img1.tmon.kr/cdn3/deals/2020/12/30/5046342462/5046342462_front_b28a43ccb3.jpg" class="card-img-top" >
+                            <div class="card-body">
+                                <span>
+                                    <h5 class="card-title">황동 하트</h5>
+                                    
+                                </span>
+                            </div>
+                        </div>
+                    </li>                    
+                    <li>
+                        <div class="card">
+                            <div class="card-overlay">
+                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                            </div>
+                            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20210114_208%2F16106311480044leo0_JPEG%2F11766981822016340_1989537315.jpg&type=sc960_832" class="card-img-top" >
+                            <div class="card-body">
+                                <span>
+                                    <h5 class="card-title">비석모양</h5>
+                                    
+                                </span>
+                            </div>
+                        </div>
+                    </li>                    
+                
             </div>
-            </li>
-            <li>
-            <div class="card">
-                <div class="card-overlay">
-                    <a href="#" class="thumbnail"><span>선택하기</span></a>
-                </div>
-                <img src="https://image8.unit808.com/data/100mc_data/images/product/28/21/41/89/37/b_2821418937.gif?v=2021070117" class="card-img-top" >
-                <div class="card-body">
-                    <span>
-                        <h5 class="card-title">하트 모양</h5>
-                        
-                    </span>
-                </div>
-            </div>
-        </li>                    
-        <li>
-            <div class="card">
-                <div class="card-overlay">
-                    <a href="#" class="thumbnail"><span>선택하기</span></a>
-                </div>
-                <img src="http://img1.tmon.kr/cdn3/deals/2020/12/30/5046342462/5046342462_front_b28a43ccb3.jpg" class="card-img-top" >
-                <div class="card-body">
-                    <span>
-                        <h5 class="card-title">황동 하트</h5>
-                        
-                    </span>
-                </div>
-            </div>
-        </li>                    
-        <li>
-            <div class="card">
-                <div class="card-overlay">
-                    <a href="#" class="thumbnail"><span>선택하기</span></a>
-                </div>
-                <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20210114_208%2F16106311480044leo0_JPEG%2F11766981822016340_1989537315.jpg&type=sc960_832" class="card-img-top" >
-                <div class="card-body">
-                    <span>
-                        <h5 class="card-title">비석모양</h5>
-                        
-                    </span>
-                </div>
-            </div>
-        </li>                    
-        <li>
-            <div class="card">
-                <div class="card-overlay">
-                    <a href="#" class="thumbnail"><span>선택하기</span></a>
-                </div>
-                <img src="https://th.bing.com/th/id/OIP.JOT250d3N6gKIxhq7SO6FwHaFS?w=244&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
-                <div class="card-body">
-                    <span>
-                        <h5 class="card-title">루비</h5>
-                        
-                    </span>
-                </div>
-            </div>
-        </li>                    
-                      
-       
-        </ul>
-            </div>
-    
         </div>
-        
-        <div class="infoBox">
-            <label>묘비에 적고싶은 말을 입력해주세요</label>
-            <br>
-            <textarea name="animalTalking"></textarea>
-        </div>
-    
-   
-
-     
-    
-
-
-        
-
+      
         <br>
-        <div class="next">
-            <button type="next">보내주기</button>
-        </div>
-        
-
-        <div class="submitBtn">
-                        <button type="submit">이전으로</button>
-                    </div>
-        
-        
-    
-        
+            <div class="config_cancel">
+                <div class=" submitBtn">
+                    <a href="{% url 'enroll' %}"> 
+                        <button type="sybmit">이전으로</button>
+                    </a>
+                </div>
+                <div class=" submitBtn">
+                    <a href="{% url 'home' %}">
+                        <button type="sybmit">보내주기</button>
+                       </a>
+                </div>
+            </div> 
             
+
+        
+    </div> 
+
     </div>
+     <!--X월 XX일 별이 된 아이들 카드 슬라이드 효과-->
+     <script>
+        var slides=document.querySelector('.slides'),
+            slide=document.querySelectorAll('.slides li'),
+            currentIdx=0,
+            slideCount = slide.length,
+            prevBtn=document.querySelector('.prev'),
+            slideWidth=230,
+            slideMargin=20,
+            nextBtn=document.querySelector('.next');
+
+            function moveSlide(num){
+                slides.style.left =-num*(slideWidth+slideMargin)+'px';
+                currentIdx = num;
+            }
+            nextBtn.addEventListener('click', function(){
+                if(currentIdx<slideCount+3){
+                    moveSlide(currentIdx+1);
+                }
+                else{
+                    moveSlide(0);
+                }
+            });
+            prevBtn.addEventListener('click', function(){
+                if(currentIdx>0){
+                    moveSlide(currentIdx-1);
+                }
+                else{
+                    moveSlide(slideCount-5);
+                }
+            });
+            
+    </script>
+            
+</div>
 
     
-
-
-   
 
     {% endblock %}
 
