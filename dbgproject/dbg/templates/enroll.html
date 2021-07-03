@@ -2,12 +2,28 @@
 
     <!-- 이 html에 추가되는 CSS -->
     {% block css %}
+
     <style>
          /* 현재 카테고리 설명하는 부분 */
          .currentCategory{
             margin: 30px;
             color:#BEB5D3;
             text-align: center;
+        }
+
+        .registerLetter{
+            position: relative;
+            background-color: #FAF8F8;
+            padding: 50px 70px 80px 70px ;
+            width: 80%;
+            margin: 10%;
+            top: -50px;
+        }
+        .registerLetter input{
+            font-size: 13px;
+            width: 250px; height: 35px;
+            border: 3px solid #a19da7;
+            border-radius: 5px;
         }
 
         .nameBox label{
@@ -60,13 +76,10 @@
             background-color: #BEB5D3;
             color: white;
         }
-
-        
-        
       
 
         /*  슬라이드 구현 */
-        .slide_wrapper{
+        .flower-slide_wrapper{
             position: relative;
             left: 10px;
             height: 320px;
@@ -77,21 +90,23 @@
             flex-direction: row;
             flex-wrap: wrap;
         }
-        .slides{
+        .flower-slides{
             position: absolute;
             left:0; top:0;
             transition: left 0.5s ease-out;
             padding:0;
         }
-        .slides li:not(:last-child){
+        .flower-slides li:not(:last-child){
             float:left;
         }
 
-        /* 슬라이드 넘기기 구현 */
-        .controls{
+        
+         /* flower 슬라이드 넘기기 구현 */
+         .flower-controls{
             text-align: center;
+            cursor:pointer;
         }
-        .controls span{    
+        .flower-controls span{    
             position: absolute;
             top:50%;
             transform: translateY(-50%);
@@ -102,17 +117,18 @@
             border: 1px solid #BEB5D3;
             border-radius: 100%;
         }
-        .controls span:hover{
+        .flower-controls span:hover{
             color:white;
             font-weight: bold;
             background-color: #BEB5D3;
         }
-        .controls span.prev{right:calc(100%); transform: translateX(180%);}
-        .controls span.next{left:calc(100%);transform: translateX(-180%);}
+        .flower-controls span.flower-prev{right:calc(100%); transform: translateX(180%);}
+        .flower-controls span.flower-next{left:calc(100%);transform: translateX(-180%);}
+
         
         /* 각 카드 */
         .card{
-            width:230px; height:300px;
+            width:180px; height:250px;
             margin: 0 20px 50px 0;
             background-color: #EFECF4;
             border-radius: 10px 10px 0 0;
@@ -125,7 +141,7 @@
             position: relative;
             display: flex;
             justify-content: center;
-            width:230px; height:300px;
+            width:180px; height:250px;
             border-radius: 10px 10px 0 0;
             z-index: 10;
             background-color: rgba(162, 149, 172, 0.356);
@@ -179,8 +195,8 @@
             margin: 0 20px 20px 0;
             background-color: rgba(0, 0, 0, 0.0);
         }
-
-       
+        
+      
 
     </style>
     {% endblock %}
@@ -198,6 +214,11 @@
             <h6> The best and most beautiful things in the world cannot be seen or even <br>touched - they must be felt with the heart.</h6>
         </div>
         <br>
+
+        <div class="registerLetter">
+            <form action="{% url 'freeRegistered' %}" method="post">
+                <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
+                {%csrf_token%}
 
 
         <div class="nameBox">
@@ -224,33 +245,30 @@
             <br>
 
             <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-<script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+            <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+            <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
 
-<script>
-$(function() {
-  $( "#datepicker1" ).datepicker({
-    dateFormat: 'yy.mm.dd',
-    prevText: '이전 달',
-    nextText: '다음 달',
-    monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-    monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-    dayNames: ['일','월','화','수','목','금','토'],
-    dayNamesShort: ['일','월','화','수','목','금','토'],
-    dayNamesMin: ['일','월','화','수','목','금','토'],
-    showMonthAfterYear: true,
-    changeMonth: true,
-    changeYear: true,
-    yearSuffix: '년'
-  });
-});
-</script>
-생년월일: <input type="text" id="datepicker1">
-    
+        <script>
+        $(function() {
+        $( "#datepicker1" ).datepicker({
+            dateFormat: 'yy.mm.dd',
+            prevText: '이전 달',
+            nextText: '다음 달',
+            monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+            monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+            dayNames: ['일','월','화','수','목','금','토'],
+            dayNamesShort: ['일','월','화','수','목','금','토'],
+            dayNamesMin: ['일','월','화','수','목','금','토'],
+            showMonthAfterYear: true,
+            changeMonth: true,
+            changeYear: true,
+            yearSuffix: '년'
+        });
+        });
+        </script>
+        생년월일: <input type="text" id="datepicker1">
+            
 
-    
-
-        
         </div>
 
         <div class="infoBox">
@@ -263,235 +281,135 @@ $(function() {
                 </div>
             </div>
         </div>
-
-
-        <div class="infoBox">
-            <label>꽃다발을 선택해 주세요</label>
-            <br>
-            
-            
-            <!-- 슬라이드-->
-            <div class="slide_wrapper">
-                <ul class="slides">
-                    <li>
-                        <!--bootstrap 카드 컴포넌트-->
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            
-
-                            </div>
-                            <img src="http://www.flowerrepublic.co.kr/shopimages/sungmo9160/0070010003772.jpg?1507351606" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">분홍장미꽃다발</h5>
-                                   
-                                </span>
-                            </div>
-                        </div>
-                    </li>
-
-                
-
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="https://www.mdeco.co.kr/shop/data/goods/1482819650281s0.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">물망초꽃다발</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="http://eppflower.com/web/product/big/202104/faee82d154fcc1d14a2f5bca135ff645.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">파란장미꽃다발</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="http://m.eppflower.com/web/product/big/201703/1501_shop1_129413.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">프리지아꽃다발</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li>     
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="http://m.eppflower.com/web/product/big/201703/1501_shop1_129413.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">프리지아꽃다발</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li>               
-                              
-                    
-                    
-                </ul>
-            </div>
-
-                
-
-            
-
-            
-        
-            
-
-            
-
-        </div>
-
         <br>
         <div class="next">
             <a href="{% url 'enroll2' %}">
                 <button type="next">다음장으로</button>
             </a>
-            
         </div>
 
-        <br>
-
-       
 
         
+        </div>
 
+
+
+
+                   
+
+            </form>
+        </div>
+        
 
     
-    <!--이미지 업로드 스크립트 -->
-    <script>
+         
+    
+            <!--이미지 업로드 스크립트 -->
+             <script>
 
-        ( /* att_zone : 이미지들이 들어갈 위치 id, btn : file tag id */
-          imageView = function imageView(att_zone, btn){
-        
-            var attZone = document.getElementById(att_zone);
-            var img_upload = document.getElementById(btn)
-            var sel_files = [];
+                ( /* att_zone : 이미지들이 들어갈 위치 id, btn : file tag id */
+                imageView = function imageView(att_zone, btn){
             
-            // 이미지와 체크 박스를 감싸고 있는 div 속성
-            var div_style = 'display:inline-block;position:relative;'
-                          + 'width:150px;height:120px;margin:5px;border:1px solid #00f;z-index:1';
-            // 미리보기 이미지 속성
-            var img_style = 'width:100%;height:100%;z-index:none';
-            // 이미지안에 표시되는 체크박스의 속성
-            var chk_style = 'width:30px;height:30px;position:absolute;font-size:24px;'
-                          + 'right:0px;bottom:0px;z-index:999;background-color:rgba(255,255,255,0.1);color:#f00';
-          
-            img_upload.onchange = function(e){
-              var files = e.target.files;
-              var fileArr = Array.prototype.slice.call(files)
-              for(f of fileArr){
-                imageLoader(f);
-              }
-            }  
+                var attZone = document.getElementById(att_zone);
+                var img_upload = document.getElementById(btn)
+                var sel_files = [];
+                
+                // 이미지와 체크 박스를 감싸고 있는 div 속성
+                var div_style = 'display:inline-block;position:relative;'
+                            + 'width:150px;height:120px;margin:5px;border:1px solid #00f;z-index:1';
+                // 미리보기 이미지 속성
+                var img_style = 'width:100%;height:100%;z-index:none';
+                // 이미지안에 표시되는 체크박스의 속성
+                var chk_style = 'width:30px;height:30px;position:absolute;font-size:24px;'
+                            + 'right:0px;bottom:0px;z-index:999;background-color:rgba(255,255,255,0.1);color:#f00';
             
-          
-            // 탐색기에서 드래그앤 드롭 사용
-            attZone.addEventListener('dragenter', function(e){
-              e.preventDefault();
-              e.stopPropagation();
-            }, false)
+                img_upload.onchange = function(e){
+                var files = e.target.files;
+                var fileArr = Array.prototype.slice.call(files)
+                for(f of fileArr){
+                    imageLoader(f);
+                }
+                }  
+                
             
-            attZone.addEventListener('dragover', function(e){
-              e.preventDefault();
-              e.stopPropagation();
-              
-            }, false)
-          
-            attZone.addEventListener('drop', function(e){
-              var files = {};
-              e.preventDefault();
-              e.stopPropagation();
-              var dt = e.dataTransfer;
-              files = dt.files;
-              for(f of files){
-                imageLoader(f);
-              }
-              
-            }, false)
+                // 탐색기에서 드래그앤 드롭 사용
+                attZone.addEventListener('dragenter', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                }, false)
+                
+                attZone.addEventListener('dragover', function(e){
+                e.preventDefault();
+                e.stopPropagation();
+                
+                }, false)
             
-        
-            
-            /*첨부된 이미리즐을 배열에 넣고 미리보기 */
-            imageLoader = function(file){
-              sel_files.push(file);
-              var reader = new FileReader();
-              reader.onload = function(ee){
-                let img = document.createElement('img')
-                img.setAttribute('style', img_style)
-                img.src = ee.target.result;
-                attZone.appendChild(makeDiv(img, file));
-              }
-              
-              reader.readAsDataURL(file);
-            }
-            
-            /*첨부된 파일이 있는 경우 checkbox와 함께 attZone에 추가할 div를 만들어 반환 */
-            makeDiv = function(img, file){
-              var div = document.createElement('div')
-              div.setAttribute('style', div_style)
-              
-              var btn = document.createElement('input')
-              btn.setAttribute('type', 'button')
-              btn.setAttribute('value', 'x')
-              btn.setAttribute('delFile', file.name);
-              btn.setAttribute('style', chk_style);
-              btn.onclick = function(ev){
-                var ele = ev.srcElement;
-                var delFile = ele.getAttribute('delFile');
-                for(var i=0 ;i<sel_files.length; i++){
-                  if(delFile== sel_files[i].name){
-                    sel_files.splice(i, 1);      
-                  }
+                attZone.addEventListener('drop', function(e){
+                var files = {};
+                e.preventDefault();
+                e.stopPropagation();
+                var dt = e.dataTransfer;
+                files = dt.files;
+                for(f of files){
+                    imageLoader(f);
                 }
                 
-                dt = new DataTransfer();
-                for(f in sel_files) {
-                  var file = sel_files[f];
-                  dt.items.add(file);
+                }, false)
+                
+            
+                
+                /*첨부된 이미리즐을 배열에 넣고 미리보기 */
+                imageLoader = function(file){
+                sel_files.push(file);
+                var reader = new FileReader();
+                reader.onload = function(ee){
+                    let img = document.createElement('img')
+                    img.setAttribute('style', img_style)
+                    img.src = ee.target.result;
+                    attZone.appendChild(makeDiv(img, file));
                 }
-                img_upload.files = dt.files;
-                var p = ele.parentNode;
-                attZone.removeChild(p)
-              }
-              div.appendChild(img)
-              div.appendChild(btn)
-              return div
+                
+                reader.readAsDataURL(file);
+                }
+                
+                /*첨부된 파일이 있는 경우 checkbox와 함께 attZone에 추가할 div를 만들어 반환 */
+                makeDiv = function(img, file){
+                var div = document.createElement('div')
+                div.setAttribute('style', div_style)
+                
+                var btn = document.createElement('input')
+                btn.setAttribute('type', 'button')
+                btn.setAttribute('value', 'x')
+                btn.setAttribute('delFile', file.name);
+                btn.setAttribute('style', chk_style);
+                btn.onclick = function(ev){
+                    var ele = ev.srcElement;
+                    var delFile = ele.getAttribute('delFile');
+                    for(var i=0 ;i<sel_files.length; i++){
+                    if(delFile== sel_files[i].name){
+                        sel_files.splice(i, 1);      
+                    }
+                    }
+                    
+                    dt = new DataTransfer();
+                    for(f in sel_files) {
+                    var file = sel_files[f];
+                    dt.items.add(file);
+                    }
+                    img_upload.files = dt.files;
+                    var p = ele.parentNode;
+                    attZone.removeChild(p)
+                }
+                div.appendChild(img)
+                div.appendChild(btn)
+                return div
+                }
             }
-          }
-        )('att_zone', 'imgUpload')
-
-    
+            )('att_zone', 'imgUpload')
 
         
-        
-    </script>
-
+        </script>
+    </div>
 </div>
 
 {% endblock %}
