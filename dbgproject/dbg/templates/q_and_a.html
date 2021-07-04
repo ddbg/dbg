@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+
+    <!-- 이 html에 추가되는 CSS -->
+    {% block css %}
+    <style>
+    .container{
+      margin:10px auto;
+    }
+    .csCenterTitle{
+        margin: 80px 90px 0;
+        color:#726C7B;
+        font-weight: bold;
+        font-size: 3vw;
+    }
+    .csCenter{color:#9f97b1;}
+    .accordion{
+      display: flex;
+      flex-direction:column;
+    }
+    .accordion-button{
+      width: 800px;
+      height: 40 px;
+      padding: 10px;
+      border-color: #ADAAB1;
+      border-width:2px;
+      background-color: #FFFFFF;
+      margin: 0px;
+      text-align:left;
+      position:center;
+      color:#726C7B;
+    }
+    /* footer 아래 고정 */
+    html,body{
+      height: 100%;
+    }
+    body{
+      display:flex;
+      flex-direction: column;
+    }
+    footer{
+      flex-shrink: 0;
+    }
+    .container{
+      flex: 1;
+    }
+    .accordion{
+        margin:auto;
+    }
+    </style>
+    {% endblock %}
+
+
+
+    <!--본문 내용-->
+    {% block content %}
+        
+    {% load static %}
+
+    <div class="container">
+        <div class="csCenterTitle">
+            <span class="csCenter">
+            자주 묻는 질문</span>
+        </div>
+        <hr><br><br>
+
+        <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                  Q. 동물 등록은 어떻게 하나요?
+                </button>
+              </h2>
+              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">각 페이지의 등록하기 버튼을 통해 가능합니다.</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                    Q. 내가 등록한 다른 동물은 어떻게 보나요?
+                </button>
+              </h2>
+              <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">홈페이지 상단 오른쪽의 자신의 프로필을 클릭하면 볼 수 있습니다.</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                    Q. 등록한 동물 관리는 어디서 하나요?
+                </button>
+              </h2>
+              <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">마이페이지에서 관리가 가능합니다.</div>
+              </div>
+            </div>
+          </div>
+    </div>
+    {% endblock %}
