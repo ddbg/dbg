@@ -18,6 +18,10 @@ urlpatterns = [
     path('mypage/',mypage,name="mypage"),
     path('mypageDiary/',mypageDiary,name="mypageDiary"),
     path('mypagePhoto/',mypagePhoto,name="mypagePhoto"),
+<<<<<<< HEAD
+=======
+    path('test/',test,name="test"),path('enroll/',enroll, name="enroll"),
+>>>>>>> b3fa3b07b75af2543ad029d4f0d8b43bada22d4f
     path('enroll/',enroll, name="enroll"),
     path('enroll2/',enroll2, name="enroll2"),
     path('enrolled/',enrolled, name="enrolled"),
