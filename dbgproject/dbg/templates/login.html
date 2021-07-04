@@ -72,6 +72,20 @@
             color: #726C7B;
             size:21px;
         }
+        /* footer 아래 고정 */
+        html,body{
+            height: 100%;
+        }
+        body{
+            display:flex;
+            flex-direction: column;
+        }
+        footer{
+            flex-shrink: 0;
+        }
+        .container{
+            flex: 1;
+        }
     </style>
     {% endblock %}
 

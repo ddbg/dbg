@@ -77,6 +77,14 @@ def mypageDiary(request):
 def mypagePhoto(request):
     return render(request, "mypagePhoto.html")
 
-def test(request):
-    return render(request, "test.html")    
+def login(request):
+    return render(request, "login.html")    
 
+def csCenter(request):
+    return render(request, "csCenter.html")    
+
+def signUp(request):
+    return render(request, "signUp.html")    
+
+def q_and_a(request):
+    return render(request, "q_and_a.html")    
