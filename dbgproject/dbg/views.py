@@ -88,3 +88,9 @@ def signUp(request):
 
 def q_and_a(request):
     return render(request, "q_and_a.html")    
+
+def idFind(request):
+    return render(request, "idFind.html")    
+
+def pwFind(request):
+    return render(request, "pwFind.html")    
