@@ -241,6 +241,10 @@
             color:white;
             line-height: 30px;
         }
+
+        a:link { color: white; text-decoration: none;}
+        a:visited { color: white; text-decoration: none;}
+        a:hover { color: white; text-decoration: underline;}
     
     </style>
 
@@ -269,14 +273,14 @@
                 <div class="menuItem"><a href="{% url 'honor' %}">명예관</a></div>
                 <div class="menuItem"><a href="{% url 'free' %}">자유로운 영혼</a></div>
                 <div class="menuItem"><a href="{% url 'searchMap' %}">반려동물 장례 장소 검색</a></div>
-                <div class="menuItem">고객센터</div>
+                <div class="menuItem"><a href="{% url 'q_and_a' %}">고객센터</a></div>
                 <div class="menuItem"><a href="{% url 'aboutUs' %}">About Us</a></div>
             </div>
             
             <h1 class="serviceTitle"><a href="{% url 'home' %}">또바기</a></h1>
             
-            <span class="headerBtns">
-                <span class="headerBtn">초대장받기</span>
+            <span class="headerBtns" link="#726C7B", vlink="#726C7B", alink="#726C7B">
+                <span class="headerBtn"><a href="{% url 'caaard' %}">초대장받기</a></span>
                 <span class="headerBtn"><a href="{% url 'csCenter' %}">고객센터</a></span>
                 <span class="headerBtn"><a href="{% url 'signUp' %}">회원가입</a></span>
                 <span class="loginBtn"><a href="{% url 'login' %}">로그인</a></span>
