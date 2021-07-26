@@ -8,11 +8,26 @@
     <!--부트스트랩 CSS/JS-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
+    <script language="javascript">
+       
+        function pwin()
+        {
+            var url = "{% url 'mypage' %}"
+            window.open(url, "pop1", "width=850, height=590, resizeable=0 status=yes, menubar=no")
+        }
 
+    </script>
     
     <style>
 
-        body{margin:0; }             
+        @font-face {
+            font-family: 'GmarketSansLight';
+            src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/GmarketSansLight.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+
+        body{margin:0; font-family: 'GmarketSansLight', cursive;}          
 
         /* 링크 걸었을 때 밑줄 표시 없도록 */ 
         a{text-decoration: none;} 
@@ -129,8 +144,7 @@
         .loginBtn{
             font-size:5px;
             color:white;
-            padding: 2px 10px;
-
+            padding: 3px 10px 2px;
             background-color: #BEB5D3;
             border: 2px solid white;
             border-radius: 3px;
@@ -201,6 +215,7 @@
 
         /* 우측에 고정된 위아래로 가는 버튼 */
         #toUpDown{
+            z-index:50;
             display: flex;
             flex-direction: column;
             position:fixed;
@@ -226,6 +241,10 @@
             color:white;
             line-height: 30px;
         }
+
+        a:link { color: white; text-decoration: none;}
+        a:visited { color: white; text-decoration: none;}
+        a:hover { color: white; text-decoration: underline;}
     
     </style>
 
@@ -236,6 +255,7 @@
     <title>또바기</title>
 </head>
 <body>
+
     <header>
         <!--상단바-->
         <div class="dbgHeader">  
@@ -249,21 +269,21 @@
             <!--메뉴 아이콘 클릭 시 나옴-->
             <div class="menuBar">
                 <div class="menuItem"><a href="{% url 'home' %}">Home</a></div>
-                <div class="menuItem">마이페이지</div>
-                <div class="menuItem">명예관</div>
+                <div class="menuItem"><a href="" onclick="pwin()">마이페이지</a></div>
+                <div class="menuItem"><a href="{% url 'honor' %}">명예관</a></div>
                 <div class="menuItem"><a href="{% url 'free' %}">자유로운 영혼</a></div>
-                <div class="menuItem">반려동물 장례 장소 검색</div>
-                <div class="menuItem">고객센터</div>
-                <div class="menuItem">About Us</div>
+                <div class="menuItem"><a href="{% url 'searchMap' %}">반려동물 장례 장소 검색</a></div>
+                <div class="menuItem"><a href="{% url 'q_and_a' %}">고객센터</a></div>
+                <div class="menuItem"><a href="{% url 'aboutUs' %}">About Us</a></div>
             </div>
             
             <h1 class="serviceTitle"><a href="{% url 'home' %}">또바기</a></h1>
             
-            <span class="headerBtns">
-                <span class="headerBtn">초대장받기</span>
-                <span class="headerBtn">고객센터</span>
-                <span class="headerBtn">회원가입</span>
-                <span class="loginBtn">로그인</span>
+            <span class="headerBtns" link="#726C7B", vlink="#726C7B", alink="#726C7B">
+                <span class="headerBtn"><a href="{% url 'caaard' %}">초대장받기</a></span>
+                <span class="headerBtn"><a href="{% url 'csCenter' %}">고객센터</a></span>
+                <span class="headerBtn"><a href="{% url 'signUp' %}">회원가입</a></span>
+                <span class="loginBtn"><a href="{% url 'login' %}">로그인</a></span>
             </span>
         </div>
 
@@ -275,8 +295,11 @@
 
             <!--검색창-->
             <span class="searchForm">
-                <form action="">
-                    <input type="text" class="searchInput">
+                <form action="{% url 'searchResult' %}" method="post">
+                    <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
+                    {%csrf_token%}
+                    
+                    <input type="text" class="searchInput" name="searchInput">
                     <input type="submit" value="Search" class="searchBtn">
                 </form>
             </span>
@@ -310,7 +333,7 @@
         <span>
             LIKELION 9th Team Project<br>
             팀 또바기<br>
-            대표 이메일 ｜ 팀장님이메일
+            대표 이메일 ｜ 01yhgrace@naver.com
         </span>
         <span><br>
             소속 ｜ 한국기술교육대학교<br>
@@ -319,9 +342,9 @@
         </span>
         <span>
             angly97@koreatech.ac.kr<br>
-            이메일<br>
-            이메일<br>
-            이메일<br>
+            yy164946@naver.com<br>
+            ribertad21@gmail.com<br>
+            sarah001015@naver.com <br>
         </span>
     </footer>
 </body>

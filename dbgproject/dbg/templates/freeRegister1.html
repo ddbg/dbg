@@ -1,0 +1,198 @@
+{% extends 'base.html' %}
+
+    <!-- 이 html에 추가되는 CSS -->
+    {% block css %}
+    <style>        
+    
+        /* 현재 카테고리 설명하는 부분 */
+        .currentCategory{
+            margin: 30px;
+            color:#BEB5D3;
+            text-align: center;
+        }
+    
+        .registerLetter{
+            position: relative;
+            background-color: #FAF8F8;
+            padding: 50px 70px 80px 70px ;
+            width: 80%;
+            margin: 10%;
+            top: -50px;
+        }
+        .registerLetter input{
+            font-size: 13px;
+            width: 250px; height: 35px;
+            border: 3px solid #a19da7;
+            border-radius: 5px;
+        }
+        
+        .nameBox label{
+            font-size: 45px;
+            font-weight: bold;
+            color:#726C7B;
+            margin-right: 10px;
+        }
+        .nameBox input{position: absolute; margin-top: 20px;}
+        .infoBox{ margin: 50px 83px; color:#726C7B;}
+        .infoBox label{
+            font-size: 15px; 
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+        #att_zone{
+            position: relative;
+            width: 100%;
+            min-height:150px;
+            padding:10px;
+            border: 3px solid #a19da7;
+            border-radius: 5px;
+            background-color: white;
+        }
+        #att_zone label{
+            position: absolute;
+            right: 15px;
+            font-size: 25px;
+        }
+        #att_zone:empty:before{
+            content : attr(data-placeholder);
+            color : #999;
+            font-size:.9em;
+        }
+
+        .registerLetter textarea{
+            font-size: 13px;
+            width: 100%; height: 200px;
+            border: 3px solid #a19da7;
+            border-radius: 5px;
+        }
+        
+        .from{
+            display: flex;
+            justify-content: flex-end;
+            font-size: 40px;
+            font-weight: bold;
+            color:#726C7B;
+        }
+        
+        .submitBtn{
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 15px;
+        }
+        .submitBtn button{
+            border: 3px solid #BEB5D3;
+            border-radius: 6px;
+            color: rgb(156, 145, 173);
+            font-weight: bold;
+            background-color: rgba(0,0,0,0);
+        }
+        .submitBtn button:hover{
+            background-color: #BEB5D3;
+            color: white;
+        }
+
+    </style>
+
+
+    {% endblock %}
+    <!--본문 내용-->
+    {% block content %}
+
+        <div class="container">
+            <div class="currentCategory">
+                <h1>"<br>자유로운 영혼</h1><br>
+                <h6> 길고양이, 유기견, 로드킬 등으로 세상을 떠나<br>장례를 치르기 어려운 동물들을 추모할 수 있는 공간입니다.</h6>
+            </div>
+            <br>
+
+            <div class="registerLetter">
+                <form action="{% url 'freeRegister2' %}" method="post">
+                    <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
+                    {%csrf_token%}
+
+                    <div class="nameBox">
+                        <label for="to">To. </label>
+                        <input type="text" id="to" name="animalName" placeholder="이름을 적어주세요">
+                    </div>
+                    
+                    <div class="infoBox">
+                        <label for="animalType">어떤 동물인가요?</label>
+                        <br>
+                        <input type="text" name="animalType" placeholder="직접 입력해주세요" list="fruits" />
+                        <datalist id="fruits">
+                        <option value="강아지"></option>
+                        <option value="고양이"></option>
+                        <option value="새"></option>
+                        <option value="토끼"></option>
+                        <option value="물고기"></option>
+                        <option value="햄스터"></option>
+                        </datalist>
+                    </div>
+
+                    <div class="infoBox">
+                      <label for="animalType">너가 태어난 날을 기억할게</label>
+                      <br>
+          
+                      <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
+                      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+                      <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
+          
+                      <script>
+                          $(function() {
+                          $( "#birthday" ).datepicker({
+                              dateFormat: 'yy.mm.dd',
+                              prevText: '이전 달',
+                              nextText: '다음 달',
+                              monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                              monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
+                              dayNames: ['일','월','화','수','목','금','토'],
+                              dayNamesShort: ['일','월','화','수','목','금','토'],
+                              dayNamesMin: ['일','월','화','수','목','금','토'],
+                              showMonthAfterYear: true,
+                              changeMonth: true,
+                              changeYear: true,
+                              yearSuffix: '년'
+                          });
+                          });
+                      </script>
+                      생년월일: <input type="text" id="birthday" name="birthday">
+                          
+                  </div>
+                    
+                    <div class="infoBox">
+                        <label>너의 모습을 기억할게</label>
+                        <br>
+                        <div id='img_preview'>
+                            <input type='file' id='imgUpload' name="animalImg" multiple='multiple' style="display: none;"/>
+                            <div id='att_zone' data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'>
+                                <label for="imgUpload">+</label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="infoBox">
+                        <label>너에게 하고 싶은 말</label>
+                        <br>
+                        <textarea name="animalTalking"></textarea>
+                    </div>
+
+                    <div class="infoBox">
+                        <label>상세 정보</label>
+                        <br>
+                        <textarea name="animalTalking"></textarea>
+                    </div>
+                       
+                    <div class="from">
+                        <span>From. 닉네임</span>
+                    </div>
+                    
+                    <div class="submitBtn">
+                        <button type="submit">다음장으로</button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+        
+
+    {% endblock %}

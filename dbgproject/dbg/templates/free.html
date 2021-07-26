@@ -76,7 +76,32 @@
             box-shadow: 2px 4px 12px 0 rgb(0 0 0 / 14%);
 
         }
-
+        
+        .card-overlay{
+            position: relative;
+            display: flex;
+            justify-content: center;
+            width:230px; height:300px;
+            border-radius: 10px 10px 0 0;
+            z-index: 10;
+            background-color: rgba(162, 149, 172, 0.356);
+            opacity: 0;
+        }
+        .card-overlay:hover{ 
+            opacity: 1;
+            transition: all 0.25s;
+        }
+        .card-overlay span{
+            position: absolute;
+            top: 40%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.9);
+            background-color: rgba(162, 149, 172, 0.575);
+            border: 2px solid white;
+            border-radius: 5px;
+            padding: 4px 8px;
+            font-size: 15px;
+        }
         /* 카드 속 동물 이미지 */
         .card-img-top{ 
             position:absolute;
@@ -85,11 +110,6 @@
             object-fit: cover;
             border-radius: 10px 10px 0 0 ;   
             box-shadow: 2px 4px 12px 0 rgb(0 0 0 / 14%);
-        }
-        .card-img-top-inactive{
-            position:absolute;
-            background-color:rgba(255, 255, 255, 0.2); 
-            z-index:10; height:100%; width:100%;
         }
         /* 카드 속 설명 */
         .card-body{
@@ -173,17 +193,13 @@
                     <li>
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
-                            <div class="card-img-top-inactive"></div>
-                            <img src="https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="card-img-top" >
+                            <div class="card-overlay">
+                                <a href="" onclick="pwin()"><span>MORE</span></a>
+                            </div>
+                            <img src="https://cdn.pixabay.com/photo/2014/04/13/20/49/cat-323262_960_720.jpg" class="card-img-top" >
                             <div class="card-body">
-                                <!--
-                                <span class="flower">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-flower3" viewBox="0 0 16 16">
-                                        <path d="M11.424 8c.437-.052.811-.136 1.04-.268a2 2 0 0 0-2-3.464c-.229.132-.489.414-.752.767C9.886 4.63 10 4.264 10 4a2 2 0 1 0-4 0c0 .264.114.63.288 1.035-.263-.353-.523-.635-.752-.767a2 2 0 0 0-2 3.464c.229.132.603.216 1.04.268-.437.052-.811.136-1.04.268a2 2 0 1 0 2 3.464c.229-.132.489-.414.752-.767C6.114 11.37 6 11.736 6 12a2 2 0 1 0 4 0c0-.264-.114-.63-.288-1.035.263.353.523.635.752.767a2 2 0 1 0 2-3.464c-.229-.132-.603-.216-1.04-.268zM9 4a1.468 1.468 0 0 1-.045.205c-.039.132-.1.295-.183.484a12.88 12.88 0 0 1-.637 1.223L8 6.142a21.73 21.73 0 0 1-.135-.23 12.88 12.88 0 0 1-.637-1.223 4.216 4.216 0 0 1-.183-.484A1.473 1.473 0 0 1 7 4a1 1 0 1 1 2 0zM3.67 5.5a1 1 0 0 1 1.366-.366 1.472 1.472 0 0 1 .156.142c.094.1.204.233.326.4.245.333.502.747.742 1.163l.13.232a21.86 21.86 0 0 1-.265.002 12.88 12.88 0 0 1-1.379-.06 4.214 4.214 0 0 1-.51-.083 1.47 1.47 0 0 1-.2-.064A1 1 0 0 1 3.67 5.5zm1.366 5.366a1 1 0 0 1-1-1.732c.001 0 .016-.008.047-.02.037-.013.087-.028.153-.044.134-.032.305-.06.51-.083a12.88 12.88 0 0 1 1.379-.06c.09 0 .178 0 .266.002a21.82 21.82 0 0 1-.131.232c-.24.416-.497.83-.742 1.163a4.1 4.1 0 0 1-.327.4 1.483 1.483 0 0 1-.155.142zM9 12a1 1 0 0 1-2 0 1.476 1.476 0 0 1 .045-.206c.039-.131.1-.294.183-.483.166-.378.396-.808.637-1.223L8 9.858l.135.23c.241.415.47.845.637 1.223.083.19.144.352.183.484A1.338 1.338 0 0 1 9 12zm3.33-6.5a1 1 0 0 1-.366 1.366 1.478 1.478 0 0 1-.2.064c-.134.032-.305.06-.51.083-.412.045-.898.061-1.379.06-.09 0-.178 0-.266-.002l.131-.232c.24-.416.497-.83.742-1.163a4.1 4.1 0 0 1 .327-.4c.046-.05.085-.086.114-.11.026-.022.04-.03.041-.032a1 1 0 0 1 1.366.366zm-1.366 5.366a1.494 1.494 0 0 1-.155-.141 4.225 4.225 0 0 1-.327-.4A12.88 12.88 0 0 1 9.74 9.16a22 22 0 0 1-.13-.232l.265-.002c.48-.001.967.015 1.379.06.205.023.376.051.51.083.066.016.116.031.153.044l.048.02a1 1 0 1 1-1 1.732zM8 9a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
-                                      </svg>
-                                </span>-->
                                 <span>
-                                    <h5 class="card-title">Card title</h5>
+                                    <h5 class="card-title">군이</h5>
                                     <p class="card-text">2001.01.02 ~ 2015.12.03</p>
                                 </span>
                             </div>
@@ -191,11 +207,69 @@
                     </li>
                     <li>
                         <div class="card">
-                            <div class="card-img-top-inactive"></div>
-                            <img src="http://placehold.it" class="card-img-top" >
+                            <div class="card-overlay">
+                                <a href="" onclick="pwin()"><span>MORE</span></a>
+                            </div>
+                            <img src="https://cdn.pixabay.com/photo/2012/02/27/16/57/cat-17430_960_720.jpg" class="card-img-top" >
                             <div class="card-body">
                                 <span>
-                                    <h5 class="card-title">Card title</h5>
+                                    <h5 class="card-title">길길</h5>
+                                    <p class="card-text">2008.08.12 ~ 2017.06.17</p>
+                                </span>
+                            </div>
+                        </div>
+                    </li>                    
+                    <li>
+                        <div class="card">
+                            <div class="card-overlay">
+                                <a href="" onclick="pwin()"><span>MORE</span></a>
+                            </div>
+                            <img src="https://cdn.pixabay.com/photo/2018/10/05/23/24/chicken-3727097_960_720.jpg" class="card-img-top" >
+                            <div class="card-body">
+                                <span>
+                                    <h5 class="card-title">토토</h5>
+                                    <p class="card-text">2011.11.02 ~ 2055.12.13</p>
+                                </span>
+                            </div>
+                        </div>
+                    </li>                    
+                    <li>
+                        <div class="card">
+                            <div class="card-overlay">
+                                <a href="" onclick="pwin()"><span>MORE</span></a>
+                            </div>
+                            <img src="https://cdn.pixabay.com/photo/2017/08/14/10/48/dog-2640076_960_720.jpg" class="card-img-top" >
+                            <div class="card-body">
+                                <span>
+                                    <h5 class="card-title">뽀미</h5>
+                                    <p class="card-text">2002.05.05 ~ 2017.12.03</p>
+                                </span>
+                            </div>
+                        </div>
+                    </li>                    
+                    <li>
+                        <div class="card">
+                            <div class="card-overlay">
+                                <a href="{% url 'honor' %}"><span>MORE</span></a>
+                            </div>
+                            <img src="https://cdn.pixabay.com/photo/2020/01/29/21/57/cat-4803841_960_720.jpg" class="card-img-top" >
+                            <div class="card-body">
+                                <span>
+                                    <h5 class="card-title">루비</h5>
+                                    <p class="card-text">2005.03.15 ~ 2018.12.11</p>
+                                </span>
+                            </div>
+                        </div>
+                    </li>                    
+                    <li>
+                        <div class="card">
+                            <div class="card-overlay">
+                                <a href="" onclick="pwin()"><span>MORE</span></a>
+                            </div>
+                            <img src="https://cdn.pixabay.com/photo/2021/04/19/11/14/snail-6191155_960_720.jpg" class="card-img-top" >
+                            <div class="card-body">
+                                <span>
+                                    <h5 class="card-title">터틀</h5>
                                     <p class="card-text">2001.01.02 ~ 2015.12.03</p>
                                 </span>
                             </div>
@@ -203,71 +277,27 @@
                     </li>                    
                     <li>
                         <div class="card">
-                            <div class="card-img-top-inactive"></div>
-                            <img src="http://placehold.it" class="card-img-top" >
+                            <div class="card-overlay">
+                                <a href="" onclick="pwin()"><span>MORE</span></a>
+                            </div>
+                            <img src="https://cdn.pixabay.com/photo/2016/01/19/01/32/shiba-inu-1147811_960_720.jpg" class="card-img-top" >
                             <div class="card-body">
                                 <span>
-                                    <h5 class="card-title">Card title</h5>
+                                    <h5 class="card-title">앵무</h5>
                                     <p class="card-text">2001.01.02 ~ 2015.12.03</p>
                                 </span>
                             </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-img-top-inactive"></div>
-                            <img src="http://placehold.it" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-img-top-inactive"></div>
-                            <img src="http://placehold.it" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-img-top-inactive"></div>
-                            <img src="http://placehold.it" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-img-top-inactive"></div>
-                            <img src="http://placehold.it" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">Card title</h5>
-                                    <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                                </span>
-                            </div>>
                         </div>
                     </li>
                     <li>
                         <div class="card">
-                            <div class="card-img-top-inactive"></div>
-                            <img src="http://placehold.it" class="card-img-top" >
+                            <div class="card-overlay">
+                                <a href="" onclick="pwin()"><span>MORE</span></a>
+                            </div>
+                            <img src="https://cdn.pixabay.com/photo/2018/08/07/22/33/raccoon-3590948_960_720.jpg" class="card-img-top" >
                             <div class="card-body">
                                 <span>
-                                    <h5 class="card-title">Card title</h5>
+                                    <h5 class="card-title">너구리</h5>
                                     <p class="card-text">2001.01.02 ~ 2015.12.03</p>
                                 </span>
                             </div>
@@ -296,169 +326,203 @@
         <div class="animals">
             <span>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                    </div>
                     <img src="https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="card-img-top" >
                     <div class="card-body">
                         <span>
                             
-                            <h5 class="card-title">Card title</h5>
+                            <h5 class="card-title">토순이</h5>
+                            <p class="card-text">2004.04.12 ~ 2015.04.13</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-overlay">
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                    </div>
+                    <img src="https://th.bing.com/th/id/OIP.RGSmwiNfrGtevuBjFJuWSgHaE6?w=241&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
+                    <div class="card-body">
+                        <span>
+                            <h5 class="card-title">멍자</h5>
+                            <p class="card-text">2011.01.07 ~ 2020.12.13</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-overlay">
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                    </div>
+                    <img src="https://th.bing.com/th/id/OIP.4fRp-L9WTgKn2_p5bJw6bwHaI2?w=148&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
+                    <div class="card-body">
+                        <span>
+                            <h5 class="card-title">멍이</h5>
+                            <p class="card-text">2005.11.12 ~ 2017.02.13</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-overlay">
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                    </div>
+                    <img src="https://th.bing.com/th/id/OIP.UB4TR__meq85boxIZoZgkgHaE8?w=269&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
+                    <div class="card-body">
+                        <span>
+                            <h5 class="card-title">군이</h5>
                             <p class="card-text">2001.01.02 ~ 2015.12.03</p>
                         </span>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                    </div>
+                    <img src="https://th.bing.com/th/id/OIP._g9ST_L3uAlQogAH_lHjlQHaFj?w=227&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
+                    <div class="card-body">
+                        <span>
+                            <h5 class="card-title">토토</h5>
+                            <p class="card-text">2001.01.02 ~ 2015.12.03</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-overlay">
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                    </div>
                     <img src="https://images.mypetlife.co.kr/content/uploads/2019/09/09153001/dog-panting-1024x683.jpg" class="card-img-top" >
                     <div class="card-body">
                         <span>
-                            <h5 class="card-title">Card title</h5>
+                            <h5 class="card-title">길길</h5>
+                            <p class="card-text">2008.08.12 ~ 2017.06.17</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-overlay">
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                    </div>
+                    <img src="https://th.bing.com/th/id/Rff59d6db0f047025df807d9ff212c700?rik=lEASTgz7BFHQ1A&riu=http%3a%2f%2fcfile215.uf.daum.net%2fimage%2f255C043F54CB9BC026297B&ehk=ryO2yT2KnEBnehIOPqcKImGsqPcoTiGUarHlC9dmAuQ%3d&risl=&pid=ImgRaw" class="card-img-top" >
+                    <div class="card-body">
+                        <span>
+                            <h5 class="card-title">미미</h5>
                             <p class="card-text">2001.01.02 ~ 2015.12.03</p>
                         </span>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
-                    <img src="http://placehold.it" class="card-img-top" >
+                    <div class="card-overlay">
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                    </div>
+                    <img src="https://th.bing.com/th/id/OIP.8jSYzSakk0dSzH89THRUhQHaE_?w=226&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
                     <div class="card-body">
                         <span>
-                            <h5 class="card-title">Card title</h5>
+                            <h5 class="card-title">츄츄</h5>
+                            <p class="card-text">2011.51.12 ~ 2011.12.03</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-overlay">
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                    </div>
+                    <img src="https://th.bing.com/th/id/OIP.BncI4DybWkd5sNhWxEwSWwHaGh?w=182&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
+                    <div class="card-body">
+                        <span>
+                            <h5 class="card-title">토토</h5>
+                            <p class="card-text">2011.11.02 ~ 2055.12.13</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-overlay">
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                    </div>
+                    <img src="https://th.bing.com/th/id/OIP.mSqFQMRpzzcTUwAkrq7OBAHaEK?w=313&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
+                    <div class="card-body">
+                        <span>
+                            <h5 class="card-title">달달</h5>
                             <p class="card-text">2001.01.02 ~ 2015.12.03</p>
                         </span>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
-                    <img src="http://placehold.it" class="card-img-top" >
+                    <div class="card-overlay">
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                    </div>
+                    <img src="https://th.bing.com/th/id/OIP._v3ir7dXgzP_inTjEeQligHaLG?pid=ImgDet&rs=1" class="card-img-top" >
                     <div class="card-body">
                         <span>
-                            <h5 class="card-title">Card title</h5>
+                            <h5 class="card-title">미리</h5>
+                            <p class="card-text">1989.01.02 ~ 2009.07.07</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-overlay">
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                    </div>
+                    <img src="https://th.bing.com/th/id/Re103181fd86af1aa032cd2353847faff?rik=rmoni8b0D7dt8A&riu=http%3a%2f%2fimage.notepet.co.kr%2fresize%2f620x-%2fseimage%2f20161214%252Fa5135ce43e4888e345cd2787d1f399f2.jpg&ehk=%2fjbVfydNDgkBzdgJSpuR0LQRf5HCgwdOpWXgIGqwKpI%3d&risl=&pid=ImgRaw" class="card-img-top" >
+                    <div class="card-body">
+                        <span>
+                            <h5 class="card-title">뽀미</h5>
+                            <p class="card-text">2002.05.05 ~ 2017.12.03</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-overlay">
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                    </div>
+                    <img src="https://th.bing.com/th/id/OIP.JOT250d3N6gKIxhq7SO6FwHaFS?w=244&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
+                    <div class="card-body">
+                        <span>
+                            <h5 class="card-title">루비</h5>
+                            <p class="card-text">2005.03.15 ~ 2018.12.11</p>
+                        </span>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-overlay">
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                    </div>
+                    <img src="https://th.bing.com/th/id/OIP.Wsa8dGXqGk622Nuu_SqBEAHaGJ?pid=ImgDet&rs=1" class="card-img-top" >
+                    <div class="card-body">
+                        <span>
+                            <h5 class="card-title">터틀</h5>
                             <p class="card-text">2001.01.02 ~ 2015.12.03</p>
                         </span>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
-                    <img src="http://placehold.it" class="card-img-top" >
+                    <div class="card-overlay">
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                    </div>
+                    <img src="https://th.bing.com/th/id/OIP.eQYrYLeAwcpS058ySetCQQHaFj?pid=ImgDet&rs=1" class="card-img-top" >
                     <div class="card-body">
                         <span>
-                            <h5 class="card-title">Card title</h5>
+                            <h5 class="card-title">앵무</h5>
                             <p class="card-text">2001.01.02 ~ 2015.12.03</p>
                         </span>
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
-                    <img src="http://placehold.it" class="card-img-top" >
-                    <div class="card-body">
-                        <span>
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                        </span>
+                    <div class="card-overlay">
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
                     </div>
-                </div>
-                <div class="card">
-                    <div class="card-img-top-inactive"></div>
-                    <img src="http://placehold.it" class="card-img-top" >
+                    <img src="https://th.bing.com/th/id/OIP.4fRp-L9WTgKn2_p5bJw6bwHaI2?w=148&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
                     <div class="card-body">
                         <span>
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                        </span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img-top-inactive"></div>
-                    <img src="http://placehold.it" class="card-img-top" >
-                    <div class="card-body">
-                        <span>
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                        </span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img-top-inactive"></div>
-                    <img src="http://placehold.it" class="card-img-top" >
-                    <div class="card-body">
-                        <span>
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                        </span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img-top-inactive"></div>
-                    <img src="http://placehold.it" class="card-img-top" >
-                    <div class="card-body">
-                        <span>
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                        </span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img-top-inactive"></div>
-                    <img src="http://placehold.it" class="card-img-top" >
-                    <div class="card-body">
-                        <span>
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                        </span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img-top-inactive"></div>
-                    <img src="http://placehold.it" class="card-img-top" >
-                    <div class="card-body">
-                        <span>
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                        </span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img-top-inactive"></div>
-                    <img src="http://placehold.it" class="card-img-top" >
-                    <div class="card-body">
-                        <span>
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                        </span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img-top-inactive"></div>
-                    <img src="http://placehold.it" class="card-img-top" >
-                    <div class="card-body">
-                        <span>
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                        </span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img-top-inactive"></div>
-                    <img src="http://placehold.it" class="card-img-top" >
-                    <div class="card-body">
-                        <span>
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                        </span>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-img-top-inactive"></div>
-                    <img src="http://placehold.it" class="card-img-top" >
-                    <div class="card-body">
-                        <span>
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">2001.01.02 ~ 2015.12.03</p>
+                            <h5 class="card-title">멍이</h5>
+                            <p class="card-text">2005.11.12 ~ 2017.02.13</p>
                         </span>
                     </div>
                 </div>
                 <!--
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                    </div>
                     <img src="http://placehold.it" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -468,7 +532,9 @@
                     </div>
                 </div>
                 <div class="card">
-                    <div class="card-img-top-inactive"></div>
+                    <div class="card-overlay">
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                    </div>
                     <img src="http://placehold.it" class="card-img-top" >
                     <div class="card-body">
                         <span>
@@ -483,7 +549,7 @@
             </span>
 
             <div class="freeRegister">
-                <a href="{% url 'freeRegister' %}">
+                <a href="{% url 'freeRegister1' %}">
                     <span>
                         <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" class="bi bi-envelope-fill" viewBox="0 0 16 16">
                             <path d="M.05 3.555A2 2 0 0 1 2 2h12a2 2 0 0 1 1.95 1.555L8 8.414.05 3.555zM0 4.697v7.104l5.803-3.558L0 4.697zM6.761 8.83l-6.57 4.027A2 2 0 0 0 2 14h12a2 2 0 0 0 1.808-1.144l-6.57-4.027L8 9.586l-1.239-.757zm3.436-.586L16 11.801V4.697l-5.803 3.546z"/>
@@ -519,6 +585,7 @@
             </nav>
         </div>
     </div>
+    
     <!--X월 XX일 별이 된 아이들 카드 슬라이드 효과-->
     <script>
         var slides=document.querySelector('.slides'),
