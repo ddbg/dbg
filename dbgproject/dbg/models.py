@@ -56,7 +56,7 @@ class Gallery(models.Model): # 갤러리
     def __str__(self):
         return self.image
     
-class VisiterBook(models.Mode): #방명록
+class VisiterBook(models.Model): #방명록
     owner_id = models.ForeignKey(User, on_delete=models.CASCADE)
     visitor_id = models.ForeignKey(User, on_delete=models.CASCADE)
     animal_id = models.ForeignKey(User, on_delete=models.CASCADE)
