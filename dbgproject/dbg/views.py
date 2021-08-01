@@ -40,8 +40,9 @@ def free(request):
         memorialday__month = month,
         memorialday__day = day
     )
-
-    return render(request, "free.html",{"month":month, "day":day, 'free_animals': free_animals, 'today_stars': today_stars })
+    
+    return render(request, "free.html",{"month":month, "day":day, 'free_animals': free_animals,'free_num':4-len(free_animals)%4,
+     'today_stars': today_stars })
 
 def freeRegister1(request):
     animalForm = AnimalForm()
