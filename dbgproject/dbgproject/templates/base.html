@@ -62,7 +62,7 @@
         /* 메뉴아이콘 누르면 나오는 메뉴창 */
         .menuBar{       
             width:250px; 
-            height: 320px;
+            height: 360px;
             background: #BEB5D3;
             box-shadow: 2px 2px 5px rgb(182, 182, 182);
             position:absolute;
@@ -269,6 +269,7 @@
             <div class="menuBar">
                 <div class="menuItem"><a href="{% url 'home' %}">Home</a></div>
                 <div class="menuItem"><a href="" onclick="pwin()">마이페이지</a></div>
+                <div class="menuItem"><a href="{% url 'normal' %}">더보기</a></div>
                 <div class="menuItem"><a href="{% url 'honor' %}">명예관</a></div>
                 <div class="menuItem"><a href="{% url 'free' %}">자유로운 영혼</a></div>
                 <div class="menuItem"><a href="{% url 'searchMap' %}">반려동물 장례 장소 검색</a></div>
