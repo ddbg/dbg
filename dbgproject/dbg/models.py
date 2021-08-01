@@ -51,22 +51,12 @@ class Gallery(models.Model): # 갤러리
 
     
 class VisiterBook(models.Model): #방명록
-<<<<<<< HEAD
     User_id = models.ForeignKey(User, on_delete=models.CASCADE)
     animal_id = models.ForeignKey(Animal, on_delete=models.CASCADE)
     visbook_title = models.CharField(max_length=100)
     visbook_pub_date = models.DateTimeField()
     visbook_body=models.TextField()
     visbook_reply=models.TextField()
-=======
-    owner_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    visitor_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    animal_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100)
-    pub_date = models.DateTimeField()
-    body=models.TextField()
-    reply=models.TextField()
->>>>>>> 923913e0104c8ab3c1b59ecb63f4bab5a670f3a7
     
 class csCenter(models.Model):
     title=models.CharField(max_length=100)                                #제목
