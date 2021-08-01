@@ -57,7 +57,6 @@ class VisiterBook(models.Model): #방명록
     visbook_pub_date = models.DateTimeField()
     visbook_body=models.TextField()
     visbook_reply=models.TextField()
-
     
 class csCenter(models.Model):
     title=models.CharField(max_length=100)                                #제목
