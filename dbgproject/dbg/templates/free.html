@@ -246,34 +246,10 @@
                     </div>
                 </div>
                 {%endfor%}
-                <!--
-                <div class="card">
-                    <div class="card-overlay">
-                        <a href="" onclick="pwin()"><span>MORE</span></a>
-                    </div>
-                    <img src="http://placehold.it" class="card-img-top" >
-                    <div class="card-body">
-                        <span>
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                        </span>
-                    </div>
+                {%for _ in "x"|rjust:free_num%}
+                <div class="emptyCard">
                 </div>
-                <div class="card">
-                    <div class="card-overlay">
-                        <a href="" onclick="pwin()"><span>MORE</span></a>
-                    </div>
-                    <img src="http://placehold.it" class="card-img-top" >
-                    <div class="card-body">
-                        <span>
-                            <h5 class="card-title">Card title</h5>
-                            <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                        </span>
-                    </div>
-                </div>
-                <div class="emptyCard"></div>
-                <div class="emptyCard"></div>
-                -->
+                {%endfor%}
             </span>
 
             <div class="freeRegister">
