@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from datetime import datetime
 from django.utils.dateformat import DateFormat
-
+from .forms import AnimalForm
 from .models import * 
 
 def home(request):
@@ -32,14 +32,16 @@ def free(request):
     month = month.rjust(2, '0')
     day=today[2:]
 
-    animals = Animal.objects.all()
+    free_animals = Animal.objects.filter(
+        category = "free"
+    )
 
     today_stars = Animal.objects.filter(
         memorialday__month = month,
         memorialday__day = day
     )
 
-    return render(request, "free.html",{"month":month, "day":day, 'animals': animals, 'today_stars': today_stars })
+    return render(request, "free.html",{"month":month, "day":day, 'free_animals': free_animals, 'today_stars': today_stars })
 
 def freeRegister1(request):
     animalForm = AnimalForm()

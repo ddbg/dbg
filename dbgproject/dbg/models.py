@@ -18,6 +18,7 @@ class Animal(models.Model):
     
     name = models.CharField(max_length=50)                                          # 동물 이름
     owner_id = models.ForeignKey(User, on_delete=models.CASCADE)                    # 주인 id
+    category = models.CharField(max_length=50)                                       # 카테고리 
     species = models.CharField(max_length=50)                                       # 상위 종류
     subspecies = models.CharField(max_length=50, null=True)                         # 하위 종류
     profile_photo = models.ImageField(upload_to='profile_photo/', null=True) # 프로필 사진

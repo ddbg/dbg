@@ -15,9 +15,8 @@
             var url = "{% url 'mypage' %}"
             window.open(url, "pop1", "width=850, height=590, resizeable=0 status=yes, menubar=no")
         }
-
     </script>
-    
+
     <style>
 
         @font-face {
@@ -254,7 +253,7 @@
     
     <title>또바기</title>
 </head>
-<body>
+<body onresize="parent.resizeTo(1280,800)" onload="parent.resizeTo(1280,800)">
     {% load static %}
     <header>
         <!--상단바-->
@@ -347,5 +346,7 @@
             sarah001015@naver.com <br>
         </span>
     </footer>
+    
+
 </body>
 </html>
