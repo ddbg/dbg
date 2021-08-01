@@ -183,6 +183,7 @@
         </div>
         <br>
 
+        {%if today_stars%}
         <!--X월 XX일 별이 된 아이들-->
         <div class="todayStar">
             <h3>{{month}}월 {{day}}일 별이 된 아이들</h3>
@@ -190,119 +191,23 @@
             <!--X월 XX일 별이 된 아이들 슬라이드-->
             <div class="slide_wrapper">
                 <ul class="slides">
+                    {%for today_star in today_stars%}
                     <li>
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
                                 <a href="" onclick="pwin()"><span>MORE</span></a>
                             </div>
-                            <img src="https://cdn.pixabay.com/photo/2014/04/13/20/49/cat-323262_960_720.jpg" class="card-img-top" >
+                            <img src="{{today_star.profile_photo.url}}" class="card-img-top" >
                             <div class="card-body">
                                 <span>
-                                    <h5 class="card-title">군이</h5>
-                                    <p class="card-text">2001.01.02 ~ 2015.12.03</p>
+                                    <h5 class="card-title">{{today_star.name}}</h5>
+                                    <p class="card-text">{{today_star.birthday|date:"Y.m.d"}} ~ {{today_star.memorialday|date:"Y.m.d"}}</p>
                                 </span>
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="" onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://cdn.pixabay.com/photo/2012/02/27/16/57/cat-17430_960_720.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">길길</h5>
-                                    <p class="card-text">2008.08.12 ~ 2017.06.17</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="" onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://cdn.pixabay.com/photo/2018/10/05/23/24/chicken-3727097_960_720.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">토토</h5>
-                                    <p class="card-text">2011.11.02 ~ 2055.12.13</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="" onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://cdn.pixabay.com/photo/2017/08/14/10/48/dog-2640076_960_720.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">뽀미</h5>
-                                    <p class="card-text">2002.05.05 ~ 2017.12.03</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="{% url 'honor' %}"><span>MORE</span></a>
-                            </div>
-                            <img src="https://cdn.pixabay.com/photo/2020/01/29/21/57/cat-4803841_960_720.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">루비</h5>
-                                    <p class="card-text">2005.03.15 ~ 2018.12.11</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="" onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://cdn.pixabay.com/photo/2021/04/19/11/14/snail-6191155_960_720.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">터틀</h5>
-                                    <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="" onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://cdn.pixabay.com/photo/2016/01/19/01/32/shiba-inu-1147811_960_720.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">앵무</h5>
-                                    <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="" onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://cdn.pixabay.com/photo/2018/08/07/22/33/raccoon-3590948_960_720.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">너구리</h5>
-                                    <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>
+                    {%endfor%}   
                 </ul>
             </div>
 
@@ -322,6 +227,7 @@
         </div>
 
         <hr>
+        {%endif%}
 
         <div class="animals">
             <span>
