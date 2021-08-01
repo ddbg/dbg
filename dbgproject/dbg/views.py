@@ -21,13 +21,29 @@ def honorRegister1(request):
 def honorRegister2(request):
     return render(request, "honorRegister2.html")
 
-
 def honorRegistered(request):
     return redirect('honor')
 
+def free(request):
+
+    # 오늘 월, 일 계산
+    today = DateFormat(datetime.now()).format('md')
+    month=today[1] if today[0]=='0' else today[:2]
+    month = month.rjust(2, '0')
+    day=today[2:]
+
+    animals = Animal.objects.all()
+
+    today_stars = Animal.objects.filter(
+        memorialday__month = month,
+        memorialday__day = day
+    )
+
+    return render(request, "free.html",{"month":month, "day":day, 'animals': animals, 'today_stars': today_stars })
 
 def freeRegister1(request):
-    return render(request, "freeRegister1.html")
+    animalForm = AnimalForm()
+    return render(request, "freeRegister1.html", {'animalForm':animalForm})
 
 def freeRegister2(request):
     return render(request, "freeRegister2.html")
@@ -46,17 +62,6 @@ def enrolled(request):
 
 def caaard(request):
     return render(request, "caaard.html")
-
-def free(request):
-
-    # 오늘 월, 일 계산
-    today = DateFormat(datetime.now()).format('md')
-    month=today[1] if today[0]=='0' else today[:2]
-    day=today[2:]
-
-    animals = Animal.objects.all()
-    
-    return render(request, "free.html",{"month":month, "day":day, 'animals': animals})
 
 def aboutUs(request):
     return render(request, "aboutUs.html")
