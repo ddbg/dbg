@@ -21,22 +21,21 @@
         /* 오늘 별이 된 아이들 슬라이드 구현 */
         .today-slide_wrapper{
             position: relative;
-            left: 10px;
+            width:1000px;
             height: 320px;
             margin: 30px auto;
             overflow: hidden;
-
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
         }
         .today-slides{
             position: absolute;
             left:0; top:0;
-            transition: left 0.5s ease-out;
             padding:0;
         }
-        .today-slides li:not(:last-child){
+        .today-slides.animated{
+            transition: 0.5s ease-out;
+        }
+
+        .today-slides li{
             float:left;
         }
 
@@ -52,7 +51,7 @@
             background-color:white;
             color:#BEB5D3;
             padding: 8px 12px;
-            margin:0 10px;
+            margin:0 30px;
             border: 1px solid #BEB5D3;
             border-radius: 100%;
         }
@@ -62,7 +61,7 @@
             background-color: #BEB5D3;
         }
         .today-controls span.today-prev{right:calc(100%); transform: translateX(180%);}
-        .today-controls span.today-next{left:calc(100%);transform: translateX(-180%);}
+        .today-controls span.today-next{left:calc(100%); transform: translateX(-180%);}
 
         /*자유로운 영혼이 된 아이들 감싸는 box*/
         .freeStar{
@@ -78,22 +77,20 @@
         /* 자유로운 영혼이 된 아이들 슬라이드 구현 */
         .free-slide_wrapper{
             position: relative;
-            left: 10px;
+            width:1000px;
             height: 320px;
             margin: 30px auto;
             overflow: hidden;
-
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
         }
         .free-slides{
             position: absolute;
             left:0; top:0;
-            transition: left 0.5s ease-out;
             padding:0;
         }
-        .free-slides li:not(:last-child){
+        .free-slides.animated{
+            transition: left 0.5s ease-out;
+        }
+        .free-slides li{
             float:left;
         }
 
@@ -109,7 +106,7 @@
             background-color:white;
             color:#BEB5D3;
             padding: 8px 12px;
-            margin:0 10px;
+            margin:0 30px;
             border: 1px solid #BEB5D3;
             border-radius: 100%;
         }
@@ -135,22 +132,20 @@
         /*명예관 아이들 슬라이드 구현 */
         .honor-slide_wrapper{
             position: relative;
-            left: 10px;
+            width:1000px;
             height: 320px;
             margin: 30px auto;
             overflow: hidden;
-
-            display: flex;
-            flex-direction: row;
-            flex-wrap: wrap;
         }
         .honor-slides{
             position: absolute;
             left:0; top:0;
-            transition: left 0.5s ease-out;
             padding:0;
         }
-        .honor-slides li:not(:last-child){
+        .honor-slides.animated{
+            transition: left 0.5s ease-out;
+        }
+        .honor-slides li{
             float:left;
         }
 
@@ -166,7 +161,7 @@
             background-color:white;
             color:#BEB5D3;
             padding: 8px 12px;
-            margin:0 10px;
+            margin:0 30px;
             border: 1px solid #BEB5D3;
             border-radius: 100%;
         }
@@ -181,11 +176,11 @@
         /* 각 카드 */
         .card{
             width:230px; height:320px;
-            margin: 0 20px 50px 0;
+            margin: 0 23px 50px 0;
             background-color: #EFECF4;
             border-radius: 10px 10px 0 0;
             border-style: none;
-            box-shadow: 2px 4px 12px 0 rgb(0 0 0 / 14%);
+            box-shadow: 2px 4px 12px 0 rgb(0 0 0 / 20%);
             cursor:pointer;
         }
         .card-overlay{
@@ -311,7 +306,7 @@
                             <div class="card-overlay">
                                 <a onclick="pwin()"><span>MORE</span></a>
                             </div>
-                            <img src="https://cdn.pixabay.com/photo/2021/04/19/11/14/snail-6191155_960_720.jpg" class="card-img-top" >
+                            <img src="https://image.shutterstock.com/z/stock-photo-portrait-of-a-cute-funny-raccoon-closeup-isolated-on-a-white-background-1569920464.jpg" class="card-img-top" >
                             <div class="card-body">
                                 <span>
                                     <h5 class="card-title">뽀미</h5>
@@ -370,7 +365,7 @@
                             <img src="https://th.bing.com/th/id/OIP._g9ST_L3uAlQogAH_lHjlQHaFj?w=227&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
                             <div class="card-body">
                                 <span>
-                                    <h5 class="card-title">토토</h5>
+                                    <h5 class="card-title">햄</h5>
                                     <p class="card-text">2001.01.02 ~ 2015.12.03</p>
                                 </span>
                             </div>
@@ -396,39 +391,83 @@
 
         <!--today 카드 슬라이드 효과-->
         <script>
+
             var slides=document.querySelector('.today-slides'),
                 slide=document.querySelectorAll('.today-slides li'),
-                currentIdx=0,
+                currentIdx = 0,
                 slideCount = slide.length,
+                slideWidth = 230,
+                slideMargin = 23,
                 prevBtn=document.querySelector('.today-prev'),
-                slideWidth=230,
-                slideMargin=20,
                 nextBtn=document.querySelector('.today-next');
 
-                function moveSlide(num){
-                    slides.style.left =-num*(slideWidth+slideMargin)+'px';
-                    currentIdx = num;
+            makeClone();
+
+            function makeClone(){
+                for(var i = 0; i<slideCount; i++){
+                    var cloneSlide = slide[i].cloneNode(true);
+                    cloneSlide.classList.add('clone');
+                    slides.appendChild(cloneSlide);
                 }
-                nextBtn.addEventListener('click', function(){
-                    if(currentIdx<slideCount-5){
-                        moveSlide(currentIdx+1);
-                        console.log(slides);
-                    }
-                    else{
-                        console.log(slides);
-                        moveSlide(0);
-                    }
-                });
-                prevBtn.addEventListener('click', function(){
-                    if(currentIdx>0){
-                        console.log(slides);
-                        moveSlide(currentIdx-1);
-                    }
-                    else{
-                        console.log(slides);
-                        moveSlide(slideCount-5);
-                    }
-                });
+                for(var i = slideCount -1; i>=0; i--){
+                    var cloneSlide = slide[i].cloneNode(true);
+                    cloneSlide.classList.add('clone');
+                    slides.prepend(cloneSlide);
+                }
+                updateWidth();
+                setInitialPos();
+
+                setTimeout(function(){
+                    slides.classList.add('animated');
+                },100);
+            }
+
+            function updateWidth(){
+                var currentSlides = document.querySelectorAll('.today-slides li');
+                var newSlideCount = currentSlides.length;
+                var newWidth  = (slideWidth + slideMargin)*newSlideCount - slideMargin +'px';
+                slides.style.width = newWidth;
+            }
+            function setInitialPos(){
+                var initialTranslateValue = -(slideWidth + slideMargin)*slideCount;
+                slides.style.transform = 'translateX(' + initialTranslateValue+'px)';
+            }
+
+            nextBtn.addEventListener('click',function(){
+                moveSlide(currentIdx + 1);
+            });
+            prevBtn.addEventListener('click',function(){
+                moveSlide(currentIdx - 1);
+            });
+
+            function moveSlide(num){
+                slides.style.left = -num * (slideWidth + slideMargin) + 'px';
+                currentIdx = num;
+                console.log(currentIdx, slideCount);
+                
+                if(currentIdx == slideCount || currentIdx == -slideCount){
+                    setTimeout(function(){
+                        slides.classList.remove('animated');
+                        slides.style.left = '0px';
+                        currentIdx = 0;
+                    },500);
+                    setTimeout(function(){
+                        slides.classList.add('animated');
+                    },600);
+                }
+            }
+            
+            var timer = undefined;
+
+            function autoSlide(){
+                if(timer == undefined){
+                    timer = setInterval(function(){
+                        moveSlide(currentIdx + 1);
+                    }, 3000);
+                }
+            }
+            autoSlide();
+
         </script>
         <hr>
 
@@ -572,39 +611,82 @@
         </div>
         <!--free 카드 슬라이드 효과-->
         <script>
-            var free_slides=document.querySelector('.free-slides'),
-                free_slide=document.querySelectorAll('.free-slides li'),
-                free_currentIdx=0,
-                free_slideCount = free_slide.length,
-                free_prevBtn=document.querySelector('.free-prev'),
-                free_slideWidth=230,
-                free_slideMargin=20,
-                free_nextBtn=document.querySelector('.free-next');
+            var freeSlides=document.querySelector('.free-slides'),
+                freeSlide=document.querySelectorAll('.free-slides li'),
+                freeCurrentIdx=0,
+                freeSlideCount = freeSlide.length,
+                freeSlideWidth=230,
+                freeSlideMargin=23,
+                freePrevBtn=document.querySelector('.free-prev'),
+                freeNextBtn=document.querySelector('.free-next');
 
-                function free_moveSlide(num){
-                    free_slides.style.left =-num*(free_slideWidth+free_slideMargin)+'px';
-                    free_currentIdx = num;
+            makeFreeClone();
+
+            function makeFreeClone(){
+                for(var i = 0; i<freeSlideCount; i++){
+                    var freeCloneSlide = freeSlide[i].cloneNode(true);
+                    freeCloneSlide.classList.add('free-clone');
+                    freeSlides.appendChild(freeCloneSlide);
                 }
-                free_nextBtn.addEventListener('click', function(){
-                    if(free_currentIdx<free_slideCount-5){
-                        free_moveSlide(free_currentIdx+1);
-                        console.log(free_slides);
-                    }
-                    else{
-                        free_moveSlide(0);
-                        console.log(free_slides);
-                    }
-                });
-                free_prevBtn.addEventListener('click', function(){
-                    if(free_currentIdx>0){
-                        free_moveSlide(free_currentIdx-1);
-                        console.log(free_slides);
-                    }
-                    else{
-                        free_moveSlide(free_slideCount-5);
-                        console.log(free_slides);
-                    }
-                });
+                for(var i = freeSlideCount -1; i>=0; i--){
+                    var freeCloneSlide = freeSlide[i].cloneNode(true);
+                    freeCloneSlide.classList.add('free-clone');
+                    freeSlides.prepend(freeCloneSlide);
+                }
+                updateFreeWidth();
+                setFreeInitialPos();
+
+                setTimeout(function(){
+                    freeSlides.classList.add('animated');
+                },100);
+            }
+
+            function updateFreeWidth(){
+                var currentFreeSlides = document.querySelectorAll('.free-slides li');
+                var newFreeSlideCount = currentFreeSlides.length;
+                var newFreeWidth  = (freeSlideWidth + freeSlideMargin)*newFreeSlideCount - freeSlideMargin +'px';
+                freeSlides.style.width = newFreeWidth;
+            }
+            function setFreeInitialPos(){
+                var freeInitialTranslateValue = -(freeSlideWidth + freeSlideMargin)*freeSlideCount;
+                freeSlides.style.transform = 'translateX(' + freeInitialTranslateValue+'px)';
+            }
+
+            freeNextBtn.addEventListener('click',function(){
+                freeMoveSlide(freeCurrentIdx + 1);
+            });
+            freePrevBtn.addEventListener('click',function(){
+                freeMoveSlide(freeCurrentIdx - 1);
+            });
+
+            function freeMoveSlide(num){
+                freeSlides.style.left = -num * (freeSlideWidth + freeSlideMargin) + 'px';
+                freeCurrentIdx = num;
+                console.log(freeCurrentIdx, freeSlideCount);
+                
+                if(freeCurrentIdx == freeSlideCount || freeCurrentIdx == -freeSlideCount){
+                    setTimeout(function(){
+                        freeSlides.classList.remove('animated');
+                        freeSlides.style.left = '0px';
+                        freeCurrentIdx = 0;
+                    },500);
+                    setTimeout(function(){
+                        freeSlides.classList.add('animated');
+                    },600);
+                }
+            }
+            
+            var freeTimer = undefined;
+
+            function freeAutoSlide(){
+                if(freeTimer == undefined){
+                    freeTimer = setInterval(function(){
+                        freeMoveSlide(freeCurrentIdx + 1);
+                    }, 3000);
+                }
+            }
+            freeAutoSlide();
+                
         </script>
         <hr>
         <br>
@@ -756,39 +838,82 @@
 
         <!--honor 카드 슬라이드 효과-->
         <script>
-            var honor_slides=document.querySelector('.honor-slides'),
-                honor_slide=document.querySelectorAll('.honor-slides li'),
-                honor_currentIdx=0,
-                honor_slideCount = honor_slide.length,
-                honor_prevBtn=document.querySelector('.honor-prev'),
-                honor_slideWidth=230,
-                honor_slideMargin=20,
-                honor_nextBtn=document.querySelector('.honor-next');
+            var honorSlides=document.querySelector('.honor-slides'),
+                honorSlide=document.querySelectorAll('.honor-slides li'),
+                honorCurrentIdx=0,
+                honorSlideCount = honorSlide.length,
+                honorSlideWidth=230,
+                honorSlideMargin=23,
+                honorPrevBtn=document.querySelector('.honor-prev'),
+                honorNextBtn=document.querySelector('.honor-next');
+                
+            makeHonorClone();
 
-                function honor_moveSlide(num){
-                    honor_slides.style.left =-num*(honor_slideWidth+honor_slideMargin)+'px';
-                    honor_currentIdx = num;
+            function makeHonorClone(){
+                for(var i = 0; i<honorSlideCount; i++){
+                    var honorCloneSlide = honorSlide[i].cloneNode(true);
+                    honorCloneSlide.classList.add('honor-clone');
+                    honorSlides.appendChild(honorCloneSlide);
                 }
-                honor_nextBtn.addEventListener('click', function(){
-                    if(honor_currentIdx<honor_slideCount-5){
-                        honor_moveSlide(honor_currentIdx+1);
-                        console.log(honor_slides);
-                    }
-                    else{
-                        honor_moveSlide(0);
-                        console.log(honor_slides);
-                    }
-                });
-                honor_prevBtn.addEventListener('click', function(){
-                    if(honor_currentIdx>0){
-                        honor_moveSlide(honor_currentIdx-1);
-                        console.log(honor_slides);
-                    }
-                    else{
-                        honor_moveSlide(honor_slideCount-5);
-                        console.log(honor_slides);
-                    }
-                });
+                for(var i = honorSlideCount -1; i>=0; i--){
+                    var honorCloneSlide = honorSlide[i].cloneNode(true);
+                    honorCloneSlide.classList.add('honor-clone');
+                    honorSlides.prepend(honorCloneSlide);
+                }
+                updateHonorWidth();
+                setHonorInitialPos();
+
+                setTimeout(function(){
+                    honorSlides.classList.add('animated');
+                },100);
+            }
+
+            function updateHonorWidth(){
+                var currentHonorSlides = document.querySelectorAll('.honor-slides li');
+                var newHonorSlideCount = currentHonorSlides.length;
+                var newHonorWidth  = (honorSlideWidth + honorSlideMargin)*newHonorSlideCount - honorSlideMargin +'px';
+                honorSlides.style.width = newHonorWidth;
+            }
+            function setHonorInitialPos(){
+                var honorInitialTranslateValue = -(honorSlideWidth + honorSlideMargin)*honorSlideCount;
+                honorSlides.style.transform = 'translateX(' + honorInitialTranslateValue+'px)';
+            }
+
+            honorNextBtn.addEventListener('click',function(){
+                honorMoveSlide(honorCurrentIdx + 1);
+            });
+            honorPrevBtn.addEventListener('click',function(){
+                honorMoveSlide(honorCurrentIdx - 1);
+            });
+
+             function honorMoveSlide(num){
+                honorSlides.style.left = -num * (honorSlideWidth + honorSlideMargin) + 'px';
+                honorCurrentIdx = num;
+                console.log(honorCurrentIdx, honorSlideCount);
+                
+                if(honorCurrentIdx == honorSlideCount || honorCurrentIdx == -honorSlideCount){
+                    setTimeout(function(){
+                        honorSlides.classList.remove('animated');
+                        honorSlides.style.left = '0px';
+                        honorCurrentIdx = 0;
+                    },500);
+                    setTimeout(function(){
+                        honorSlides.classList.add('animated');
+                    },600);
+                }
+            }
+                
+            var honorTimer = undefined;
+    
+            function honorAutoSlide(){
+                if(honorTimer == undefined){
+                    honorTimer = setInterval(function(){
+                        honorMoveSlide(honorCurrentIdx + 1);
+                    }, 3000);
+                }
+            }
+            honorAutoSlide();
+            
         </script>
         <hr>
 

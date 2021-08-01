@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from datetime import datetime
 from django.utils.dateformat import DateFormat
-from django.core.paginator import Paginator
+
+from .models import * 
 
 def home(request):
 
@@ -52,8 +53,10 @@ def free(request):
     today = DateFormat(datetime.now()).format('md')
     month=today[1] if today[0]=='0' else today[:2]
     day=today[2:]
+
+    animals = Animal.objects.all()
     
-    return render(request, "free.html",{"month":month, "day":day})
+    return render(request, "free.html",{"month":month, "day":day, 'animals': animals})
 
 def aboutUs(request):
     return render(request, "aboutUs.html")
