@@ -40,43 +40,31 @@ class Animal(models.Model):
         return self.name
 
   
-<<<<<<< HEAD
 class Diary(models.Model): # 하루를 들려줄게
     owner_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    animal_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100)
-    pub_date = models.DateTimeField()
-    body=models.TextField()
-    
-    def __str__(self):
-        return self.owner_id + " " + self.title + "\n" + self.body
+    animal_id = models.ForeignKey(Animal, on_delete=models.CASCADE)
+    diary_title = models.CharField(max_length=100)
+    diary_pub_date = models.DateTimeField()
+    diary_body=models.TextField()
     
     
 class Gallery(models.Model): # 갤러리
     owner_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    animal_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    image = models.ImageField(upload_to = "gallery/", blank = True, null = True)
-    
-    def __str__(self):
-        return self.image
-    
-class VisiterBook(models.Mode): #방명록
-    owner_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    visitor_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    animal_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    title = models.CharField(max_length=100)
-    pub_date = models.DateTimeField()
-    body=models.TextField()
-    reply=models.TextField()
-    
-    def __str__(self):
-        return self.visitor_id + self.title + "\n" + self.body
-=======
+    animal_id = models.ForeignKey(Animal, on_delete=models.CASCADE)
+    gallery_image = models.ImageField(upload_to = "gallery/", blank = True, null = True)
 
+    
+class VisiterBook(models.Model): #방명록
+    User_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    animal_id = models.ForeignKey(Animal, on_delete=models.CASCADE)
+    visbook_title = models.CharField(max_length=100)
+    visbook_pub_date = models.DateTimeField()
+    visbook_body=models.TextField()
+    visbook_reply=models.TextField()
+    
 class csCenter(models.Model):
     title=models.CharField(max_length=100)                                #제목
     text=models.TextField()                                 #내용
     register_date=models.DateField                          #작성날짜
     writer=models.CharField(max_length=50)                  #작성자
 
->>>>>>> d4d72330d888d413c887398716f39e64902a59c5

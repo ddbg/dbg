@@ -24,4 +24,4 @@ urlpatterns = [
     path('', home, name="home"),
 
     path('dbg/', include('dbg.urls')),
-] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
+] 
