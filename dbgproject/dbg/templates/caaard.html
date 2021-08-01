@@ -113,7 +113,7 @@
             
         
             <div class="registerLetter">
-                <form action="{% url 'enroll' %}" method="post">
+                <form action="{% url 'enroll' %}"  method="post">
                     <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
                     {%csrf_token%}
 
@@ -147,11 +147,11 @@
                     </div>
 
                     <div class="pressedBtn">
-                        <button type="pressed" href="{% url 'enroll' %}">명예관</button>
+                        <button type="pressed" href="{% url 'honorRegister1' %}">명예관</button>
                     </div>
 
                     <div class="pressedBtn">
-                        <button type="pressed" href="{% url 'enroll' %}">자유로운 영혼</button>
+                        <button type="pressed" href="{% url 'freeRegister1' %}">자유로운 영혼</button>
                     </div>
                 
                     

@@ -72,9 +72,15 @@
             .line{
                 margin-top: -5px;
                 margin-bottom: 5px;
-                width: 450px;
+                width: 290px;
                 height : 3px;
-                background-color: black;
+                background-color:thistle;
+            }
+            .listline{
+                margin-top: 11px;
+                width: 2px;
+                height : 250px;
+                background-color: thistle;;
             }
             
             .left {
@@ -89,7 +95,6 @@
                 height: 445px;
                 padding : 20px;
                 margin : 20px;
-                
                 color:#726C7B;
             }
 
@@ -118,6 +123,15 @@
                 background-size: 100%;
 
                 
+            }
+            
+            .rightlist{
+                display :flex;
+                flex-direction:row;
+            }
+
+            .listright{
+                margin-left: 10px;
             }
 
             .Nonshowtag{
@@ -157,46 +171,72 @@
                         class="img-thumbnail">
                     </div>
 
-                    <!-- 오늘 하루를 들려줄게 -->
-                    <table>
-                        <tbody class="Diary">
-                            <h3><a href = "{%url 'mypageDiary'%}" style="text-decoration: none;"><span>오늘 하루를 들려줄게</span></a></h3>
-                            <div class = "line">
-                            </div>
-                            <tr>
-                                <td class = "Diary-day">4/22</td>
-                                <td class = "Diary-title"><a href = "{%url 'mypageDiary'%}" style="text-decoration: none;"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;화창한 날씨</span></a></td>
-                            </tr>
-                            <tr>
-                                <td class = "Diary-day">4/11</td>
-                                <td class = "Diary-title"><a href = "{%url 'mypageDiary'%}" style="text-decoration: none;"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;비가 오는 날</span></a></td>
-                            </tr>
-                            <tr>
-                                <td class = "Diary-day">4/01</td>
-                                <td class = "Diary-title"><a href = "{%url 'mypageDiary'%}" style="text-decoration: none;"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;배고프다</span></a></td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div class="rightlist">
+                        <div class = "listleft">
+                            <!-- 오늘 하루를 들려줄게 -->
+                            <table>
+                                <tbody class="Diary">
+                                    <h3><a href = "{%url 'mypageDiary'%}" style="text-decoration: none;"><span>오늘 하루를 들려줄게</span></a></h3>
+                                    <div class = "line">
+                                    </div>
+                                    <tr>
+                                        <td class = "Diary-day">4/22</td>
+                                        <td class = "Diary-title"><a href = "{%url 'mypageDiary'%}" style="text-decoration: none;"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;화창한 날씨</span></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class = "Diary-day">4/11</td>
+                                        <td class = "Diary-title"><a href = "{%url 'mypageDiary'%}" style="text-decoration: none;"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;비가 오는 날</span></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class = "Diary-day">4/01</td>
+                                        <td class = "Diary-title"><a href = "{%url 'mypageDiary'%}" style="text-decoration: none;"><span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;배고프다</span></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
-                    <!-- 너가 보고 싶은 날이야 -->
-                    <table>
-                        <tbody class="Diary">
-                            <h3><a href = "{%url 'mypagePhoto'%}" style="text-decoration: none;"><span>너가 보고 싶은 날이야</span></a></h3>
-                            <div class="line">
-                            </div>
-                            <br>
-                            <td width = "100">
-                                <a href = "{%url 'mypagePhoto'%}"><img src ="https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class = "Missyou-img" alt=""></a>
+                            <!-- 너가 보고 싶은 날이야 -->
+                            <table>
+                                <tbody class="Diary">
+                                    <h3><a href = "{%url 'mypagePhoto'%}" style="text-decoration: none;"><span>너가 보고 싶은 날이야</span></a></h3>
+                                    <div class="line">
+                                    </div>
+                                    <br>
+                                    <td width = "100">
+                                        <a href = "{%url 'mypagePhoto'%}"><img src ="https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class = "Missyou-img" alt=""></a>
 
-                            <td width = "100">
-                                <a href = "{%url 'mypagePhoto'%}"><img src ="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDEyMzBfNzMg%2FMDAxNjA5MzMyNDM1MDY3._qNgcfzB0xJhDexJmKY6MOyC2sDwmg64R6TWMRmbF_cg.cTvWDgOn0hkdzXrZCQTFYQXnOCsZ3dk4LlXYH2FtCDgg.JPEG.kyy0006%2F1609127688261%25A3%25AD2.jpg&type=sc960_832" class = "Missyou-img" alt=""></a>
-                            </td>
+                                    <td width = "100">
+                                        <a href = "{%url 'mypagePhoto'%}"><img src ="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDEyMzBfNzMg%2FMDAxNjA5MzMyNDM1MDY3._qNgcfzB0xJhDexJmKY6MOyC2sDwmg64R6TWMRmbF_cg.cTvWDgOn0hkdzXrZCQTFYQXnOCsZ3dk4LlXYH2FtCDgg.JPEG.kyy0006%2F1609127688261%25A3%25AD2.jpg&type=sc960_832" class = "Missyou-img" alt=""></a>
+                                    </td>
 
-                            <td width = "100">
-                                <a href = "{%url 'mypagePhoto'%}"><img src ="https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2F20131125_76%2Fsnap_nara_13853648245568IyAi_PNG%2FGAL_8268.png&type=sc960_832" class = "Missyou-img" alt=""></a>
-                            </td>
-                        </tbody>
-                    </table>
+                                    <td width = "100">
+                                        <a href = "{%url 'mypagePhoto'%}"><img src ="https://search.pstatic.net/common/?src=http%3A%2F%2Fcafefiles.naver.net%2F20131125_76%2Fsnap_nara_13853648245568IyAi_PNG%2FGAL_8268.png&type=sc960_832" class = "Missyou-img" alt=""></a>
+                                    </td>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="listline"></div>
+
+                        <div class ="listright">
+                            <table>
+                                <tbody class="VisitorBook">
+                                    <h3><a href = "{%url 'mypageVisitorBook'%}" style="text-decoration: none;"><span>방명록</span></a></h3>
+                                    <tr>
+                                        <td class = "Visit-day">&nbsp;4/22</td>
+                                        <td class = "Visit-title"><a href = "{%url 'mypageVisitorBook'%}" style="text-decoration: none;"><span>&nbsp;&nbsp;미숙이</span></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class = "Visit-day">&nbsp;4/11</td>
+                                        <td class = "Visit-title"><a href = "{%url 'mypageVisitorBook'%}" style="text-decoration: none;"><span>&nbsp;&nbsp;길동이</span></a></td>
+                                    </tr>
+                                    <tr>
+                                        <td class = "Visit-day">&nbsp;4/01</td>
+                                        <td class = "Visit-title"><a href = "{%url 'mypageVisitorBook'%}" style="text-decoration: none;"><span>&nbsp;&nbsp;거북이</span></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
             </div>
 
 

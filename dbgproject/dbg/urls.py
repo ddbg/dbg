@@ -19,6 +19,7 @@ urlpatterns = [
     path('mypage/',mypage,name="mypage"),
     path('mypageDiary/',mypageDiary,name="mypageDiary"),
     path('mypagePhoto/',mypagePhoto,name="mypagePhoto"),
+    path('mypageVisitorBook/', mypageVisitorBook, name="mypageVisitorBook"),
     path('enroll/',enroll, name="enroll"),
     path('enroll2/',enroll2, name="enroll2"),
     path('enrolled/',enrolled, name="enrolled"),

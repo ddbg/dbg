@@ -80,6 +80,9 @@ def mypageDiary(request):
 def mypagePhoto(request):
     return render(request, "mypagePhoto.html")
 
+def mypageVisitorBook(request):
+    return render(request, "mypageVisitorBook.html")  
+
 def login_view(request):
     return render(request, "login.html")
 
