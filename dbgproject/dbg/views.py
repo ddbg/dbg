@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from datetime import datetime
 from django.utils.dateformat import DateFormat
+from django.db.models import Q
 from .forms import AnimalForm
 from .models import * 
 
@@ -41,7 +42,7 @@ def free(request):
         memorialday__day = day
     )
     
-    return render(request, "free.html",{"month":month, "day":day, 'free_animals': free_animals,'free_num':4-len(free_animals)%4,
+    return render(request, "free.html",{"month":month, "day":day, 'free_animals': free_animals,'empty_num':4-len(free_animals)%4,
      'today_stars': today_stars })
 
 def freeRegister1(request):
@@ -74,10 +75,19 @@ def searchMap(request):
     return render(request, "searchMap.html")
 
 def searchResult(request):
-
     searchWord=request.POST['searchInput']
 
-    return render(request, "searchResult.html",{"searchWord":searchWord})
+    animals = Animal.objects.filter(
+        Q(name__contains = searchWord)|
+        Q(category__contains = searchWord)|
+        Q(species__contains = searchWord)|
+        Q(subspecies__contains = searchWord)|
+        Q(birthday__contains = searchWord)|
+        Q(memorialday__contains = searchWord)|
+        Q(introduce__contains = searchWord)
+    )
+    return render(request, "searchResult.html",{"searchWord":searchWord, "animals":animals
+    , "animals_num": len(animals), "empty_num":4-len(animals)%4})
 
 
 def mypage(request):
