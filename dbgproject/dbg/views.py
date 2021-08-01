@@ -63,6 +63,7 @@ def enroll2(request):
 def enrolled(request):
     return redirect('home')
 
+
 def caaard(request):
     return render(request, "caaard.html")
 
@@ -112,3 +113,6 @@ def idFind(request):
 
 def pwFind(request):
     return render(request, "pwFind.html")    
+
+def normal(request):
+    return render(request, "normal.html")

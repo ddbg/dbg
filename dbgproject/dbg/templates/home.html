@@ -6,6 +6,10 @@
         .container{
             height:1700px;
         }
+        #more{
+            float: right;
+            color:#BEB5D3;
+        }
 
         /* 오늘 별이 된 아이들 감싸는 box */
         .todayStar{
@@ -23,7 +27,7 @@
             position: relative;
             width:1000px;
             height: 320px;
-            margin: 30px auto;
+            margin: 50px auto;
             overflow: hidden;
         }
         .today-slides{
@@ -254,7 +258,7 @@
         <!--X월 XX일 별이 된 아이들-->
         <div class="todayStar">
             <h3>{{month}}월 {{day}}일 별이 된 아이들</h3>
-            
+            <a href="{% url 'normal' %}"><span id="more">더보기</span></a>
             <!--X월 XX일 별이 된 아이들 슬라이드-->
             <div class="today-slide_wrapper">
                 <ul class="today-slides">

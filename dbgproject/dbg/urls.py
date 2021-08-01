@@ -30,6 +30,7 @@ urlpatterns = [
     path('q_and_a/', q_and_a, name="q_and_a"),
     path('idFind/', idFind, name="idFind"),
     path('pwFind/', pwFind, name="pwFind"),
+    path('normal/',normal, name="normal"),
 
 
 ] 
