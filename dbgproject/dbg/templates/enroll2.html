@@ -200,6 +200,9 @@
         }
         .slides .card-body{padding-left: 25px;}
 
+        
+
+
         .card-title{
             font-size:15px;
             font-weight: bold;
@@ -211,6 +214,32 @@
             font-weight: 800;
             color:gray;
         }
+
+        /* 라디오박스 */
+        .box-radio-input input[type="radio"]{
+        display:none;
+        }
+
+        .box-radio-input input[type="radio"] + span{
+        display:inline-block;
+        background:none;
+        border:1px solid #dfdfdf;  
+        padding:0px 10px;
+        text-align:center;
+        height:35px;
+        line-height:33px;
+        font-weight:500;
+        cursor:pointer;
+        }
+
+        .box-radio-input input[type="radio"]:checked + span{
+        border:2px solid white;
+        background:#BEB5D3;
+        color:#fff;
+        }
+ 
+  
+
         /* 빈 카드 */
         .emptyCard{
             width:150px; height:220px;
@@ -275,17 +304,15 @@
         <div class =" season">    
 
             <div class="infoBox">
-            <label for="animalType">너가 좋아하던 계절이야</label>
+           <label fo r="animalType">너가 좋아하던 계절이야</label>
             <br>
             <!--너에게 주고싶은 계절 슬라이드-->
             <div class="slide_wrapper">
-                
-                
                     <li>
                         <!--bootstrap 카드 컴포넌트-->
-                        <div class="card">
+                        <div class="card"> 
                             <div class="card-overlay">
-                                <a href="" class="thumbnail"><span>선택하기</span></a>
+                                <label class="box-radio-input"><input type="radio" name="cp_item" value="1" checked="checked"><span>선택하기</span></label>                  
                             </div>
                             <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA0MDhfMzcg%2FMDAxNjE3ODgyNDQzNjIy.tBnLPO1y34HqFk-BGtlREKIZ1h5PuVWUBO4sg9U19GMg.GGkf8UbuICUdMzRu30NtdykG1fU7IZ_0ap7Gchu1GFwg.JPEG.rosetearoom%2FKakaoTalk_20210408_153626321_01.jpg&type=sc960_832" class="card-img-top" >
                             <div class="card-body">
@@ -298,7 +325,7 @@
                     <li>
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                                <label class="box-radio-input"><input type="radio" name="cp_item" value="2" checked="checked"><span>선택하기</span></label>
                             </div>
                             <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2Fdata6%2F2005%2F5%2F23%2F33%2F2864610-md-chinafire.jpg&type=sc960_832" class="card-img-top" >
                             <div class="card-body">
@@ -312,7 +339,7 @@
                     <li>
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                                <label class="box-radio-input"><input type="radio" name="cp_item" value="3" checked="checked"><span>선택하기</span></label>
                             </div>
                             <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxNjExMTNfMjA2%2FMDAxNDc5MDM1MTQ2NTgx.GhQHlZS8djw6YClBdVvicx9o8_FUK-3b8WDXpuV4kxYg.HfB34qvpkaT0e-ZBmltBBOEJ7HqXvGKUOTowAyyV-Y4g.JPEG.hemo888%2FFB_IMG_1479034288526.jpg&type=sc960_832" class="card-img-top" >
                             <div class="card-body">
@@ -326,7 +353,7 @@
                     <li>
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                                <label class="box-radio-input"><input type="radio" name="cp_item" value="4" checked="checked"><span>선택하기</span></label>
                             </div>
                             <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20151208_150%2Fsimj0429_1449514223166v7AAP_JPEG%2Fhttps3A2F2F41.media.tumblr.com2F78588d98e44882c15785c104014dd2f12Ftumblr_ny.jpg&type=sc960_832" class="card-img-top" >
                             <div class="card-body">
@@ -340,10 +367,8 @@
                  
                 
             </div>
-             
         </div>
-    </div>
-
+            </div>   
 
         <div class="infoBox">
             <label>꽃다발을 선택해 주세요</label>
@@ -358,7 +383,7 @@
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                                <label class="box-radio-input"><input type="radio" name="cp_item" value="5" checked="checked"><span>선택하기</span></label>
                             </div>
                             <img src="http://www.flowerrepublic.co.kr/shopimages/sungmo9160/0070010003772.jpg?1507351606" class="card-img-top" >
                             <div class="card-body">
@@ -372,7 +397,7 @@
                     <li>
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                                <label class="box-radio-input"><input type="radio" name="cp_item" value="6" checked="checked"><span>선택하기</span></label>
                             </div>
                             <img src="https://www.mdeco.co.kr/shop/data/goods/1482819650281s0.jpg" class="card-img-top" >
                             <div class="card-body">
@@ -386,7 +411,7 @@
                     <li>
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                                <label class="box-radio-input"><input type="radio" name="cp_item" value="7" checked="checked"><span>선택하기</span></label>
                             </div>
                             <img src="http://eppflower.com/web/product/big/202104/faee82d154fcc1d14a2f5bca135ff645.jpg" class="card-img-top" >
                             <div class="card-body">
@@ -400,7 +425,7 @@
                     <li>
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                                <label class="box-radio-input"><input type="radio" name="cp_item" value="8" checked="checked"><span>선택하기</span></label>
                             </div>
                             <img src="http://m.eppflower.com/web/product/big/201703/1501_shop1_129413.jpg" class="card-img-top" >
                             <div class="card-body">
@@ -430,7 +455,7 @@
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                                <label class="box-radio-input"><input type="radio" name="cp_item" value="9" checked="checked"><span>선택하기</span></label>
                             </div>
                             <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20210613_25%2F1623585742141OJzy2_JPEG%2F31050375250941884_1738734922.jpg&type=sc960_832" class="card-img-top" >
                             <div class="card-body">
@@ -444,7 +469,7 @@
                     <li>
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                                <label class="box-radio-input"><input type="radio" name="cp_item" value="10" checked="checked"><span>선택하기</span></label>
                             </div>
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2AyLtQVTlEgjGIKR4jVOUXFKjb5tfR20HhA&usqp=CAU" class="card-img-top" >
                             <div class="card-body">
@@ -458,7 +483,7 @@
                     <li>
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                                <label class="box-radio-input"><input type="radio" name="cp_item" value="11" checked="checked"><span>선택하기</span></label>
                             </div>
                             <img src="http://image.auction.co.kr/itemimage/15/07/6f/15076f1f26.jpg" class="card-img-top" >
                             <div class="card-body">
@@ -472,7 +497,7 @@
                     <li>
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                                <label class="box-radio-input"><input type="radio" name="cp_item" value="12" checked="checked"><span>선택하기</span></label>
                             </div>
                             <img src="http://img1a.coupangcdn.com/image/vendor_inventory/05b6/b5d548bb05212606bd1662d574aa6263597c5081bae8ec91efda2e2f83d2.jpg" class="card-img-top" >
                             <div class="card-body">
@@ -504,7 +529,7 @@
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                                <label class="box-radio-input"><input type="radio" name="cp_item" value="13" checked="checked"><span>선택하기</span></label>
                             </div>
                             <img src="https://image5.unit808.com/data/100mc_data/images/product/28/37/39/73/23/b_2837397323.gif?v=2021070117" class="card-img-top" >
                             <div class="card-body">
@@ -518,7 +543,7 @@
                     <li>
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                                <label class="box-radio-input"><input type="radio" name="cp_item" value="14" checked="checked"><span>선택하기</span></label>
                             </div>
                             <img src="https://image8.unit808.com/data/100mc_data/images/product/28/21/41/89/37/b_2821418937.gif?v=2021070117" class="card-img-top" >
                             <div class="card-body">
@@ -532,7 +557,7 @@
                     <li>
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                                <label class="box-radio-input"><input type="radio" name="cp_item" value="15" checked="checked"><span>선택하기</span></label>
                             </div>
                             <img src="http://img1.tmon.kr/cdn3/deals/2020/12/30/5046342462/5046342462_front_b28a43ccb3.jpg" class="card-img-top" >
                             <div class="card-body">
@@ -546,7 +571,7 @@
                     <li>
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
+                                <label class="box-radio-input"><input type="radio" name="cp_item" value="16" checked="checked"><span>선택하기</span></label>
                             </div>
                             <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20210114_208%2F16106311480044leo0_JPEG%2F11766981822016340_1989537315.jpg&type=sc960_832" class="card-img-top" >
                             <div class="card-body">
@@ -619,5 +644,3 @@
     
 
     {% endblock %}
-
-   
