@@ -111,93 +111,35 @@
     <div class="searchResultTitle">
         <span class="searchWord">{{searchWord}}</span>
         <span>의 검색결과</span>
-        <span style="font-size:1vw;">총 6건</span>
+        <span style="font-size:1vw;">총 {{animals_num}}건</span>
     </div>
 
     <div class="animals">
         <hr><br><br>
         <span>
+            {%if searchWord != ''%}
+            {%for animal in animals%}
             <div class="card">
                 <div class="card-overlay">
-                    <a href="{% url 'home' %}"><span>MORE</span></a>
+                    <a href="" onclick="pwin()"><span>MORE</span></a>
                 </div>
-                <img src="https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="card-img-top" >
+                <img src="{{animal.profile_photo.url}}" class="card-img-top" >
                 <div class="card-body">
                     <span>
-                        
-                        <h5 class="card-title">멍순이</h5>
-                        <p class="card-text">2004.04.12 ~ 2015.04.13</p>
+                        <h5 class="card-title">{{animal.name}}</h5>
+                        <p class="card-text">{{animal.birthday|date:"Y.m.d"}} ~ {{animal.memorialday|date:"Y.m.d"}}</p>
                     </span>
                 </div>
             </div>
-            <div class="card">
-                <div class="card-overlay">
-                    <a href="{% url 'home' %}"><span>MORE</span></a>
-                </div>
-                <img src="https://th.bing.com/th/id/OIP.4fRp-L9WTgKn2_p5bJw6bwHaI2?w=148&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
-                <div class="card-body">
-                    <span>
-                        <h5 class="card-title">멍이</h5>
-                        <p class="card-text">2005.11.12 ~ 2017.02.13</p>
-                    </span>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-overlay">
-                    <a href="{% url 'home' %}"><span>MORE</span></a>
-                </div>
-                <img src="https://images.mypetlife.co.kr/content/uploads/2019/09/09153001/dog-panting-1024x683.jpg" class="card-img-top" >
-                <div class="card-body">
-                    <span>
-                        <h5 class="card-title">길길</h5>
-                        <p class="card-text">2008.08.12 ~ 2017.06.17</p>
-                    </span>
-                </div>
-            </div>
+            {%endfor%}  
 
-            <div class="card">
-                <div class="card-overlay">
-                    <a href="{% url 'home' %}"><span>MORE</span></a>
-                </div>
-                <img src="https://th.bing.com/th/id/OIP._v3ir7dXgzP_inTjEeQligHaLG?pid=ImgDet&rs=1" class="card-img-top" >
-                <div class="card-body">
-                    <span>
-                        <h5 class="card-title">미리</h5>
-                        <p class="card-text">1989.01.02 ~ 2009.07.07</p>
-                    </span>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-overlay">
-                    <a href="{% url 'home' %}"><span>MORE</span></a>
-                </div>
-                <img src="https://th.bing.com/th/id/Re103181fd86af1aa032cd2353847faff?rik=rmoni8b0D7dt8A&riu=http%3a%2f%2fimage.notepet.co.kr%2fresize%2f620x-%2fseimage%2f20161214%252Fa5135ce43e4888e345cd2787d1f399f2.jpg&ehk=%2fjbVfydNDgkBzdgJSpuR0LQRf5HCgwdOpWXgIGqwKpI%3d&risl=&pid=ImgRaw" class="card-img-top" >
-                <div class="card-body">
-                    <span>
-                        <h5 class="card-title">뽀미</h5>
-                        <p class="card-text">2002.05.05 ~ 2017.12.03</p>
-                    </span>
-                </div>
-            </div>
-            <div class="card">
-                <div class="card-overlay">
-                    <a href="{% url 'home' %}"><span>MORE</span></a>
-                </div>
-                <img src="https://th.bing.com/th/id/OIP.JOT250d3N6gKIxhq7SO6FwHaFS?w=244&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
-                <div class="card-body">
-                    <span>
-                        <h5 class="card-title">루비</h5>
-                        <p class="card-text">2005.03.15 ~ 2018.12.11</p>
-                    </span>
-                </div>
-            </div>
+            {%for _ in "x"|rjust:empty_num%}
             <div class="emptyCard"></div>
-            <div class="emptyCard"></div>
+            {%endfor%}
+            
+            {%endif%}
         </span>
-
     </div>
-
-
 
 
     <!--부트스트랩 Pagination 컴포넌트 -->

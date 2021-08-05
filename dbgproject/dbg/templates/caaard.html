@@ -86,7 +86,7 @@
         .pressedBtn{
             display: flex;
             justify-content: flex-end;
-            margin-top: 15px;
+            margin-top: 6px;
         }
         .pressedBtn button{
             border: 3px solid #BEB5D3;
@@ -113,7 +113,7 @@
             
         
             <div class="registerLetter">
-                <form action="{% url 'enroll' %}" method="post">
+                <form action="{% url 'enroll' %}"  method="post">
                     <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
                     {%csrf_token%}
 
@@ -143,7 +143,15 @@
                     </div>
 
                     <div class="pressedBtn">
-                        <button type="pressed" href="{% url 'enroll' %}">PRESSED</button>
+                        <button type="pressed" href="{% url 'enroll' %}">일반관</button>
+                    </div>
+
+                    <div class="pressedBtn">
+                        <button type="pressed" href="{% url 'honorRegister1' %}">명예관</button>
+                    </div>
+
+                    <div class="pressedBtn">
+                        <button type="pressed" href="{% url 'freeRegister1' %}">자유로운 영혼</button>
                     </div>
                 
                     

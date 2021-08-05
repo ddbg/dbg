@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from datetime import datetime
 from django.utils.dateformat import DateFormat
-
+from django.db.models import Q
+from .forms import AnimalForm
 from .models import * 
 
 def home(request):
@@ -21,13 +22,32 @@ def honorRegister1(request):
 def honorRegister2(request):
     return render(request, "honorRegister2.html")
 
-
 def honorRegistered(request):
     return redirect('honor')
 
+def free(request):
+
+    # 오늘 월, 일 계산
+    today = DateFormat(datetime.now()).format('md')
+    month=today[1] if today[0]=='0' else today[:2]
+    month = month.rjust(2, '0')
+    day=today[2:]
+
+    free_animals = Animal.objects.filter(
+        category = "free"
+    )
+
+    today_stars = Animal.objects.filter(
+        memorialday__month = month,
+        memorialday__day = day
+    )
+    
+    return render(request, "free.html",{"month":month, "day":day, 'free_animals': free_animals,'empty_num':4-len(free_animals)%4,
+     'today_stars': today_stars })
 
 def freeRegister1(request):
-    return render(request, "freeRegister1.html")
+    animalForm = AnimalForm()
+    return render(request, "freeRegister1.html", {'animalForm':animalForm})
 
 def freeRegister2(request):
     return render(request, "freeRegister2.html")
@@ -44,19 +64,9 @@ def enroll2(request):
 def enrolled(request):
     return redirect('home')
 
+
 def caaard(request):
     return render(request, "caaard.html")
-
-def free(request):
-
-    # 오늘 월, 일 계산
-    today = DateFormat(datetime.now()).format('md')
-    month=today[1] if today[0]=='0' else today[:2]
-    day=today[2:]
-
-    animals = Animal.objects.all()
-    
-    return render(request, "free.html",{"month":month, "day":day, 'animals': animals})
 
 def aboutUs(request):
     return render(request, "aboutUs.html")
@@ -65,10 +75,19 @@ def searchMap(request):
     return render(request, "searchMap.html")
 
 def searchResult(request):
-
     searchWord=request.POST['searchInput']
 
-    return render(request, "searchResult.html",{"searchWord":searchWord})
+    animals = Animal.objects.filter(
+        Q(name__contains = searchWord)|
+        Q(category__contains = searchWord)|
+        Q(species__contains = searchWord)|
+        Q(subspecies__contains = searchWord)|
+        Q(birthday__contains = searchWord)|
+        Q(memorialday__contains = searchWord)|
+        Q(introduce__contains = searchWord)
+    )
+    return render(request, "searchResult.html",{"searchWord":searchWord, "animals":animals
+    , "animals_num": len(animals), "empty_num":4-len(animals)%4})
 
 
 def mypage(request):
@@ -104,3 +123,6 @@ def idFind(request):
 
 def pwFind(request):
     return render(request, "pwFind.html")    
+
+def normal(request):
+    return render(request, "normal.html")
