@@ -107,116 +107,77 @@
             <br>
 
             <div class="registerLetter">
-                <form action="{% url 'enroll2' %}" method="post">
-                    <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
-                    {%csrf_token%}
+              <form action="{% url 'enroll2' %}" method="post">
+                  <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
+                  {%csrf_token%}
 
-                    <div class="nameBox">
-                        <label for="to">To. </label>
-                        <input type="text" id="to" name="animalName" placeholder="이름을 적어주세요">
-                    </div>
-                    
-                    <div class="infoBox">
-                        <label for="animalType">어떤 동물인가요?</label>
-                        <br>
-                        <input type="text" name="animalType" placeholder="직접 입력해주세요" list="fruits" />
-                        <datalist id="fruits">
-                        <option value="강아지"></option>
-                        <option value="고양이"></option>
-                        <option value="새"></option>
-                        <option value="토끼"></option>
-                        <option value="물고기"></option>
-                        <option value="햄스터"></option>
-                        </datalist>
-                    </div>
-
-                    <div class="infoBox">
-                      <label for="animalType">너가 태어난 날을 기억할게</label>
+                  <div class="nameBox">
+                      <label for="animalName">To. </label>
+                      <input type="text" id="animalName" name="animalName" placeholder="이름을 적어주세요">
+                  </div>
+                  
+                  <div class="infoBox">
+                      <label for="animalType">어떤 동물인가요?</label>
                       <br>
-          
-                      <link rel="stylesheet" href="//code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" />
-                      <script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-                      <script src="//code.jquery.com/ui/1.8.18/jquery-ui.min.js"></script>
-          
-                      <script>
-                          $(function() {
-                          $( "#birthday" ).datepicker({
-                              dateFormat: 'yy.mm.dd',
-                              prevText: '이전 달',
-                              nextText: '다음 달',
-                              monthNames: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-                              monthNamesShort: ['1월','2월','3월','4월','5월','6월','7월','8월','9월','10월','11월','12월'],
-                              dayNames: ['일','월','화','수','목','금','토'],
-                              dayNamesShort: ['일','월','화','수','목','금','토'],
-                              dayNamesMin: ['일','월','화','수','목','금','토'],
-                              showMonthAfterYear: true,
-                              changeMonth: true,
-                              changeYear: true,
-                              yearSuffix: '년'
-                          });
-                          });
-                      </script>
-                      생년월일: <input type="text" id="birthday" name="birthday">
-                          
-                    </div>
+                      <input type="text" id="animalType" name="animalType" placeholder="직접 입력해주세요" list="fruits" />
+                      <datalist id="fruits">
+                      <option value="강아지"></option>
+                      <option value="고양이"></option>
+                      <option value="새"></option>
+                      <option value="토끼"></option>
+                      <option value="물고기"></option>
+                      <option value="햄스터"></option>
+                      </datalist>
+                  </div>
 
-                    <div class="infoBox">
-                      <label for="animalType">무지개 다리를 건넌 날</label>
+                  <div class="infoBox">
+                      <label for="animalSubType">자세한 종류를 알려주세요</label>
                       <br>
-          
-                      <!doctype html>
-                            <html lang="en">
-                            <head>
-                              <meta charset="utf-8">
-                              <meta name="viewport" content="width=device-width, initial-scale=1">
-                              <title>jQuery UI Datepicker - Default functionality</title>
-                              <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-                              <link rel="stylesheet" href="/resources/demos/style.css">
-                              <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-                              <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-                              <script>
-                              $( function() {
-                                $( "#datepicker" ).datepicker();
-                              } );
-                              </script>
-                            </head>
-                            <body>
-                            
-                            <p>날짜: <input type="text" id="datepicker"></p>
-                            
-                            
-                            </body>
-                            </html>
-                          
-                    </div>
-                    
+                      <input type="text" id="animalSubType" name="animalSubType" placeholder="직접 입력해주세요"/>
+                  </div>
 
-                    <div class="infoBox">
-                      <label>너의 모습을 기억할게</label>
+                  <div class="infoBox">
+                      <label for="animalBirthDay">너가 태어난 날을 기억할게</label>
+                      <br>
+                      생년월일: <input type="text" class="animalDay" id="animalBirthDay" name="animalBirthDay">
+                          
+                  </div>
+
+
+                  <div class="infoBox">
+                      <label for="animalMemorialDay">무지개 다리를 건넌 날</label>
+                      <br>
+                            
+                      <p>날짜: <input type="text" class="animalDay" id="animalMemorialDay" name="animalMemorialDay">                          
+                  </div>
+                    
+                  
+                  <div class="infoBox">
+                      <label for ="animalImg">너의 모습을 기억할게</label>
                       <br>
                       <div id='img_preview'>
-                          <input type='file' id='imgUpload' name="animalImg" multiple='multiple' style="display: none;"/>
+                          <input type='file' id='animalImg' name="animalImg" multiple='multiple' style="display: none;"/>
                           <div id='att_zone' data-placeholder='파일을 첨부 하려면 파일 선택 버튼을 클릭하거나 파일을 드래그앤드롭 하세요'>
-                              <label for="imgUpload">+</label>
+                              <label for="animalImg">+</label>
                           </div>
                       </div>
                   </div>
 
-                    <div class="infoBox">
-                        <label>상세 정보</label>
-                        <br>
-                        <textarea name="animalTalking"></textarea>
-                    </div>
-                       
-                    <div class="from">
-                        <span>From. 닉네임</span>
-                    </div>
-                    
-                    <div class="submitBtn">
-                        <button type="submit">다음장으로</button>
-                    </div>
-                </form>
-            </div>
+                  <div class="infoBox">
+                      <label for="animalInfo">반려동물을 소개해주세요</label>
+                      <br>
+                      <textarea id="animalInfo", name="animalInfo"></textarea>
+                  </div>
+                     
+                  <div class="from">
+                      <span>From. 닉네임</span>
+                  </div>
+                  
+                  <div class="submitBtn">
+                      <button type="submit">다음장으로</button>
+                  </div>
+              </form>
+          </div>
 
         </div>
         
@@ -320,7 +281,7 @@
                   return div
                 }
               }
-            )('att_zone', 'imgUpload')
+            )('att_zone', 'animalImg')
             
         </script>
 

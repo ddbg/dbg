@@ -20,7 +20,11 @@ def honorRegister1(request):
     return render(request, "honorRegister1.html")
 
 def honorRegister2(request):
-    return render(request, "honorRegister2.html")
+
+    newHonorAnimal = Animal()
+    newHonorAnimal.name = request.POST['animalName']
+
+    return render(request, "honorRegister2.html",{'honorAnimal':newHonorAnimal})
 
 def honorRegistered(request):
     return redirect('honor')
@@ -41,25 +45,51 @@ def free(request):
         memorialday__month = month,
         memorialday__day = day
     )
-    
+   
     return render(request, "free.html",{"month":month, "day":day, 'free_animals': free_animals,'empty_num':4-len(free_animals)%4,
-     'today_stars': today_stars })
+     'today_stars': today_stars, 'today_stars_num': len(today_stars) })
 
 def freeRegister1(request):
-    animalForm = AnimalForm()
-    return render(request, "freeRegister1.html", {'animalForm':animalForm})
+    return render(request, "freeRegister1.html")
 
 def freeRegister2(request):
-    return render(request, "freeRegister2.html")
+    newFreeAnimal = Animal()
 
-def freeRegistered(request):
+    temp_id = Animal.objects.count()
+    newFreeAnimal.animal_id = temp_id +1 if temp_id != 0 else 1
+    #newFreeAnimal.owner_id = request.POST['']
+    newFreeAnimal.category = 'free'
+    newFreeAnimal.name = request.POST['animalName']
+    newFreeAnimal.species = request.POST['animalType']
+    newFreeAnimal.subspecies = request.POST['animalSubType']
+    newFreeAnimal.birthday = request.POST['animalBirthDay']
+    newFreeAnimal.memorialday = request.POST['animalMemorialDay']
+    newFreeAnimal.profile_photo = request.POST['animalImg']
+    newFreeAnimal.introduce = request.POST['animalInfo']
+
+    newFreeAnimal.save()
+
+    return render(request, "freeRegister2.html",{'freeAnimal':newFreeAnimal})
+
+def freeRegistered(request, animal_id):
+    newFreeAnimal = Animal.objects.get(animal_id=animal_id)
+    newFreeAnimal.season = request.POST['animalSeason']
+    newFreeAnimal.flowers = request.POST['animalFlower']
+    newFreeAnimal.gravestone = request.POST['animalGravestone']
+    newFreeAnimal.pub_date = datetime.now()
+    newFreeAnimal.save()
+    
     return redirect('free')
 
 def enroll(request):
     return render(request, "enroll.html")
 
 def enroll2(request):
-    return render(request, "enroll2.html")
+
+    newAnimal = Animal()
+    newAnimal.name = request.POST['animalName']
+    
+    return render(request, "enroll2.html",{'animal':newAnimal})
 
 def enrolled(request):
     return redirect('home')
