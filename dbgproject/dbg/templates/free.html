@@ -166,7 +166,7 @@
             justify-content: center;
             margin-bottom: 50px;
         }
-        .page-link{color: #9184b1; }
+        .page-link{color: #9184b1 !important; }
         .page-link:hover{color: #736792;}
 
     </style>
@@ -272,19 +272,32 @@
         <div class="pgn">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
+                <!--이전 글이 있으면 -->
+                {% if free_animals.has_previous %}
                 <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Previous">
+                    <a class="page-link" href="?page={{free_animals.previous_page_number}}" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                {% endif %}
+
+                {% for p in "x"|rjust:free_animals.paginator.num_pages %}
+                    {% if forloop.counter == free_animals.number %}
+                    <li class="page-item"><a class="page-link" href="?page={{forloop.counter}}" style="font-size: larger;">{{forloop.counter }}</a></li>
+                    
+                    {% else %}
+                    <li class="page-item"><a class="page-link" href="?page={{forloop.counter}}">{{forloop.counter }}</a></li>
+                    {% endif %}
+                {% endfor %}
+
+                <!--다음 글이 있으면-->
+                {% if free_animals.has_next %}
                 <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
+                    <a class="page-link" href="?page={{free_animals.next_page_number}}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
+                {% endif %}
                 </ul>
             </nav>
         </div>
