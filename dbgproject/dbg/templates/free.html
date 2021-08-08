@@ -15,6 +15,7 @@
             position: relative;
             margin: 60px 65px;
             padding: 0 75px;
+            text-align: center;
         }
         .todayStar>h3{
             text-align: center;
@@ -290,22 +291,31 @@
     </div>
     
     <!--X월 XX일 별이 된 아이들 카드 슬라이드 효과-->
-    <script>
+    <script> 
         var slides=document.querySelector('.slides'),
             slide=document.querySelectorAll('.slides li'),
             currentIdx=0,
             slideCount = slide.length,
             prevBtn=document.querySelector('.prev'),
             slideWidth=230,
-            slideMargin=20,
-            nextBtn=document.querySelector('.next');
+            slideMargin=20-2,
+            nextBtn=document.querySelector('.next'),
+            today_stars_num = parseInt("{{today_stars_num}}");      // view.py의 free함수에서 받은 오늘 별이 된 아이들 갯수 변수
 
+            // 슬라이드 너비를 위의 변수 크기에 따라 설정
+            document.querySelector('.slides').style.width = today_stars_num*(slideWidth + slideMargin)+'px'; 
+           
+            // 슬라이드 랩퍼 크기를 위으 변수 크기에 따라 설정
+            if(today_stars_num > 4){today_stars_num = 4;}
+            document.querySelector('.slide_wrapper').style.width = today_stars_num*(slideWidth + slideMargin)+'px';
+            
+            
             function moveSlide(num){
                 slides.style.left =-num*(slideWidth+slideMargin)+'px';
                 currentIdx = num;
             }
             nextBtn.addEventListener('click', function(){
-                if(currentIdx<slideCount-5){
+                if(currentIdx<slideCount-(today_stars_num)){
                     moveSlide(currentIdx+1);
                 }
                 else{
@@ -317,7 +327,7 @@
                     moveSlide(currentIdx-1);
                 }
                 else{
-                    moveSlide(slideCount-5);
+                    moveSlide(slideCount-(today_stars_num));
                 }
             });
             

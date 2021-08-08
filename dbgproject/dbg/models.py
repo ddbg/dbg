@@ -5,8 +5,8 @@ class User(models.Model):
     user_id=models.EmailField(max_length=50, unique=True, primary_key=True)         #아이디
     
     user_name=models.CharField(max_length=50)                                       #실명
-    user_nickname=models.CharField(max_length=50)                                   #닉네임
-    user_password=models.CharField(max_length=50, unique=True)                      #비밀번호
+    user_nickname=models.CharField(max_length=50, unique=True)                      #닉네임
+    user_password=models.CharField(max_length=50)                                   #비밀번호
     user_phone_number=models.CharField(max_length=12)                               #전화번호
     user_link=models.URLField()                                                     #계정(반려견 계정:인스타, 페이스북,트위터)
 
@@ -17,7 +17,7 @@ class Animal(models.Model):
     animal_id = models.IntegerField(primary_key=True)                               # 동물 고유 id
     
     name = models.CharField(max_length=50)                                          # 동물 이름
-    owner_id = models.ForeignKey(User, on_delete=models.CASCADE)                    # 주인 id
+    owner_id = models.ForeignKey(User, on_delete=models.CASCADE, null=True)                    # 주인 id
     category = models.CharField(max_length=50)                                       # 카테고리 
     species = models.CharField(max_length=50)                                       # 상위 종류
     subspecies = models.CharField(max_length=50, null=True)                         # 하위 종류
@@ -27,7 +27,8 @@ class Animal(models.Model):
     introduce = models.TextField(null=True)                                         # 소개글
     season = models.CharField(max_length=10, null=True)                             # 제일 좋아한 계절                         
     flowers = models.CharField(max_length=200, null=True)                           # 꽃다발
-    gravestone = models.CharField(max_length=50)                                    # 묘비
+    gravestone = models.CharField(max_length=50, null=True)                                    # 묘비
+    pub_date = models.DateTimeField(null=True)                                                # 등록시간
     
 
   

@@ -211,6 +211,30 @@
             font-weight: 800;
             color:gray;
         }
+
+        /* 라디오박스 */
+        .box-radio-input input[type="radio"]{
+            display:none;
+        }
+
+        .box-radio-input input[type="radio"] + span{
+            display:inline-block;
+            background:none;
+            border:1px solid #dfdfdf;  
+            padding:0px 10px;
+            text-align:center;
+            height:35px;
+            line-height:33px;
+            font-weight:500;
+            cursor:pointer;
+        }
+
+        .box-radio-input input[type="radio"]:checked + span{
+            border:2px solid white;
+            background:#BEB5D3;
+            color:#fff;
+        }
+
         /* 빈 카드 */
         .emptyCard{
             width:150px; height:220px;
@@ -257,361 +281,322 @@
         <br>
 
 
-
-    <div class="registerLetter">
-        <form action="{% url 'honorRegistered' %}" method="post">
-            <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
-            {%csrf_token%}
-        
-
-            <div class="nameBox">
-            <label for="to"><strong>To.</strong> </label>
-            <input type="text" id="to" name="animalName" placeholder="이름을 적어주세요">
-            </div>
-
+        <div class="registerLetter">
+            <form action="{% url 'honorRegistered' %}" method="post">
+                <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
+                {%csrf_token%}
             
-        
-
-        <div class =" season">    
-
-            <div class="infoBox">
-            <label for="animalType">너가 좋아하던 계절이야</label>
-            <br>
-            <!--너에게 주고싶은 계절 슬라이드-->
-            <div class="slide_wrapper">
-                
-                
-                    <li>
-                        <!--bootstrap 카드 컴포넌트-->
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMTA0MDhfMzcg%2FMDAxNjE3ODgyNDQzNjIy.tBnLPO1y34HqFk-BGtlREKIZ1h5PuVWUBO4sg9U19GMg.GGkf8UbuICUdMzRu30NtdykG1fU7IZ_0ap7Gchu1GFwg.JPEG.rosetearoom%2FKakaoTalk_20210408_153626321_01.jpg&type=sc960_832" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">봄</h5>
-                                </span>
-                            </div>
+    
+                <div class="nameBox">
+                    <label for="to"><strong>To. {{honorAnimal.name}}</strong> </label>
+                </div>
+    
+                <div class =" season">    
+    
+                    <div class="infoBox">
+                        <label for="animalSeason">너가 좋아하던 계절이야</label>
+                        <br>
+                        <!--너에게 주고싶은 계절 슬라이드-->
+                        <div class="slide_wrapper">
+                                <li>
+                                    <!--bootstrap 카드 컴포넌트-->
+                                    <div class="card"> 
+                                        <div class="card-overlay" id = "animalSeason1" >
+                                            <label class="box-radio-input"><input type="radio" name="animalSeason" value="1" checked="checked" onclick="changeOpacity(this.name, this.value)"><span>선택하기</span></label>                  
+                                        </div>
+                                        <img src="{% static 'spring.JPEG' %}" class="card-img-top">
+                                        <div class="card-body">
+                                            <span>
+                                                <h5 class="card-title">봄</h5>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="card">
+                                        <div class="card-overlay" id = "animalSeason2" >
+                                            <label class="box-radio-input"><input type="radio" name="animalSeason" value="2" onclick="changeOpacity(this.name, this.value)" ><span>선택하기</span></label>
+                                        </div>
+                                        <img src="{% static 'summer.JPEG' %}" class="card-img-top" >
+                                        <div class="card-body">
+                                            <span>
+                                                <h5 class="card-title">여름</h5>
+                                                
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>                    
+                                <li>
+                                    <div class="card">
+                                        <div class="card-overlay"  id = "animalSeason3" >
+                                            <label class="box-radio-input"><input type="radio" name="animalSeason"value="3" onclick="changeOpacity(this.name, this.value)"><span>선택하기</span></label>
+                                        </div>
+                                        <img src="{% static 'fall.JPEG' %}" class="card-img-top" >
+                                        <div class="card-body">
+                                            <span>
+                                                <h5 class="card-title">가을</h5>
+                                                
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>                    
+                                <li>
+                                    <div class="card">
+                                        <div class="card-overlay" id = "animalSeason4">
+                                            <label class="box-radio-input"><input type="radio" name="animalSeason" value="4" onclick="changeOpacity(this.name, this.value)"><span>선택하기</span></label>
+                                        </div>
+                                        <img src="{% static 'winter.JPEG' %}" class="card-img-top" >
+                                        <div class="card-body">
+                                            <span>
+                                                <h5 class="card-title">겨울</h5>
+                                                
+                                            </span>
+                                        </div>
+                                    </div>
+                                </li>                    
+                            
+                            
                         </div>
-                    </li>
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2Fdata6%2F2005%2F5%2F23%2F33%2F2864610-md-chinafire.jpg&type=sc960_832" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">여름</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAxNjExMTNfMjA2%2FMDAxNDc5MDM1MTQ2NTgx.GhQHlZS8djw6YClBdVvicx9o8_FUK-3b8WDXpuV4kxYg.HfB34qvpkaT0e-ZBmltBBOEJ7HqXvGKUOTowAyyV-Y4g.JPEG.hemo888%2FFB_IMG_1479034288526.jpg&type=sc960_832" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">가을</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20151208_150%2Fsimj0429_1449514223166v7AAP_JPEG%2Fhttps3A2F2F41.media.tumblr.com2F78588d98e44882c15785c104014dd2f12Ftumblr_ny.jpg&type=sc960_832" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">겨울</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                 
-                
-            </div>
-             
-        </div>
-    </div>
-
-
-        <div class="infoBox">
-            <label>꽃다발을 선택해 주세요</label>
-            <br>
-            
-            
-            <!--꽃 선택 슬라이드-->
-            <div class="slide_wrapper">
-            
-                
-                    <li>
-                        <!--bootstrap 카드 컴포넌트-->
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="http://www.flowerrepublic.co.kr/shopimages/sungmo9160/0070010003772.jpg?1507351606" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">분홍장미꽃다발</h5>
-                                   
-                                </span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="https://www.mdeco.co.kr/shop/data/goods/1482819650281s0.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">물망초꽃다발</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="http://eppflower.com/web/product/big/202104/faee82d154fcc1d14a2f5bca135ff645.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">파란장미꽃다발</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="http://m.eppflower.com/web/product/big/201703/1501_shop1_129413.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">프리지아꽃다발</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li> 
-                               
-                
-            </div>
-        
-         </div>
-
-        
-
-        <div class="infoBox">
-            <label for="animalType">너에게 주고싶은 물건이야</label>
-            <br>
-
-              <!--너에게 주고싶은 물건 슬라이드-->
-            <div class="slide_wrapper">
-                
-                    <li>
-                        <!--bootstrap 카드 컴포넌트-->
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20210613_25%2F1623585742141OJzy2_JPEG%2F31050375250941884_1738734922.jpg&type=sc960_832" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">뼈다귀</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2AyLtQVTlEgjGIKR4jVOUXFKjb5tfR20HhA&usqp=CAU" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">공</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="http://image.auction.co.kr/itemimage/15/07/6f/15076f1f26.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">닭다리 인형</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="http://img1a.coupangcdn.com/image/vendor_inventory/05b6/b5d548bb05212606bd1662d574aa6263597c5081bae8ec91efda2e2f83d2.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">담요</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
+                    </div>
+                </div>   
+    
+                <div class="infoBox">
+                    <label>꽃다발을 선택해 주세요</label>
+                    <br>
                     
+                    
+                    <!--꽃 선택 슬라이드-->
+                    <div class="slide_wrapper">
+                    
+                        
+                            <li>
+                                <!--bootstrap 카드 컴포넌트-->
+                                <div class="card">
+                                    <div class="card-overlay" id="animalFlower1">
+                                        <label class="box-radio-input"><input type="radio" name="animalFlower" value="1" checked="checked" onclick="changeOpacity(this.name, this.value)"><span>선택하기</span></label>
+                                    </div>
+                                    <img src="http://www.flowerrepublic.co.kr/shopimages/sungmo9160/0070010003772.jpg?1507351606" class="card-img-top" >
+                                    <div class="card-body">
+                                        <span>
+                                            <h5 class="card-title">분홍장미꽃다발</h5>
+                                        
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="card">
+                                    <div class="card-overlay" id="animalFlower2">
+                                        <label class="box-radio-input"><input type="radio" name="animalFlower" value="2" onclick="changeOpacity(this.name, this.value)"><span>선택하기</span></label>
+                                    </div>
+                                    <img src="https://www.mdeco.co.kr/shop/data/goods/1482819650281s0.jpg" class="card-img-top" >
+                                    <div class="card-body">
+                                        <span>
+                                            <h5 class="card-title">물망초꽃다발</h5>
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>                    
+                            <li>
+                                <div class="card">
+                                    <div class="card-overlay" id="animalFlower3">
+                                        <label class="box-radio-input"><input type="radio" name="animalFlower" value="3" onclick="changeOpacity(this.name, this.value)"><span>선택하기</span></label>
+                                    </div>
+                                    <img src="http://eppflower.com/web/product/big/202104/faee82d154fcc1d14a2f5bca135ff645.jpg" class="card-img-top" >
+                                    <div class="card-body">
+                                        <span>
+                                            <h5 class="card-title">파란장미꽃다발</h5>
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>                    
+                            <li>
+                                <div class="card">
+                                    <div class="card-overlay" id="animalFlower4">
+                                        <label class="box-radio-input"><input type="radio" name="animalFlower" value="4" onclick="changeOpacity(this.name, this.value)"><span>선택하기</span></label>
+                                    </div>
+                                    <img src="http://m.eppflower.com/web/product/big/201703/1501_shop1_129413.jpg" class="card-img-top" >
+                                    <div class="card-body">
+                                        <span>
+                                            <h5 class="card-title">프리지아꽃다발</h5>
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                            </li> 
+                                    
+                        
+                    </div>
                 
-            </div>
-
-            </form>   
-        </div>
-     
-
-        
-
-        <div class="infoBox">
-            <label for="animalType">묘비모양을 골라주세요</label>
-            <br>
-
-            <!--묘비모양 슬라이드-->
-            <div class="slide_wrapper">
-                
-                    <li>
-                        <!--bootstrap 카드 컴포넌트-->
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="https://image5.unit808.com/data/100mc_data/images/product/28/37/39/73/23/b_2837397323.gif?v=2021070117" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">발바닥 모양</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="https://image8.unit808.com/data/100mc_data/images/product/28/21/41/89/37/b_2821418937.gif?v=2021070117" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">하트 모양</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="http://img1.tmon.kr/cdn3/deals/2020/12/30/5046342462/5046342462_front_b28a43ccb3.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">황동 하트</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a href="#" class="thumbnail"><span>선택하기</span></a>
-                            </div>
-                            <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20210114_208%2F16106311480044leo0_JPEG%2F11766981822016340_1989537315.jpg&type=sc960_832" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">비석모양</h5>
-                                    
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                
-            </div>
-        </div>
-      
-        <br>
-            <div class="config_cancel">
-                <div class=" submitBtn">
-                    <a href="{% url 'enroll' %}"> 
-                        <button type="sybmit">이전으로</button>
-                    </a>
                 </div>
-                <div class=" submitBtn">
-                    <a href="{% url 'home' %}">
-                        <button type="sybmit">보내주기</button>
-                       </a>
+    
+                
+    
+                <div class="infoBox">
+                    <label for="animalType">너에게 주고싶은 물건이야</label>
+                    <br>
+    
+                    <!--너에게 주고싶은 물건 슬라이드-->
+                    <div class="slide_wrapper">
+                        
+                            <li>
+                                <!--bootstrap 카드 컴포넌트-->
+                                <div class="card">
+                                    <div class="card-overlay" id="animalStuff1">
+                                        <label class="box-radio-input"><input type="radio" name="animalStuff" value="1" checked="checked" onclick="changeOpacity(this.name, this.value)"><span>선택하기</span></label>
+                                    </div>
+                                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20210613_25%2F1623585742141OJzy2_JPEG%2F31050375250941884_1738734922.jpg&type=sc960_832" class="card-img-top" >
+                                    <div class="card-body">
+                                        <span>
+                                            <h5 class="card-title">뼈다귀</h5>
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="card">
+                                    <div class="card-overlay" id="animalStuff2">
+                                        <label class="box-radio-input"><input type="radio" name="animalStuff" value="2" onclick="changeOpacity(this.name, this.value)"><span>선택하기</span></label>
+                                    </div>
+                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2AyLtQVTlEgjGIKR4jVOUXFKjb5tfR20HhA&usqp=CAU" class="card-img-top" >
+                                    <div class="card-body">
+                                        <span>
+                                            <h5 class="card-title">공</h5>
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>                    
+                            <li>
+                                <div class="card">
+                                    <div class="card-overlay" id="animalStuff3">
+                                        <label class="box-radio-input"><input type="radio" name="animalStuff" value="3" onclick="changeOpacity(this.name, this.value)"><span>선택하기</span></label>
+                                    </div>
+                                    <img src="http://image.auction.co.kr/itemimage/15/07/6f/15076f1f26.jpg" class="card-img-top" >
+                                    <div class="card-body">
+                                        <span>
+                                            <h5 class="card-title">닭다리 인형</h5>
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>                    
+                            <li>
+                                <div class="card">
+                                    <div class="card-overlay" id="animalStuff4">
+                                        <label class="box-radio-input"><input type="radio" name="animalStuff" value="4" onclick="changeOpacity(this.name, this.value)"><span>선택하기</span></label>
+                                    </div>
+                                    <img src="http://img1a.coupangcdn.com/image/vendor_inventory/05b6/b5d548bb05212606bd1662d574aa6263597c5081bae8ec91efda2e2f83d2.jpg" class="card-img-top" >
+                                    <div class="card-body">
+                                        <span>
+                                            <h5 class="card-title">담요</h5>
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>                    
+                            
+                        
+                    </div>
                 </div>
-            </div> 
             
-
-        
-    </div> 
+    
+                <div class="infoBox">
+                    <label for="animalGrovestone">묘비모양을 골라주세요</label>
+                    <br>
+    
+                    <!--묘비모양 슬라이드-->
+                    <div class="slide_wrapper">
+                        
+                            <li>
+                                <!--bootstrap 카드 컴포넌트-->
+                                <div class="card">
+                                    <div class="card-overlay" id="animalGrovestone1">
+                                        <label class="box-radio-input"><input type="radio" name="animalGrovestone" value="1" onclick="changeOpacity(this.name, this.value)"><span>선택하기</span></label>
+                                    </div>
+                                    <img src="https://image5.unit808.com/data/100mc_data/images/product/28/37/39/73/23/b_2837397323.gif?v=2021070117" class="card-img-top" >
+                                    <div class="card-body">
+                                        <span>
+                                            <h5 class="card-title">발바닥 모양</h5>
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <div class="card">
+                                    <div class="card-overlay" id="animalGrovestone2">
+                                        <label class="box-radio-input"><input type="radio" name="animalGrovestone" value="2" onclick="changeOpacity(this.name, this.value)"><span>선택하기</span></label>
+                                    </div>
+                                    <img src="https://image8.unit808.com/data/100mc_data/images/product/28/21/41/89/37/b_2821418937.gif?v=2021070117" class="card-img-top" >
+                                    <div class="card-body">
+                                        <span>
+                                            <h5 class="card-title">하트 모양</h5>
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>                    
+                            <li>
+                                <div class="card">
+                                    <div class="card-overlay" id="animalGrovestone3">
+                                        <label class="box-radio-input"><input type="radio" name="animalGrovestone" value="3" onclick="changeOpacity(this.name, this.value)"><span>선택하기</span></label>
+                                    </div>
+                                    <img src="http://img1.tmon.kr/cdn3/deals/2020/12/30/5046342462/5046342462_front_b28a43ccb3.jpg" class="card-img-top" >
+                                    <div class="card-body">
+                                        <span>
+                                            <h5 class="card-title">황동 하트</h5>
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>                    
+                            <li>
+                                <div class="card">
+                                    <div class="card-overlay" id="animalGrovestone4">
+                                        <label class="box-radio-input"><input type="radio" name="animalGrovestone" value="4" onclick="changeOpacity(this.name, this.value)"><span>선택하기</span></label>
+                                    </div>
+                                    <img src="https://search.pstatic.net/common/?src=http%3A%2F%2Fshop1.phinf.naver.net%2F20210114_208%2F16106311480044leo0_JPEG%2F11766981822016340_1989537315.jpg&type=sc960_832" class="card-img-top" >
+                                    <div class="card-body">
+                                        <span>
+                                            <h5 class="card-title">비석모양</h5>
+                                            
+                                        </span>
+                                    </div>
+                                </div>
+                            </li>                    
+                        
+                    </div>
+                </div> 
+                <br>
+                <div class="config_cancel">
+                    <div class=" submitBtn">
+                        <a href="{% url 'enroll' %}"> 
+                            <button type="sybmit">이전으로</button>
+                        </a>
+                    </div>
+                    <div class=" submitBtn">
+                        <a href="{% url 'home' %}">
+                            <button type="sybmit">보내주기</button>
+                           </a>
+                    </div>
+                </div>        
+            </form>   
+        </div> 
 
     </div>
-     <!--X월 XX일 별이 된 아이들 카드 슬라이드 효과-->
-     <script>
-        var slides=document.querySelector('.slides'),
-            slide=document.querySelectorAll('.slides li'),
-            currentIdx=0,
-            slideCount = slide.length,
-            prevBtn=document.querySelector('.prev'),
-            slideWidth=230,
-            slideMargin=20,
-            nextBtn=document.querySelector('.next');
+    <script>
+        function changeOpacity(name, value) {
+            id = name+value;
 
-            function moveSlide(num){
-                slides.style.left =-num*(slideWidth+slideMargin)+'px';
-                currentIdx = num;
+            for(var i=1; i<=4; i++){
+                document.getElementById(name+String(i)).style.opacity = "0.0";    
             }
-            nextBtn.addEventListener('click', function(){
-                if(currentIdx<slideCount+3){
-                    moveSlide(currentIdx+1);
-                }
-                else{
-                    moveSlide(0);
-                }
-            });
-            prevBtn.addEventListener('click', function(){
-                if(currentIdx>0){
-                    moveSlide(currentIdx-1);
-                }
-                else{
-                    moveSlide(slideCount-5);
-                }
-            });
-            
+            document.getElementById(id).style.opacity = "1.0";
+        }
     </script>
             
 </div>
