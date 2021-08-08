@@ -3,6 +3,8 @@ from datetime import datetime
 from django.utils.dateformat import DateFormat
 from django.db.models import Q
 from .forms import AnimalForm
+from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
+from django.contrib.auth import authenticate,login,logout
 from .models import * 
 
 def home(request):
@@ -101,13 +103,6 @@ def mypagePhoto(request):
 
 def mypageVisitorBook(request):
     return render(request, "mypageVisitorBook.html")  
-
-def login_view(request):
-    return render(request, "login.html")
-
-
-def logout_view(request):
-    return redirect("home")
 
 def csCenter(request):
     return render(request, "csCenter.html")    
