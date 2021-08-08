@@ -159,4 +159,22 @@ def pwFind(request):
     return render(request, "pwFind.html")    
 
 def normal(request):
-    return render(request, "normal.html")
+
+    today = DateFormat(datetime.now()).format('md')
+    month=today[1] if today[0]=='0' else today[:2]
+    month = month.rjust(2, '0')
+    day=today[2:]
+
+    normal_animals = Animal.objects.filter(category = "normal")
+
+    normalToday = Animal.objects.filter(
+        memorialday__month = month,
+        memorialday__day = day
+    )
+
+    paginator = Paginator(normal_animals, 16)
+    page = request.GET.get('page')
+    normal_animals = paginator.get_page(page)
+
+    return render(request, "normal.html",{'normal_animals':normal_animals,'empty_num':4-len(normal_animals)%4,
+    "month":month, 'day': day, 'normalToday':normalToday })
