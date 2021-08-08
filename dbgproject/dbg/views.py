@@ -4,6 +4,7 @@ from django.utils.dateformat import DateFormat
 from django.db.models import Q
 from .forms import AnimalForm
 from .models import * 
+from django.core.paginator import Paginator
 
 def home(request):
 
@@ -37,15 +38,23 @@ def free(request):
     month = month.rjust(2, '0')
     day=today[2:]
 
+    # 카테고리가 free인 동물들만 가져와 free_animals에 저장
     free_animals = Animal.objects.filter(
         category = "free"
     )
 
+    # 오늘 월/일에 죽은 동물들만 가져와 today_starts에 저장
     today_stars = Animal.objects.filter(
         memorialday__month = month,
         memorialday__day = day
     )
    
+    # 한 페이지 당 16마리 동물 보이도록 페이지네이션
+    paginator = Paginator(free_animals, 16)
+    page = request.GET.get('page')          # 몇번째 페이지인지 받아옴
+
+    free_animals = paginator.get_page(page)
+
     return render(request, "free.html",{"month":month, "day":day, 'free_animals': free_animals,'empty_num':4-len(free_animals)%4,
      'today_stars': today_stars, 'today_stars_num': len(today_stars) })
 
@@ -64,7 +73,7 @@ def freeRegister2(request):
     newFreeAnimal.subspecies = request.POST['animalSubType']
     newFreeAnimal.birthday = request.POST['animalBirthDay']
     newFreeAnimal.memorialday = request.POST['animalMemorialDay']
-    newFreeAnimal.profile_photo = request.POST['animalImg']
+    newFreeAnimal.profile_photo = request.FILES.get('animalImg', None)
     newFreeAnimal.introduce = request.POST['animalInfo']
 
     newFreeAnimal.save()
@@ -75,7 +84,7 @@ def freeRegistered(request, animal_id):
     newFreeAnimal = Animal.objects.get(animal_id=animal_id)
     newFreeAnimal.season = request.POST['animalSeason']
     newFreeAnimal.flowers = request.POST['animalFlower']
-    newFreeAnimal.gravestone = request.POST['animalGravestone']
+    newFreeAnimal.gravestone = request.POST['animalGrovestone']
     newFreeAnimal.pub_date = datetime.now()
     newFreeAnimal.save()
     
