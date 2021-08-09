@@ -25,9 +25,10 @@ class Animal(models.Model):
     birthday = models.DateField(null=True)                                          # 탄생일
     memorialday = models.DateField()                                                # 제삿날
     introduce = models.TextField(null=True)                                         # 소개글
-    season = models.CharField(max_length=10, null=True)                             # 제일 좋아한 계절                         
-    flowers = models.CharField(max_length=200, null=True)                           # 꽃다발
-    gravestone = models.CharField(max_length=50, null=True)                         # 묘비
+    season = models.IntegerField(null=True)                                         # 제일 좋아한 계절                         
+    flowers = models.IntegerField(null=True)                                        # 꽃다발
+    stuff = models.IntegerField(null=True)                                          # 물건
+    gravestone = models.IntegerField(null=True)                                     # 묘비
     pub_date = models.DateTimeField(null=True)                                      # 등록시간
     
 

@@ -47,6 +47,7 @@ def free(request):
 
     # 오늘 월/일에 죽은 동물들만 가져와 today_starts에 저장
     today_stars = Animal.objects.filter(
+        category = "free",
         memorialday__month = month,
         memorialday__day = day
     )
@@ -87,6 +88,7 @@ def freeRegistered(request, animal_id):
     newFreeAnimal.season = request.POST['animalSeason']
     newFreeAnimal.flowers = request.POST['animalFlower']
     newFreeAnimal.gravestone = request.POST['animalGrovestone']
+    newFreeAnimal.stuff = request.POST['animalStuff']
     newFreeAnimal.pub_date = datetime.now()
     newFreeAnimal.save()
     
