@@ -14,7 +14,23 @@ def home(request):
     today = DateFormat(datetime.now()).format('md')
     month=today[1] if today[0]=='0' else today[:2]
     day=today[2:]
-    return render(request, "home.html",{"month":month, "day":day})
+
+    today_stars = Animal.objects.filter(
+        category = "normal",
+        memorialday__month = month,
+        memorialday__day = day
+    )
+
+    free_animals = Animal.objects.filter(
+        category = "free"
+    )
+
+    honor_animals = Animal.objects.filter(
+        category = "honor"
+    )
+
+    return render(request, "home.html",{"month":month, "day":day, 'today_stars': today_stars,
+    'free_animals': free_animals, 'honor': honor_animals })
 
 def honor(request):
     return render(request,"honor.html") 
@@ -169,7 +185,8 @@ def normal(request):
 
     normal_animals = Animal.objects.filter(category = "normal")
 
-    normalToday = Animal.objects.filter(
+    today_stars = Animal.objects.filter(
+        category = "normal",
         memorialday__month = month,
         memorialday__day = day
     )
@@ -179,4 +196,4 @@ def normal(request):
     normal_animals = paginator.get_page(page)
 
     return render(request, "normal.html",{'normal_animals':normal_animals,'empty_num':4-len(normal_animals)%4,
-    "month":month, 'day': day, 'normalToday':normalToday })
+    "month":month, 'day': day, 'today_stars':today_stars })

@@ -9,14 +9,6 @@
         hr{
             margin:20px 0 10px;
         }
-        #more{
-            position:relative;
-            left:106%;
-        }
-        #more>a{
-            color:#BEB5D3;
-            font-size:20px;
-        }
         /* 오늘 별이 된 아이들 감싸는 box */
         .todayStar{
             position: relative;
@@ -27,11 +19,10 @@
             text-align: center;
             color:#BEB5D3;
         }
-
+        
         /* 오늘 별이 된 아이들 슬라이드 구현 */
         .today-slide_wrapper{
             position: relative;
-            width:100%;
             height: 320px;
             margin: 50px auto;
             overflow: hidden;
@@ -44,11 +35,11 @@
         .today-slides.animated{
             transition: 0.5s ease-out;
         }
-
+        
         .today-slides li{
             float:left;
         }
-
+        
         /* today 슬라이드 넘기기 구현 */
         .today-controls{
             text-align: center;
@@ -72,6 +63,15 @@
         }
         .today-controls span.today-prev{right:calc(100%); transform: translateX(180%);}
         .today-controls span.today-next{left:calc(100%); transform: translateX(-180%);}
+        
+        #more{
+            position:relative;
+            left:90%;
+        }
+        #more>a{
+            color:#BEB5D3;
+            font-size:20px;
+        }
 
         /*자유로운 영혼이 된 아이들 감싸는 box*/
         .freeStar{
@@ -263,127 +263,37 @@
     <br><br>
     <div class="container">
 
+       
         <!--X월 XX일 별이 된 아이들-->
         <div class="todayStar">
             <h3>{{month}}월 {{day}}일 별이 된 아이들</h3>
+
+            
             <!--X월 XX일 별이 된 아이들 슬라이드-->
             <div class="today-slide_wrapper">
                 <ul class="today-slides">
+                    {%if today_stars%}
+                    {%for today_star in today_stars%}
                     <li>
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
+                                <a href="" onclick="pwin()"><span>MORE</span></a>
                             </div>
-                            <img src="https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="card-img-top" >
+                            <img src="{{today_star.profile_photo.url}}" class="card-img-top" >
                             <div class="card-body">
                                 <span>
-                                    <h5 class="card-title">토순이</h5>
-                                    <p class="card-text">2011.01.02 ~ 2021.02.03</p>
+                                    <h5 class="card-title">{{today_star.name}}</h5>
+                                    <p class="card-text">{{today_star.birthday|date:"Y.m.d"}} ~ {{today_star.memorialday|date:"Y.m.d"}}</p>
                                 </span>
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://th.bing.com/th/id/OIP.UB4TR__meq85boxIZoZgkgHaE8?w=269&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">군이</h5>
-                                    <p class="card-text">2008.08.12 ~ 2017.06.17</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://th.bing.com/th/id/OIP.BncI4DybWkd5sNhWxEwSWwHaGh?w=182&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">토토</h5>
-                                    <p class="card-text">2011.11.02 ~ 2055.12.13</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://image.shutterstock.com/z/stock-photo-portrait-of-a-cute-funny-raccoon-closeup-isolated-on-a-white-background-1569920464.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">뽀미</h5>
-                                    <p class="card-text">2002.05.05 ~ 2017.12.03</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://th.bing.com/th/id/OIP.JOT250d3N6gKIxhq7SO6FwHaFS?w=244&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">루비</h5>
-                                    <p class="card-text">2005.03.15 ~ 2018.12.11</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://th.bing.com/th/id/OIP.Wsa8dGXqGk622Nuu_SqBEAHaGJ?pid=ImgDet&rs=1" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">터틀</h5>
-                                    <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://th.bing.com/th/id/OIP.eQYrYLeAwcpS058ySetCQQHaFj?pid=ImgDet&rs=1" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">앵무</h5>
-                                    <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://th.bing.com/th/id/OIP._g9ST_L3uAlQogAH_lHjlQHaFj?w=227&h=180&c=7&o=5&dpr=1.25&pid=1.7" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">햄</h5>
-                                    <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>
+                    {%endfor%}
+                    {% endif %}
                 </ul>
             </div>
+          
             
             <!--today 슬라이드 넘기기 위한 이전, 다음 버튼-->
             <p class="today-controls">
@@ -398,8 +308,9 @@
                     </svg>
                 </span>
             </p>
-            <span id="more"><a href="{% url 'normal' %}">더보기</a></span>
+            <span id="more"><a href="{% url 'normal' %}">별이 된 동물들 더보기</a></span>
         </div>
+        
         
         <!--today 카드 슬라이드 효과-->
         <script>
@@ -490,119 +401,23 @@
             <!--자유로운 영혼 슬라이드-->
             <div class="free-slide_wrapper">
                 <ul class="free-slides">
+                    {%for free_star in free_stars%}
                     <li>
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
+                                <a href="" onclick="pwin()"><span>MORE</span></a>
                             </div>
-                            <img src="https://cdn.pixabay.com/photo/2014/04/13/20/49/cat-323262_960_720.jpg" class="card-img-top" >
+                            <img src="{{free_star.profile_photo.url}}" class="card-img-top" >
                             <div class="card-body">
                                 <span>
-                                    <h5 class="card-title">군이</h5>
-                                    <p class="card-text">2001.01.02 ~ 2015.12.03</p>
+                                    <h5 class="card-title">{{free_star.name}}</h5>
+                                    <p class="card-text">{{free_star.birthday|date:"Y.m.d"}} ~ {{free_star.memorialday|date:"Y.m.d"}}</p>
                                 </span>
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://cdn.pixabay.com/photo/2012/02/27/16/57/cat-17430_960_720.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">길길</h5>
-                                    <p class="card-text">2008.08.12 ~ 2017.06.17</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://cdn.pixabay.com/photo/2018/10/05/23/24/chicken-3727097_960_720.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">토토</h5>
-                                    <p class="card-text">2011.11.02 ~ 2055.12.13</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://cdn.pixabay.com/photo/2017/08/14/10/48/dog-2640076_960_720.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">뽀미</h5>
-                                    <p class="card-text">2002.05.05 ~ 2017.12.03</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://cdn.pixabay.com/photo/2020/01/29/21/57/cat-4803841_960_720.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">루비</h5>
-                                    <p class="card-text">2005.03.15 ~ 2018.12.11</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://cdn.pixabay.com/photo/2021/04/19/11/14/snail-6191155_960_720.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">터틀</h5>
-                                    <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://cdn.pixabay.com/photo/2016/01/19/01/32/shiba-inu-1147811_960_720.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">앵무</h5>
-                                    <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://cdn.pixabay.com/photo/2018/08/07/22/33/raccoon-3590948_960_720.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">너구리</h5>
-                                    <p class="card-text">2001.01.02 ~ 2015.12.03</p>
-                                </span>
-                            </div>
-                        </div>
-                    </li>
+                    {%endfor%}   
                 </ul>
             </div>
 
@@ -708,127 +523,23 @@
             <!--명예관 아이들 슬라이드-->
             <div class="honor-slide_wrapper">
                 <ul class="honor-slides">
+                    {%for honor_star in honor_stars%}
                     <li>
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
+                                <a href="" onclick="pwin()"><span>MORE</span></a>
                             </div>
-                            <img src="https://img.seoul.co.kr/img/upload/2020/06/01/SSI_20200601183727_O2.jpg" class="card-img-top" >
+                            <img src="{{honor_star.profile_photo.url}}" class="card-img-top" >
                             <div class="card-body">
                                 <span>
-                                    <h5 class="card-title">판</h5>
-                                    <div clss="honorCategory">- 탐지견 -</div>
-                                    <div class="card-text">2000.10.10 ~ 2000.10.10</div>
+                                    <h5 class="card-title">{{honor_star.name}}</h5>
+                                    <p class="card-text">{{honor_star.birthday|date:"Y.m.d"}} ~ {{honor_star.memorialday|date:"Y.m.d"}}</p>
                                 </span>
                             </div>
                         </div>
                     </li>
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://img.seoul.co.kr/img/upload/2020/06/01/SSI_20200601184014_O2.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">청아</h5>
-                                    <div clss="honorCategory">- 탐지견 -</div>
-                                    <div class="card-text">2000.10.10 ~ 2000.10.10</div>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://image.news1.kr/system/photos/2021/6/15/4822061/article.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">조이</h5>
-                                    <div clss="honorCategory">- 안내견 -</div>
-                                    <div class="card-text">2000.10.10 ~ 2000.10.10</div>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://img.sbs.co.kr/newimg/news/20210621/201563279_1280.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">딕비</h5>
-                                    <div clss="honorCategory">- 치료견 -</div>
-                                    <div class="card-text">2000.10.10 ~ 2000.10.10</div>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://images.chosun.com/resizer/5RQug8l1c8mvdrk-eY4pkpEEINI=/370x370/filters:focal(164x180:174x190)/cloudfront-ap-northeast-1.images.arcpublishing.com/chosun/2TMGO63THVEYXI6OPVJ4XJ6TDA.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">쿠노</h5>
-                                    <div clss="honorCategory">- 군견 -</div>
-                                    <div class="card-text">2000.10.10 ~ 2000.10.10</div>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://img0.yna.co.kr/photo/reuters/2020/09/22/PRU20200922182101055_P4.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">쾨시탐지견</h5>
-                                    <div clss="honorCategory">- 탐지견 -</div>
-                                    <div class="card-text">2000.10.10 ~ 2000.10.10</div>
-                                </span>
-                            </div>
-                        </div>
-                    </li>                    
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://thumb.mt.co.kr/06/2019/11/2019112915544024506_1.jpg/dims/optimize/" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">민주</h5>
-                                    <div clss="honorCategory">- 탐지견 -</div>
-                                    <div class="card-text">2000.10.10 ~ 2000.10.10</div>
-                                </span>
-                            </div>
-                        </div>
-                    </li>
-                    <li>
-                        <div class="card">
-                            <div class="card-overlay">
-                                <a onclick="pwin()"><span>MORE</span></a>
-                            </div>
-                            <img src="https://imgnn.seoul.co.kr/img//upload/2021/02/25/SSI_20210225165343_V.jpg" class="card-img-top" >
-                            <div class="card-body">
-                                <span>
-                                    <h5 class="card-title">킴바(안내견)</h5>
-                                    <div clss="honorCategory">- 탐지견 -</div>
-                                    <div class="card-text">2000.10.10 ~ 2000.10.10</div>
-                                </span>
-                            </div>
-                        </div>
-                    </li>
+                    {%endfor%}   
                 </ul>
             </div>
 
