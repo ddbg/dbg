@@ -305,9 +305,15 @@
             <span class="headerBtns" link="#726C7B", vlink="#726C7B", alink="#726C7B">
                 <span class="headerBtn"><a href="{% url 'caaard' %}">초대장받기</a></span>
                 <span class="headerBtn"><a href="{% url 'csCenter' %}">고객센터</a></span>
+                {% if not user.is_authenticated %} <!--등록된 유저가 아니라면-->
                 <span class="headerBtn"><a href="{% url 'signUp' %}">회원가입</a></span>
                 <span class="loginBtn"><a href="{% url 'login' %}">로그인</a></span>
-                
+                {% endif %}
+
+                {% if user.is_authenticated %} <!--등록된 유저가 맞다면-->
+                <span class="loginBtn"><a href="{% url 'logout' %}">로그아웃</a></span>
+                {{user.username}}
+                {% endif %}
             </span>
         </div>
 
