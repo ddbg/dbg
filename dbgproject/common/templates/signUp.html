@@ -217,7 +217,8 @@
             <h1><br>회원가입</h1><br>
         </div>
         <br>
-        <form action="전송받을 대상" method="POST">
+        <form action="{% url 'signUp'%}" method="POST">
+            {%csrf_token%}
             <!-- 아이디/비번 입력 창-->
             <div class="id_area">
                 <label>이름</label><br>

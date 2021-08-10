@@ -24,8 +24,6 @@ urlpatterns = [
     path('enroll2/',enroll2, name="enroll2"),
     path('enrolled/',enrolled, name="enrolled"),
     path('caaard/', caaard, name="caaard"),
-   
-    path('signUp/', signUp, name="signUp"),
     path('csCenter/', csCenter, name="csCenter"),
     path('q_and_a/', q_and_a, name="q_and_a"),
     path('idFind/', idFind, name="idFind"),
