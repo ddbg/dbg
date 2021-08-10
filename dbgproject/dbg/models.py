@@ -1,14 +1,16 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 
-class User(models.Model):
+class User(AbstractUser):
     user_id=models.EmailField(max_length=50, unique=True, primary_key=True)         #아이디
     
     user_name=models.CharField(max_length=50)                                       #실명
     user_nickname=models.CharField(max_length=50, unique=True)                      #닉네임
     user_password=models.CharField(max_length=50)                                   #비밀번호
     user_phone_number=models.CharField(max_length=12)                               #전화번호
-    user_link=models.URLField()                                                     #계정(반려견 계정:인스타, 페이스북,트위터)
+    user_link=models.URLField(null=True)                                                     #계정(반려견 계정:인스타, 페이스북,트위터)
 
 
    
