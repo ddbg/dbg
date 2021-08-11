@@ -287,7 +287,7 @@
         <br>
 
         <div class="registerLetter">
-            <form action="{% url 'enrolled' %}" method="post">
+            <form action="{% url 'enrolled' animal.animal_id %}" method="post">
                 <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
                 {%csrf_token%}
             

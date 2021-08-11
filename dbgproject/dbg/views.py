@@ -114,13 +114,33 @@ def enroll(request):
     return render(request, "enroll.html")
 
 def enroll2(request):
-
     newAnimal = Animal()
+
+    newAnimal.category = 'free'
     newAnimal.name = request.POST['animalName']
+    newAnimal.species = request.POST['animalType']
+    newAnimal.subspecies = request.POST['animalSubType']
+    newAnimal.birthday = request.POST['animalBirthDay']
+    newAnimal.memorialday = request.POST['animalMemorialDay']
+    newAnimal.profile_photo = request.POST['animalImg']
+    newAnimal.introduce = request.POST['animalInfo']
     
+    
+    newAnimal.save()
+
     return render(request, "enroll2.html",{'animal':newAnimal})
 
-def enrolled(request):
+def enrolled(request,animal_id):
+    newAnimal = Animal.objects.get(animal_id=animal_id)
+    newAnimal = Animal()
+    newAnimal.season = request.POST['animalSeason']
+    newAnimal.flowers = request.POST['animalFlower']
+    newAnimal.stuff = request.POST['animalStuff']
+    newAnimal.gravestone = request.POST['animalGravestone']
+    newAnimal.pub_date = datetime.now()
+
+    newAnimal.save()
+
     return redirect('home')
 
 
