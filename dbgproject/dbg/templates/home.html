@@ -268,7 +268,6 @@
         <div class="todayStar">
             <h3>{{month}}월 {{day}}일 별이 된 아이들</h3>
 
-            
             <!--X월 XX일 별이 된 아이들 슬라이드-->
             <div class="today-slide_wrapper">
                 <ul class="today-slides">
@@ -401,18 +400,18 @@
             <!--자유로운 영혼 슬라이드-->
             <div class="free-slide_wrapper">
                 <ul class="free-slides">
-                    {%for free_star in free_stars%}
+                    {%for free_animal in free_animals%}
                     <li>
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
                                 <a href="" onclick="pwin()"><span>MORE</span></a>
                             </div>
-                            <img src="{{free_star.profile_photo.url}}" class="card-img-top" >
+                            <img src="{{free_animal.profile_photo.url}}" class="card-img-top" >
                             <div class="card-body">
                                 <span>
-                                    <h5 class="card-title">{{free_star.name}}</h5>
-                                    <p class="card-text">{{free_star.birthday|date:"Y.m.d"}} ~ {{free_star.memorialday|date:"Y.m.d"}}</p>
+                                    <h5 class="card-title">{{free_animal.name}}</h5>
+                                    <p class="card-text">{{free_animal.birthday|date:"Y.m.d"}} ~ {{free_animal.memorialday|date:"Y.m.d"}}</p>
                                 </span>
                             </div>
                         </div>
@@ -523,18 +522,18 @@
             <!--명예관 아이들 슬라이드-->
             <div class="honor-slide_wrapper">
                 <ul class="honor-slides">
-                    {%for honor_star in honor_stars%}
+                    {%for honor_aniaml in honor_aniamls%}
                     <li>
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
                                 <a href="" onclick="pwin()"><span>MORE</span></a>
                             </div>
-                            <img src="{{honor_star.profile_photo.url}}" class="card-img-top" >
+                            <img src="{{honor_aniaml.profile_photo.url}}" class="card-img-top" >
                             <div class="card-body">
                                 <span>
-                                    <h5 class="card-title">{{honor_star.name}}</h5>
-                                    <p class="card-text">{{honor_star.birthday|date:"Y.m.d"}} ~ {{honor_star.memorialday|date:"Y.m.d"}}</p>
+                                    <h5 class="card-title">{{honor_aniaml.name}}</h5>
+                                    <p class="card-text">{{honor_aniaml.birthday|date:"Y.m.d"}} ~ {{honor_aniaml.memorialday|date:"Y.m.d"}}</p>
                                 </span>
                             </div>
                         </div>

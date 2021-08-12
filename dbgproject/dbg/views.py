@@ -9,12 +9,27 @@ from .models import *
 from django.core.paginator import Paginator
 
 def home(request):
-
+    
     # 오늘 월, 일 계산
     today = DateFormat(datetime.now()).format('md')
     month=today[1] if today[0]=='0' else today[:2]
     day=today[2:]
-    return render(request, "home.html",{"month":month, "day":day})
+    
+    today_stars = Animal.objects.filter(
+        memorialday__month = month,
+        memorialday__day = day
+    )
+
+    free_animals = Animal.objects.filter(
+        category = "free"
+    )
+
+    honor_animals = Animal.objects.filter(
+        category = "honor"
+    )
+
+    return render(request, "home.html",{"month":month, "day":day, 'today_stars': today_stars,
+    'free_animals': free_animals, 'honor_animals': honor_animals })
 
 def honor(request):
 
@@ -258,7 +273,7 @@ def pwFind(request):
     return render(request, "pwFind.html")    
 
 def normal(request):
-
+    
     today = DateFormat(datetime.now()).format('md')
     month=today[1] if today[0]=='0' else today[:2]
     month = month.rjust(2, '0')
