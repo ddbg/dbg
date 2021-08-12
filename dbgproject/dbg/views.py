@@ -125,7 +125,7 @@ def enroll2(request):
     newAnimal.subspecies = request.POST['animalSubType']
     newAnimal.birthday = request.POST['animalBirthDay']
     newAnimal.memorialday = request.POST['animalMemorialDay']
-    newAnimal.profile_photo = request.FILES.get['animalImg', None]
+    newAnimal.profile_photo = request.FILES.get('animalImg', None)
     newAnimal.introduce = request.POST['animalInfo']
     
     
