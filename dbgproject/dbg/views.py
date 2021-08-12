@@ -40,7 +40,7 @@ def honor(request):
     month = month.rjust(2, '0')
     day=today[2:]
 
-    # 카테고리가 free인 동물들만 가져와 honor_animals에 저장
+    # 카테고리가 honor인 동물들만 가져와 honor_animals에 저장
     honor_animals = Animal.objects.filter(
         category = "honor"
     )
@@ -61,9 +61,6 @@ def honor(request):
     return render(request, "honor.html",{"month":month, "day":day, 'honor_animals': honor_animals,'empty_num':4-len(honor_animals)%4,
      'today_stars': today_stars, 'today_stars_num': len(today_stars) })
 
-
-    return render(request,"honor.html") 
-
 def honorRegister1(request):
     return render(request, "honorRegister1.html")
 
@@ -73,7 +70,7 @@ def honorRegister2(request):
     temp_id = Animal.objects.count()
     newHonorAnimal.animal_id = temp_id +1 if temp_id != 0 else 1
     #newHonorAnimal.owner_id = request.POST['']
-    newHonorAnimal.category = 'free'
+    newHonorAnimal.category = 'honor'
     newHonorAnimal.name = request.POST['animalName']
     newHonorAnimal.species = request.POST['animalType']
     newHonorAnimal.subspecies = request.POST['animalSubType']
