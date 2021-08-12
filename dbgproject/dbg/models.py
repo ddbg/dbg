@@ -33,32 +33,48 @@ class Animal(models.Model):
     gravestone = models.IntegerField(null=True)                                     # 묘비
     pub_date = models.DateTimeField(null=True)                                      # 등록시간
     
+    # 오늘 하루를 들려줄게
+    diary_title = models.CharField(max_length=50, null=True)
+    diary_pub_date = models.DateTimeField(null=True)
+    diary_body=models.TextField(null=True)
+    
+    # 갤러리
+    gallery_listnum = models.IntegerField(null=True)
+    gallery_image = models.ImageField(upload_to = "gallery/", blank = True, null = True)
+    
+    # 방명록
+    visbook_title = models.CharField(max_length=100, null=True)
+    visbook_pub_date = models.DateTimeField(null=True)
+    visbook_body=models.TextField(null=True)
+    visbook_reply=models.TextField(null=True)
+    
 
   
-class Diary(models.Model): # 하루를 들려줄게
-    diary_id = models.IntegerField(primary_key=True)  
-    owner_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    animal_id = models.ForeignKey(Animal, on_delete=models.CASCADE)
-    diary_title = models.CharField(max_length=100)
-    diary_pub_date = models.DateTimeField()
-    diary_body=models.TextField()
+# class Diary(models.Model): # 하루를 들려줄게
+#     diary_id = models.IntegerField(primary_key=True)  
+#     owner_id = models.ForeignKey(User, on_delete=models.CASCADE)
+#     animal_id = models.ForeignKey(Animal, on_delete=models.CASCADE)
+#     diary_title = models.CharField(max_length=100)
+#     diary_pub_date = models.DateTimeField()
+#     diary_body=models.TextField()
     
     
-class Gallery(models.Model): # 갤러리
-    gallery_id= models.IntegerField(primary_key=True)  
-    owner_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    animal_id = models.ForeignKey(Animal, on_delete=models.CASCADE)
-    gallery_image = models.ImageField(upload_to = "gallery/", blank = True, null = True)
+# class Gallery(models.Model): # 갤러리
+#     gallery_id= models.IntegerField(primary_key=True)  
+#     owner_id = models.ForeignKey(User, on_delete=models.CASCADE)
+#     animal_id = models.ForeignKey(Animal, on_delete=models.CASCADE)
+#     gallery_listnum = models.IntegerField(max_length=2)
+#     gallery_image = models.ImageField(upload_to = "gallery/", blank = True, null = True)
 
     
-class VisiterBook(models.Model): #방명록
-    vs_id = models.IntegerField(primary_key=True)  
-    User_id = models.ForeignKey(User, on_delete=models.CASCADE)
-    animal_id = models.ForeignKey(Animal, on_delete=models.CASCADE)
-    visbook_title = models.CharField(max_length=100)
-    visbook_pub_date = models.DateTimeField()
-    visbook_body=models.TextField()
-    visbook_reply=models.TextField()
+# class VisiterBook(models.Model): #방명록
+#     vs_id = models.IntegerField(primary_key=True)  
+#     User_id = models.ForeignKey(User, on_delete=models.CASCADE)
+#     animal_id = models.ForeignKey(Animal, on_delete=models.CASCADE)
+#     visbook_title = models.CharField(max_length=100)
+#     visbook_pub_date = models.DateTimeField()
+#     visbook_body=models.TextField()
+#     visbook_reply=models.TextField()
     
 class csCenter(models.Model):
     cs_id = models.IntegerField(primary_key=True)  

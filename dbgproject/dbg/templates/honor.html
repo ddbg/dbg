@@ -249,6 +249,7 @@
                 {%endfor%}
                 {%for _ in "x"|rjust:empty_num%}
                 <div class="emptyCard"></div>
+                {%endfor%}
             </span>
 
             <div class="honorRegister">
@@ -272,7 +273,7 @@
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
                 <!--이전 글이 있으면 -->
-                {% if free_animals.has_previous %}
+                {% if honor_animals.has_previous %}
                 <li class="page-item">
                     <a class="page-link" href="#" aria-label="Previous">
                     <span aria-hidden="true">&laquo;</span>
@@ -292,7 +293,7 @@
                 <!--다음 글이 있으면-->
                 {% if honor_animals.has_next %}
                 <li class="page-item">
-                    <a class="page-link" href="?page={{free_animals.next_page_number}}" aria-label="Next">
+                    <a class="page-link" href="?page={{honor_animals.next_page_number}}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
