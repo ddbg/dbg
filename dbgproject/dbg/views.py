@@ -201,6 +201,8 @@ def searchMap(request):
 
 def searchResult(request):
     searchWord=request.POST['searchInput']
+    
+    if searchWord == "개": searchWord = "강아지"
 
     animals = Animal.objects.filter(
         Q(name__contains = searchWord)|
