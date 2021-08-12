@@ -291,7 +291,12 @@
             <!--메뉴 아이콘 클릭 시 나옴-->
             <div class="menuBar">
                 <div class="menuItem"><a href="{% url 'home' %}">Home</a></div>
+                {% if not user.is_authenticated %} <!--등록된 유저가 아니라면-->
+                <div class="menuItem"><a href="{% url 'login' %}">마이페이지</a></div>
+                {% endif %}
+                {% if user.is_authenticated %} <!--등록된 유저가 맞다면-->
                 <div class="menuItem"><a href="" onclick="pwin()">마이페이지</a></div>
+                {% endif %}
                 <div class="menuItem"><a href="{% url 'normal' %}">일반관</a></div>
                 <div class="menuItem"><a href="{% url 'honor' %}">명예관</a></div>
                 <div class="menuItem"><a href="{% url 'free' %}">자유로운 영혼</a></div>
@@ -303,7 +308,12 @@
             <h1 class="serviceTitle"><a href="{% url 'home' %}">또바기</a></h1>
             
             <span class="headerBtns" link="#726C7B", vlink="#726C7B", alink="#726C7B">
+                {% if not user.is_authenticated %} <!--등록된 유저가 아니라면-->
+                <span class="headerBtn"><a href="{% url 'login' %}">초대장받기</a></span>
+                {% endif %}
+                {% if user.is_authenticated %} <!--등록된 유저가 맞다면-->
                 <span class="headerBtn"><a href="{% url 'caaard' %}">초대장받기</a></span>
+                {% endif %}
                 <span class="headerBtn"><a href="{% url 'csCenter' %}">고객센터</a></span>
                 {% if not user.is_authenticated %} <!--등록된 유저가 아니라면-->
                 <span class="headerBtn"><a href="{% url 'signUp' %}">회원가입</a></span>
