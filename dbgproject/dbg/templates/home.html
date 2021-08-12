@@ -277,7 +277,12 @@
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
+                                {% if not user.is_authenticated %}
+                                <a href="{% url 'login' %}"><span>MORE</span></a>
+                                {% endif %}
+                                {% if user.is_authenticated %}
                                 <a href="" onclick="pwin()"><span>MORE</span></a>
+                                {% endif %}
                             </div>
                             <img src="{{today_star.profile_photo.url}}" class="card-img-top" >
                             <div class="card-body">
@@ -411,7 +416,12 @@
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
+                                {% if not user.is_authenticated %}
+                                <a href="{% url 'login' %}"><span>MORE</span></a>
+                                {% endif %}
+                                {% if user.is_authenticated %}
                                 <a href="" onclick="pwin()"><span>MORE</span></a>
+                                {% endif %}
                             </div>
                             <img src="{{free_animal.profile_photo.url}}" class="card-img-top" >
                             <div class="card-body">
@@ -539,7 +549,12 @@
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
+                                {% if not user.is_authenticated %}
+                                <a href="{% url 'login' %}"><span>MORE</span></a>
+                                {% endif %}
+                                {% if user.is_authenticated %}
                                 <a href="" onclick="pwin()"><span>MORE</span></a>
+                                {% endif %}
                             </div>
                             <img src="{{honor_aniaml.profile_photo.url}}" class="card-img-top" >
                             <div class="card-body">
