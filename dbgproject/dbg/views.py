@@ -176,8 +176,7 @@ def enroll2(request):
     newAnimal.memorialday = request.POST['animalMemorialDay']
     newAnimal.profile_photo = request.FILES.get('animalImg', None)
     newAnimal.introduce = request.POST['animalInfo']
-    
-    
+
     newAnimal.save()
 
     return render(request, "enroll2.html",{'animal':newAnimal})
@@ -186,8 +185,8 @@ def enrolled(request,animal_id):
     newAnimal = Animal.objects.get(animal_id=animal_id)
     newAnimal.season = request.POST['animalSeason']
     newAnimal.flowers = request.POST['animalFlower']
-    newAnimal.stuff = request.POST['animalStuff']
     newAnimal.gravestone = request.POST['animalGravestone']
+    newAnimal.stuff = request.POST['animalStuff']
     newAnimal.pub_date = datetime.now()
 
     newAnimal.save()
