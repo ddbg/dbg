@@ -34,19 +34,19 @@ class Animal(models.Model):
     pub_date = models.DateTimeField(null=True)                                      # 등록시간
     
     # 오늘 하루를 들려줄게
-    diary_title = models.CharField(max_length=50)
-    diary_pub_date = models.DateTimeField()
-    diary_body=models.TextField()
+    diary_title = models.CharField(max_length=50, null=True)
+    diary_pub_date = models.DateTimeField(null=True)
+    diary_body=models.TextField(null=True)
     
     # 갤러리
     gallery_listnum = models.IntegerField(null=True)
     gallery_image = models.ImageField(upload_to = "gallery/", blank = True, null = True)
     
     # 방명록
-    visbook_title = models.CharField(max_length=100)
-    visbook_pub_date = models.DateTimeField()
-    visbook_body=models.TextField()
-    visbook_reply=models.TextField()
+    visbook_title = models.CharField(max_length=100, null=True)
+    visbook_pub_date = models.DateTimeField(null=True)
+    visbook_body=models.TextField(null=True)
+    visbook_reply=models.TextField(null=True)
     
 
   

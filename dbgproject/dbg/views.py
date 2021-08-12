@@ -43,7 +43,7 @@ def honor(request):
     honor_animals = paginator.get_page(page)
 
     return render(request, "honor.html",{"month":month, "day":day, 'honor_animals': honor_animals,'empty_num':4-len(honor_animals)%4,
-     'today_stars': today_stars, 'today_stars_num': len(today_stars) })
+     'today_stars': today_stars, 'today_stars_num': len(today_stars)})
 
 def honorRegister1(request):
     return render(request, "honorRegister1.html")
