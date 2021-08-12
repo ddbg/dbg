@@ -17,20 +17,26 @@ urlpatterns = [
     path('searchMap/',searchMap,name="searchMap"),
     path('searchResult/',searchResult, name='searchResult'),
     path('mypage/',mypage,name="mypage"),
-    path('mypageDiary/',mypageDiary,name="mypageDiary"),
-    path('mypagePhoto/',mypagePhoto,name="mypagePhoto"),
+    #path('mypageDiary/',mypageDiary,name="mypageDiary"),
+    path('<str:id>',mypageDiary,name="mypageDiary"),
+    path('Diarycreate',Diarycreate,name="Diarycreate"),
+    path('<str:id>',mypagePhoto,name="mypagePhoto"),
+    path('Photocreate',Photocreate,name = "Photocreate"),
     path('mypageVisitorBook/', mypageVisitorBook, name="mypageVisitorBook"),
+    path('mypageOption/<str:id>',mypageOption,name="mypageOption"),
+    path('mypageUpdate/<str:id>',mypageUpdate,name="mypageUpdate"),
     path('enroll/',enroll, name="enroll"),
     path('enroll2/',enroll2, name="enroll2"),
     path('enrolled/',enrolled, name="enrolled"),
     path('caaard/', caaard, name="caaard"),
-   
     path('signUp/', signUp, name="signUp"),
     path('csCenter/', csCenter, name="csCenter"),
     path('q_and_a/', q_and_a, name="q_and_a"),
     path('idFind/', idFind, name="idFind"),
     path('pwFind/', pwFind, name="pwFind"),
     path('normal/',normal, name="normal"),
+    path('animal_delete/str:id',animal_delete,name="animal_delete"),
+    
 
 
 ] 

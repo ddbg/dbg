@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from datetime import datetime
 from django.utils.dateformat import DateFormat
 from django.db.models import Q
@@ -132,16 +132,49 @@ def searchResult(request):
 
 
 def mypage(request):
-    return render(request, "mypage.html")
+    mypages = Animal.objects.all()
+    return render(request, 'mypage.html',{'mypages':mypages})
 
-def mypageDiary(request):
-    return render(request, "mypageDiary.html")
+def mypageDiary(request,animal_id):
+    mypagesDiary = get_object_or_404(Animal, pk = animal_id)
+    return render(request,'mypageDiary.html',{'mypagesDiary':mypagesDiary})
 
-def mypagePhoto(request):
-    return render(request, "mypagePhoto.html")
+def Diarycreate(request):
+    new_Diary = Animal() 
+    new_Diary.diary_title = request.POST['diary_title']
+    new_Diary.diary_pub_date = datetime.now()
+    new_Diary.diary_body = request.POST['diary_body']
+    new_Diary.save()
+    return redirect('mypageDiary',new_Diary.animal_id)
+
+def mypagePhoto(request,animal_id):
+    mypagesGallery = get_object_or_404(Animal,pk = animal_id)
+    return render(request,'mypagePhoto.html',{'mypagesGallery':mypagesGallery})
+
+def Photocreate(request):
+    mypagePhoto = Animal()
+    mypagePhoto.gallery_listnum = request.POST['gallerylist']
+    mypagePhoto.gallery_image = request.FILES.get('animalImg', None)
+    mypagePhoto.save()
+    return redirect('mypagePhoto', mypagePhoto.animal_id)
 
 def mypageVisitorBook(request):
-    return render(request, "mypageVisitorBook.html")  
+    return render(request, "mypageVisitorBook.html") 
+
+def mypageOption(request,id):
+    edit_mypage = Animal.objects.get(id=id)
+    return render(request, 'mypageOption.html',{'mypage':edit_mypage})
+
+def mypageUpdate(request,id):
+    update_mypage = Animal.objects.get(id=id)
+    update_mypage.name = request.POST['animalName']
+    update_mypage.birthday = request.POST['animalBirthDay']
+    update_mypage.memorialday = request.POST['animalMemorialDay']
+    update_mypage.profile_photo = request.FILES.get('animalImg', None)
+    update_mypage.introduce = request.POST['animalInfo']
+    update_mypage.save()
+    return redirect('mypage',update_mypage.id)
+ 
 
 def csCenter(request):
     return render(request, "csCenter.html")    
@@ -178,3 +211,10 @@ def normal(request):
 
     return render(request, "normal.html",{'normal_animals':normal_animals,'empty_num':4-len(normal_animals)%4,
     "month":month, 'day': day, 'normalToday':normalToday })
+    
+def animal_delete(request,animal_id):
+    delete_animal = Animal.objects.get(id=id)
+    delete_animal.delete()
+    return redirect("home")
+
+
