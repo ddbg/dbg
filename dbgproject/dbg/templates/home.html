@@ -321,6 +321,12 @@
                 slideMargin = 23,
                 prevBtn=document.querySelector('.today-prev'),
                 nextBtn=document.querySelector('.today-next');
+                today_stars_num = parseInt("{{today_stars_num}}");
+
+                document.querySelector('.today-slides').style.width = today_stars_num*(slideWidth + slideMargin)+'px';
+
+                if(today_stars_num > 4){today_stars_num = 4;}
+                document.querySelector('.today-slide_wrapper').style.width = today_stars_num*(slideWidth + slideMargin)+'px';
 
             makeClone();
 
@@ -444,6 +450,12 @@
                 freeSlideMargin=23,
                 freePrevBtn=document.querySelector('.free-prev'),
                 freeNextBtn=document.querySelector('.free-next');
+                free_animals_num = parseInt("{{free_animals_num}}");
+
+                document.querySelector('.free-slides').style.width = free_animals_num*(freeSlideWidth + freeSlideMargin)+'px'; 
+
+                if(free_animals_num > 4){free_animals_num = 4;}
+                document.querySelector('.free-slide_wrapper').style.width = free_animals_num*(freeSlideWidth + freeSlideMargin)+'px';
 
             makeFreeClone();
 
@@ -567,6 +579,12 @@
                 honorSlideMargin=23,
                 honorPrevBtn=document.querySelector('.honor-prev'),
                 honorNextBtn=document.querySelector('.honor-next');
+                honor_animals_num = parseInt("{{honor_animals_num}}");
+
+                document.querySelector('.honor-slides').style.width = honor_animals_num*(honorSlideWidth + honorSlideMargin)+'px'; 
+           
+                if(honor_animals_num > 4){honor_animals_num = 4;}
+                document.querySelector('.honor-slide_wrapper').style.width = honor_animals_num*(honorSlideWidth + honorSlideMargin)+'px';
                 
             makeHonorClone();
 

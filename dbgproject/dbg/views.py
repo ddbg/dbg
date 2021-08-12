@@ -29,7 +29,8 @@ def home(request):
     )
 
     return render(request, "home.html",{"month":month, "day":day, 'today_stars': today_stars,
-    'free_animals': free_animals, 'honor_animals': honor_animals })
+    'free_animals': free_animals, 'honor_animals': honor_animals, 'today_stars_num': len(today_stars),
+    'free_animals_num':len(free_animals), 'honor_animals_num':len(honor_animals) })
 
 def honor(request):
 
@@ -292,7 +293,7 @@ def normal(request):
     normal_animals = paginator.get_page(page)
 
     return render(request, "normal.html",{'normal_animals':normal_animals,'empty_num':4-len(normal_animals)%4,
-    "month":month, 'day': day, 'today_stars':today_stars })
+    "month":month, 'day': day, 'today_stars':today_stars, 'today_stars_num': len(today_stars) })
     
 def animal_delete(request,animal_id):
     delete_animal = Animal.objects.get(id=id)

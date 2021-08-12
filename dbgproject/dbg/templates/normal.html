@@ -178,14 +178,14 @@
             <div class="slide_wrapper">
                 <ul class="slides">
                     {% if today_stars %}
-                    {%for normal_animal in normal_animals%}
+                    {%for today_star in today_stars%}
                     <li>
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
                                 <a href="" onclick="pwin()"><span>MORE</span></a>
                             </div>
-                            <img src="{{today_stars.profile_photo.url}}" class="card-img-top">
+                            <img src="{{today_star.profile_photo.url}}" class="card-img-top">
                             <div class="card-body">
                                 <span>
                                     <h5 class="card-title">{{today_star.name}}</h5>
@@ -281,6 +281,12 @@
             slideWidth=230,
             slideMargin=20,
             nextBtn=document.querySelector('.next');
+            today_stars_num = parseInt("{{today_stars_num}}");
+
+            document.querySelector('.slides').style.width = today_stars_num*(slideWidth + slideMargin)+'px';
+
+            if(today_stars_num > 4){today_stars_num = 4;}
+            document.querySelector('.slide_wrapper').style.width = today_stars_num*(slideWidth + slideMargin)+'px';
 
             function moveSlide(num){
                 slides.style.left =-num*(slideWidth+slideMargin)+'px';
