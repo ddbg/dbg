@@ -116,13 +116,16 @@ def enroll(request):
 def enroll2(request):
     newAnimal = Animal()
 
+    temp_id = Animal.objects.count()
+    newAnimal.animal_id = temp_id +1 if temp_id != 0 else 1
+    
     newAnimal.category = 'free'
     newAnimal.name = request.POST['animalName']
     newAnimal.species = request.POST['animalType']
     newAnimal.subspecies = request.POST['animalSubType']
     newAnimal.birthday = request.POST['animalBirthDay']
     newAnimal.memorialday = request.POST['animalMemorialDay']
-    newAnimal.profile_photo = request.POST['animalImg']
+    newAnimal.profile_photo = request.FILES.get['animalImg', None]
     newAnimal.introduce = request.POST['animalInfo']
     
     
@@ -132,7 +135,6 @@ def enroll2(request):
 
 def enrolled(request,animal_id):
     newAnimal = Animal.objects.get(animal_id=animal_id)
-    newAnimal = Animal()
     newAnimal.season = request.POST['animalSeason']
     newAnimal.flowers = request.POST['animalFlower']
     newAnimal.stuff = request.POST['animalStuff']
@@ -141,10 +143,11 @@ def enrolled(request,animal_id):
 
     newAnimal.save()
 
-    return redirect('home')
+    return redirect('normal')
 
 
 def caaard(request):
+
     return render(request, "caaard.html")
 
 def aboutUs(request):

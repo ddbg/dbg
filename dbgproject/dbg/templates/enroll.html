@@ -107,7 +107,7 @@
             <br>
 
             <div class="registerLetter">
-              <form action="{% url 'enroll2' %}" method="post">
+              <form action="{% url 'enroll2' %}" method="post" enctype="multipart/form-data">
                   <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
                   {%csrf_token%}
 
@@ -174,8 +174,11 @@
                   </div>
                   
                   <div class="submitBtn">
-                      <button type="submit">다음장으로</button>
-                  </div>
+                    <a href="{% url 'enroll2' %}">
+                        <button type="sybmit">다음장으로</button>
+                       </a>
+                </div>
+                
               </form>
           </div>
 
