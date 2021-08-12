@@ -107,7 +107,7 @@
 
 
             <div class="registerLetter">
-              <form action="{% url 'honorRegister2' %}" method="post">
+              <form action="{% url 'honorRegister2' %}" method="post" enctype="multipart/form-data">
                   <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
                   {%csrf_token%}
 

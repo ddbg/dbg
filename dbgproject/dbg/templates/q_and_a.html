@@ -17,9 +17,17 @@
       display: flex;
       flex-direction:column;
     }
+    .accordion-button:focus{
+      z-index:0;
+      border-color: white;
+    }
+    .accordion-button:not(.collapsed){
+      background-color:white;
+      color:#726C7B;
+    }
     .accordion-button{
       width: 100%;
-      width: 800px;
+      
       height: 40 px;
       padding: 10px;
       border-color: #ADAAB1;

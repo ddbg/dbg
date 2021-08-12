@@ -2,6 +2,8 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.forms import AuthenticationForm,UserCreationForm
 from django.contrib.auth import authenticate,login,logout
 from .models import * 
+from dbg.models import *
+from django.contrib import auth
 
 # Create your views here.
 
@@ -9,19 +11,38 @@ def login_view(request):
     if request.method == 'POST':
         form=AuthenticationForm(request=request,data = request.POST)
         if form.is_valid():
-            username = form.cleaned_data.get("username")
-            password=form.cleaned_data.get("password")
-            user = authenticate(request=request, uwername=username, password=password)
+            user_id = request.POST["user_id"]
+            user_password= request.POST["user_password"]
+            user = authenticate(request=request,user_id=user_id, user_password=user_password)
             if user is not None:
                 login(request, user)
-            return redirect("home")
+        return redirect("home")
 
     else:
         form=AuthenticationForm()
-        return render(request, "login.html",{'form':form})
+        return render(request, "login.html")
          
 
 
 def logout_view(request):
     logout(request)
     return redirect("home")
+
+def signUp(request):
+     if request.method == 'POST':
+         if request.POST['password1']== request.POST['password2']:
+            user = User.objects.create_user(
+                user_name=request.POST['name'],                #실명
+                user_nickname=request.POST['nickname'],        #닉네임
+                Username=request.POST['id'],                   #이메일
+                Password=request.POST['password1'],            #비밀번호
+                user_phone_number=request.POST['phone_number'],   #전화번호
+                user_link=request.POST['link_linkaccount'],           #계정
+            )
+            auth.login(request.user)
+            return redirect("home")
+            
+     else:
+         form: UserCreationForm
+         return render(request, "signUp.html")
+    

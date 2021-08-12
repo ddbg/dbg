@@ -287,7 +287,7 @@
         <br>
 
         <div class="registerLetter">
-            <form action="{% url 'enrolled' %}" method="post">
+            <form action="{% url 'enrolled' animal.animal_id %}" method="post">
                 <!--Csrf 공격을 막기 위해 반드시 처음에 사용-->
                 {%csrf_token%}
             
@@ -579,12 +579,12 @@
                 <br>
                 <div class="config_cancel">
                     <div class=" submitBtn">
-                        <a href="{% url 'enroll' %}"> 
+                        <a formaction="{% url 'enroll' %}"> 
                             <button type="sybmit">이전으로</button>
                         </a>
                     </div>
                     <div class=" submitBtn">
-                        <a href="{% url 'home' %}">
+                        <a href="{% url 'normal' %}">
                             <button type="sybmit">보내주기</button>
                            </a>
                     </div>
