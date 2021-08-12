@@ -10,7 +10,9 @@ class User(AbstractUser):
     user_nickname=models.CharField(max_length=50, unique=True)                      #닉네임
     user_password=models.CharField(max_length=50)                                   #비밀번호
     user_phone_number=models.CharField(max_length=12)                               #전화번호
-    user_link=models.URLField(null=True)                                                     #계정(반려견 계정:인스타, 페이스북,트위터)
+    user_link_facebook=models.URLField(null=True) 
+    user_link_twitter=models.URLField(null=True)
+    user_link_instagram=models.URLField(null=True)                                  #계정(반려견 계정:인스타, 페이스북,트위터)
 
 
    
