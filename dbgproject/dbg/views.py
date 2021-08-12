@@ -149,7 +149,7 @@ def enroll2(request):
     temp_id = Animal.objects.count()
     newAnimal.animal_id = temp_id +1 if temp_id != 0 else 1
     
-    newAnimal.category = 'free'
+    newAnimal.category = 'normal'
     newAnimal.name = request.POST['animalName']
     newAnimal.species = request.POST['animalType']
     newAnimal.subspecies = request.POST['animalSubType']
