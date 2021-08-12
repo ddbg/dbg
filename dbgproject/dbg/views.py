@@ -17,19 +17,65 @@ def home(request):
     return render(request, "home.html",{"month":month, "day":day})
 
 def honor(request):
-    return render(request,"honor.html") 
+
+    # 오늘 월, 일 계산
+    today = DateFormat(datetime.now()).format('md')
+    month=today[1] if today[0]=='0' else today[:2]
+    month = month.rjust(2, '0')
+    day=today[2:]
+
+    # 카테고리가 honor인 동물들만 가져와 honor_animals에 저장
+    honor_animals = Animal.objects.filter(
+        category = "honor"
+    )
+
+    # 오늘 월/일에 죽은 동물들만 가져와 today_starts에 저장
+    today_stars = Animal.objects.filter(
+        category = "honor",
+        memorialday__month = month,
+        memorialday__day = day
+    )
+   
+    # 한 페이지 당 16마리 동물 보이도록 페이지네이션
+    paginator = Paginator(honor_animals, 16)
+    page = request.GET.get('page')          # 몇번째 페이지인지 받아옴
+
+    honor_animals = paginator.get_page(page)
+
+    return render(request, "honor.html",{"month":month, "day":day, 'honor_animals': honor_animals,'empty_num':4-len(honor_animals)%4,
+     'today_stars': today_stars, 'today_stars_num': len(today_stars) })
 
 def honorRegister1(request):
     return render(request, "honorRegister1.html")
 
 def honorRegister2(request):
-
     newHonorAnimal = Animal()
+
+    temp_id = Animal.objects.count()
+    newHonorAnimal.animal_id = temp_id +1 if temp_id != 0 else 1
+    #newHonorAnimal.owner_id = request.POST['']
+    newHonorAnimal.category = 'honor'
     newHonorAnimal.name = request.POST['animalName']
+    newHonorAnimal.species = request.POST['animalType']
+    newHonorAnimal.subspecies = request.POST['animalSubType']
+    newHonorAnimal.birthday = request.POST['animalBirthDay']
+    newHonorAnimal.memorialday = request.POST['animalMemorialDay']
+    newHonorAnimal.profile_photo = request.FILES.get('animalImg', None)
+    newHonorAnimal.introduce = request.POST['animalInfo']
+
+    newHonorAnimal.save()
 
     return render(request, "honorRegister2.html",{'honorAnimal':newHonorAnimal})
 
-def honorRegistered(request):
+def honorRegistered(request, animal_id):
+    newHonorAnimal = Animal.objects.get(animal_id=animal_id)
+    newHonorAnimal.season = request.POST['animalSeason']
+    newHonorAnimal.flowers = request.POST['animalFlower']
+    newHonorAnimal.gravestone = request.POST['animalGrovestone']
+    newHonorAnimal.stuff = request.POST['animalStuff']
+    newHonorAnimal.pub_date = datetime.now()
+    newHonorAnimal.save()
+    
     return redirect('honor')
 
 def free(request):
@@ -47,6 +93,7 @@ def free(request):
 
     # 오늘 월/일에 죽은 동물들만 가져와 today_starts에 저장
     today_stars = Animal.objects.filter(
+        category = "free",
         memorialday__month = month,
         memorialday__day = day
     )
@@ -87,6 +134,7 @@ def freeRegistered(request, animal_id):
     newFreeAnimal.season = request.POST['animalSeason']
     newFreeAnimal.flowers = request.POST['animalFlower']
     newFreeAnimal.gravestone = request.POST['animalGrovestone']
+    newFreeAnimal.stuff = request.POST['animalStuff']
     newFreeAnimal.pub_date = datetime.now()
     newFreeAnimal.save()
     
@@ -96,17 +144,37 @@ def enroll(request):
     return render(request, "enroll.html")
 
 def enroll2(request):
-
     newAnimal = Animal()
-    newAnimal.name = request.POST['animalName']
+
+    temp_id = Animal.objects.count()
+    newAnimal.animal_id = temp_id +1 if temp_id != 0 else 1
     
+    newAnimal.category = 'free'
+    newAnimal.name = request.POST['animalName']
+    newAnimal.species = request.POST['animalType']
+    newAnimal.subspecies = request.POST['animalSubType']
+    newAnimal.birthday = request.POST['animalBirthDay']
+    newAnimal.memorialday = request.POST['animalMemorialDay']
+    newAnimal.profile_photo = request.FILES.get('animalImg', None)
+    newAnimal.introduce = request.POST['animalInfo']
+
+    newAnimal.save()
+
     return render(request, "enroll2.html",{'animal':newAnimal})
 
-def enrolled(request):
-    return redirect('home')
+def enrolled(request,animal_id):
+    newAnimal = Animal.objects.get(animal_id=animal_id)
+    newAnimal.season = request.POST['animalSeason']
+    newAnimal.flowers = request.POST['animalFlower']
+    newAnimal.gravestone = request.POST['animalGravestone']
+    newAnimal.stuff = request.POST['animalStuff']
+    newAnimal.pub_date = datetime.now()
+    newAnimal.save()
+    return redirect('normal')
 
 
 def caaard(request):
+
     return render(request, "caaard.html")
 
 def aboutUs(request):
@@ -141,9 +209,9 @@ def mypageDiary(request,animal_id):
 
 def Diarycreate(request):
     new_Diary = Animal() 
-    new_Diary.diary_title = request.POST['diary_title']
+    new_Diary.diary_title = request.POST['diarytitle']
     new_Diary.diary_pub_date = datetime.now()
-    new_Diary.diary_body = request.POST['diary_body']
+    new_Diary.diary_body = request.POST['diarybody']
     new_Diary.save()
     return redirect('mypageDiary',new_Diary.animal_id)
 
@@ -179,8 +247,6 @@ def mypageUpdate(request,id):
 def csCenter(request):
     return render(request, "csCenter.html")    
 
-def signUp(request):
-    return render(request, "signUp.html")
 
 def q_and_a(request):
     return render(request, "q_and_a.html")    
@@ -201,6 +267,7 @@ def normal(request):
     normal_animals = Animal.objects.filter(category = "normal")
 
     normalToday = Animal.objects.filter(
+        category = "normal",
         memorialday__month = month,
         memorialday__day = day
     )

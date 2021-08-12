@@ -34,12 +34,12 @@ class Animal(models.Model):
     pub_date = models.DateTimeField(null=True)                                      # 등록시간
     
     # 오늘 하루를 들려줄게
-    diary_title = models.CharField(max_length=100)
+    diary_title = models.CharField(max_length=50)
     diary_pub_date = models.DateTimeField()
     diary_body=models.TextField()
     
     # 갤러리
-    gallery_listnum = models.IntegerField(max_length=2)
+    gallery_listnum = models.IntegerField(null=True)
     gallery_image = models.ImageField(upload_to = "gallery/", blank = True, null = True)
     
     # 방명록
