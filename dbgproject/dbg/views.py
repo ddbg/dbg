@@ -33,19 +33,68 @@ def home(request):
     'free_animals': free_animals, 'honor': honor_animals })
 
 def honor(request):
+
+    # 오늘 월, 일 계산
+    today = DateFormat(datetime.now()).format('md')
+    month=today[1] if today[0]=='0' else today[:2]
+    month = month.rjust(2, '0')
+    day=today[2:]
+
+    # 카테고리가 free인 동물들만 가져와 honor_animals에 저장
+    honor_animals = Animal.objects.filter(
+        category = "honor"
+    )
+
+    # 오늘 월/일에 죽은 동물들만 가져와 today_starts에 저장
+    today_stars = Animal.objects.filter(
+        category = "honor",
+        memorialday__month = month,
+        memorialday__day = day
+    )
+   
+    # 한 페이지 당 16마리 동물 보이도록 페이지네이션
+    paginator = Paginator(honor_animals, 16)
+    page = request.GET.get('page')          # 몇번째 페이지인지 받아옴
+
+    honor_animals = paginator.get_page(page)
+
+    return render(request, "honor.html",{"month":month, "day":day, 'honor_animals': honor_animals,'empty_num':4-len(honor_animals)%4,
+     'today_stars': today_stars, 'today_stars_num': len(today_stars) })
+
+
     return render(request,"honor.html") 
 
 def honorRegister1(request):
     return render(request, "honorRegister1.html")
 
 def honorRegister2(request):
-
     newHonorAnimal = Animal()
+
+    temp_id = Animal.objects.count()
+    newHonorAnimal.animal_id = temp_id +1 if temp_id != 0 else 1
+    #newHonorAnimal.owner_id = request.POST['']
+    newHonorAnimal.category = 'free'
     newHonorAnimal.name = request.POST['animalName']
+    newHonorAnimal.species = request.POST['animalType']
+    newHonorAnimal.subspecies = request.POST['animalSubType']
+    newHonorAnimal.birthday = request.POST['animalBirthDay']
+    newHonorAnimal.memorialday = request.POST['animalMemorialDay']
+    newHonorAnimal.profile_photo = request.FILES.get('animalImg', None)
+    newHonorAnimal.introduce = request.POST['animalInfo']
+
+    newHonorAnimal.save()
 
     return render(request, "honorRegister2.html",{'honorAnimal':newHonorAnimal})
 
-def honorRegistered(request):
+def honorRegistered(request, animal_id):
+    newHonorAnimal = Animal.objects.get(animal_id=animal_id)
+    newHonorAnimal.season = request.POST['animalSeason']
+    newHonorAnimal.flowers = request.POST['animalFlower']
+    newHonorAnimal.gravestone = request.POST['animalGrovestone']
+    newHonorAnimal.stuff = request.POST['animalStuff']
+    newHonorAnimal.pub_date = datetime.now()
+    newHonorAnimal.save()
+    
     return redirect('honor')
 
 def free(request):
