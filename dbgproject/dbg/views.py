@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, render, redirect
 from datetime import datetime
 from django.utils.dateformat import DateFormat
 from django.db.models import Q
@@ -14,23 +14,7 @@ def home(request):
     today = DateFormat(datetime.now()).format('md')
     month=today[1] if today[0]=='0' else today[:2]
     day=today[2:]
-
-    today_stars = Animal.objects.filter(
-        category = "normal",
-        memorialday__month = month,
-        memorialday__day = day
-    )
-
-    free_animals = Animal.objects.filter(
-        category = "free"
-    )
-
-    honor_animals = Animal.objects.filter(
-        category = "honor"
-    )
-
-    return render(request, "home.html",{"month":month, "day":day, 'today_stars': today_stars,
-    'free_animals': free_animals, 'honor': honor_animals })
+    return render(request, "home.html",{"month":month, "day":day})
 
 def honor(request):
 
@@ -59,7 +43,7 @@ def honor(request):
     honor_animals = paginator.get_page(page)
 
     return render(request, "honor.html",{"month":month, "day":day, 'honor_animals': honor_animals,'empty_num':4-len(honor_animals)%4,
-     'today_stars': today_stars, 'today_stars_num': len(today_stars) })
+     'today_stars': today_stars, 'today_stars_num': len(today_stars)})
 
 def honorRegister1(request):
     return render(request, "honorRegister1.html")
@@ -165,7 +149,7 @@ def enroll2(request):
     temp_id = Animal.objects.count()
     newAnimal.animal_id = temp_id +1 if temp_id != 0 else 1
     
-    newAnimal.category = 'free'
+    newAnimal.category = 'normal'
     newAnimal.name = request.POST['animalName']
     newAnimal.species = request.POST['animalType']
     newAnimal.subspecies = request.POST['animalSubType']
@@ -185,9 +169,7 @@ def enrolled(request,animal_id):
     newAnimal.gravestone = request.POST['animalGravestone']
     newAnimal.stuff = request.POST['animalStuff']
     newAnimal.pub_date = datetime.now()
-
     newAnimal.save()
-
     return redirect('normal')
 
 
@@ -218,16 +200,49 @@ def searchResult(request):
 
 
 def mypage(request):
-    return render(request, "mypage.html")
+    mypages = Animal.objects.all()
+    return render(request, 'mypage.html',{'mypages':mypages})
 
-def mypageDiary(request):
-    return render(request, "mypageDiary.html")
+def mypageDiary(request,animal_id):
+    mypagesDiary = get_object_or_404(Animal, pk = animal_id)
+    return render(request,'mypageDiary.html',{'mypagesDiary':mypagesDiary})
 
-def mypagePhoto(request):
-    return render(request, "mypagePhoto.html")
+def Diarycreate(request):
+    new_Diary = Animal() 
+    new_Diary.diary_title = request.POST['diarytitle']
+    new_Diary.diary_pub_date = datetime.now()
+    new_Diary.diary_body = request.POST['diarybody']
+    new_Diary.save()
+    return redirect('mypageDiary',new_Diary.animal_id)
+
+def mypagePhoto(request,animal_id):
+    mypagesGallery = get_object_or_404(Animal,pk = animal_id)
+    return render(request,'mypagePhoto.html',{'mypagesGallery':mypagesGallery})
+
+def Photocreate(request):
+    mypagePhoto = Animal()
+    mypagePhoto.gallery_listnum = request.POST['gallerylist']
+    mypagePhoto.gallery_image = request.FILES.get('animalImg', None)
+    mypagePhoto.save()
+    return redirect('mypagePhoto', mypagePhoto.animal_id)
 
 def mypageVisitorBook(request):
-    return render(request, "mypageVisitorBook.html")  
+    return render(request, "mypageVisitorBook.html") 
+
+def mypageOption(request,id):
+    edit_mypage = Animal.objects.get(id=id)
+    return render(request, 'mypageOption.html',{'mypage':edit_mypage})
+
+def mypageUpdate(request,id):
+    update_mypage = Animal.objects.get(id=id)
+    update_mypage.name = request.POST['animalName']
+    update_mypage.birthday = request.POST['animalBirthDay']
+    update_mypage.memorialday = request.POST['animalMemorialDay']
+    update_mypage.profile_photo = request.FILES.get('animalImg', None)
+    update_mypage.introduce = request.POST['animalInfo']
+    update_mypage.save()
+    return redirect('mypage',update_mypage.id)
+ 
 
 def csCenter(request):
     return render(request, "csCenter.html")    
@@ -263,3 +278,10 @@ def normal(request):
 
     return render(request, "normal.html",{'normal_animals':normal_animals,'empty_num':4-len(normal_animals)%4,
     "month":month, 'day': day, 'today_stars':today_stars })
+    
+def animal_delete(request,animal_id):
+    delete_animal = Animal.objects.get(id=id)
+    delete_animal.delete()
+    return redirect("home")
+
+

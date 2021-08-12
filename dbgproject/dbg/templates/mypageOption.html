@@ -147,85 +147,50 @@
 
     </head>
     <body onresize="parent.resizeTo(870,660)" onload="parent.resizeTo(870,660)" link="#726C7B", vlink="#726C7B", alink="#726C7B">
+        {%csrf_token%}
         <!-- 기본 모양 --> 
         <div class="mypageShape">
 
             <!-- 왼쪽 프레임 관리 -->
             <div class="left"> 
                 <br>
-                <img src = "https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="profile-img">
+                <img src = {{Animal.profile.photo}} class="profile-img">
                 <br>
                 <h3>{{Animal.name}}</h3>
                 <strong>{{Animal.birthday}} ~ {{Animal.memorialday}}</strong>
                 <br>
                 <br>
                 <strong>{{Animal.introduce}}</strong>
+                <br><br><br><br><br><br><a href = "{%url 'mypageOption'%}" style="text-decoration: none;">계정관리</a>
             </div>
 
             <!-- 오른쪽 프레임 관리 -->
             <div class="right">
 
-                    <!-- 방 꾸미기 -->
-                    <div class="MainImage"><br>
-                        {{Animal.season}}  
-                        {{Animal.flowers}}
-                        {{Animal.gravestone}}    
+                <form action = "{%url 'mypageUpadte' animal.id %}" method="post">
+                    <div class = "namechange">
+                        <p>이름 : <input type ="text" name = "animal_id" value = "{{Animal.name}}"></p>
                     </div>
 
-                    <div class="rightlist">
-                        <div class = "listleft">
-                            <!-- 오늘 하루를 들려줄게 -->
-                            <table>
-                                <tbody class="Diary">
-                                    <h3><a href = "{%url 'mypageDiary'%}" style="text-decoration: none;"><span>오늘 하루를 들려줄게</span></a></h3>
-                                    <div class = "line">
-                                    </div>
-                                    {% for Diary in Diarys%}
-                                    <a herf = " {%url 'mypageDiary%}" sytle = "text-decoration: none;">{{Diary.Diary_pub_date}}<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{Diary.diary_title}}</span></a><br>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-
-                            <!-- 너가 보고 싶은 날이야 -->
-                            <table>
-                                <tbody class="Diary">
-                                    <h3><a href = "{%url 'mypagePhoto'%}" style="text-decoration: none;"><span>너가 보고 싶은 날이야</span></a></h3>
-                                    <div class="line">
-                                    </div>
-                                    <br>
-                                    {% for Gallery in Gallerys%}
-                                    <a herf = " {%url 'mypagePhoto%}" sytle = "text-decoration: none;"><img src = {{Gallery.gallery_image}} class ="Missyou-img" alt=""></a>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
-                        </div>
-
-                        <div class="listline"></div>
-
-                        <div class ="listright">
-                            <table>
-                                <tbody class="VisitorBook">
-                                    <h3><a href = "{%url 'mypageVisitorBook'%}" style="text-decoration: none;"><span>방명록</span></a></h3>
-
-                                    {% for VisitorBook in VisitorBooks%}
-                                    <a herf = " {%url 'mypageVisitorBook%}" sytle = "text-decoration: none;">{{VisitorBook.visitorbook_pub_date}}<span>&nbsp;&nbsp;{{VisitorBook.animal_id.animal_name}}</span></a><br>
-                                    {% endfor %}
-                                    <tr>
-                                        <td class = "Visit-day">&nbsp;visbook_pub_date</td>
-                                        <td class = "Visit-title"><a href = "{%url 'mypageVisitorBook'%}" style="text-decoration: none;"><span>&nbsp;&nbsp;animal_id</span></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class = "Visit-day">&nbsp;visbook_pub_date</td>
-                                        <td class = "Visit-title"><a href = "{%url 'mypageVisitorBook'%}" style="text-decoration: none;"><span>&nbsp;&nbsp;animal_id</span></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class = "Visit-day">&nbsp;visbook_pub_date</td>
-                                        <td class = "Visit-title"><a href = "{%url 'mypageVisitorBook'%}" style="text-decoration: none;"><span>&nbsp;&nbsp;animal_id</span></a></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                    <div class = "MainImagechange">
+                        <p>프로필변경 <input type ="image" name = "profile_photo" value = "{{Animal.profile_photo}}"></p>
                     </div>
+
+                    <div class = "day">
+                        <p>탄생일 : <input type ="text" name = "birthday" value = "{{Animal.birthday}}"></p>
+                        <p>제삿날 : <input type ="text" name = "memorialday" value = "{{Animal.memorialday}}"></p>
+                    </div>
+
+                    <div class = "introduceChange">
+                        소개글 : <textarea name = "introduce" id="" cols="30" rows="10">"{{Animal.introduce}}"</textarea>
+                    </div>
+
+                    <div class = "delete">
+                        <a herf = "{%url 'delete' blog_id %}"> 반려동물 탈퇴하기 </a>
+                    </div>
+                    <button type = "submit"> 수정완료 </button>
+                </form>
+                
             </div>
 
 
@@ -233,22 +198,22 @@
             <div class="nametag">
                 <br><br>
                 <div class = "showtag" >
-                   <strong>&nbsp;animal_id</strong>
+                   <strong>&nbsp;토순이</strong>
                 </div>
                 <br>
                 <br>
                 <div class = "Nonshowtag">
-                    <strong>&nbsp;&nbsp;animal_id</strong>
+                    <strong>&nbsp;&nbsp;나나</strong>
                 </div>
                 <br>
                 <br>
                 <div class = "Nonshowtag">
-                    <strong>&nbsp;&nbsp;animal_id</strong>
+                    <strong>&nbsp;&nbsp;뿌꾸</strong>
                 </div>
                 <br>
                 <br>
                 <div class = "Nonshowtag">
-                    <strong>&nbsp;&nbsp;animal_id</strong>
+                    <strong>&nbsp;&nbsp;레옹</strong>
                 </div>
 
             </div>
