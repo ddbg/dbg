@@ -1,14 +1,16 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
 
-class User(models.Model):
+class User(AbstractUser):
     user_id=models.EmailField(max_length=50, unique=True, primary_key=True)         #아이디
     
     user_name=models.CharField(max_length=50)                                       #실명
     user_nickname=models.CharField(max_length=50, unique=True)                      #닉네임
     user_password=models.CharField(max_length=50)                                   #비밀번호
     user_phone_number=models.CharField(max_length=12)                               #전화번호
-    user_link=models.URLField()                                                     #계정(반려견 계정:인스타, 페이스북,트위터)
+    user_link=models.URLField(null=True)                                                     #계정(반려견 계정:인스타, 페이스북,트위터)
 
 
    
@@ -25,9 +27,10 @@ class Animal(models.Model):
     birthday = models.DateField(null=True)                                          # 탄생일
     memorialday = models.DateField()                                                # 제삿날
     introduce = models.TextField(null=True)                                         # 소개글
-    season = models.CharField(max_length=10, null=True)                             # 제일 좋아한 계절                         
-    flowers = models.CharField(max_length=200, null=True)                           # 꽃다발
-    gravestone = models.CharField(max_length=50, null=True)                         # 묘비
+    season = models.IntegerField(null=True)                                         # 제일 좋아한 계절                         
+    flowers = models.IntegerField(null=True)                                        # 꽃다발
+    stuff = models.IntegerField(null=True)                                          # 물건
+    gravestone = models.IntegerField(null=True)                                     # 묘비
     pub_date = models.DateTimeField(null=True)                                      # 등록시간
     
     # 오늘 하루를 들려줄게
