@@ -210,19 +210,21 @@
 
     </head>
     <body onresize="parent.resizeTo(870,660)" onload="parent.resizeTo(870,660)" link="#726C7B", vlink="#726C7B", alink="#726C7B">
+        {% csrf_token %}
         <!-- 기본 모양 --> 
         <div class="mypageShape">
 
             <!-- 왼쪽 프레임 관리 -->
             <div class="left"> 
                 <br>
-                <img src = "https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="profile-img">
+                <img src = {{Animal.profile_photo}} class="profile-img">
                 <br>
-                <h3>Animal_name</h3>
-                <strong>birthday ~ memorialday</strong>
+                <h3>{{Animal.name}}</h3>
+                <strong>{{Animal.birthday}} ~ {{Animal.memorialday}}</strong>
                 <br>
                 <br>
-                <strong>introduce</strong>
+                <strong>{{Animal.introduce}}</strong>
+                <br><br><br><br><br><br><a href = "{%url 'mypageOption' animal.animal_id%}" style="text-decoration: none;">계정관리</a>
             </div>
 
             <!-- 오른쪽 프레임 관리 -->
@@ -232,29 +234,29 @@
                     <!-- 갤러리 탭 부분 -->
                     <ul class="tabs">
                         <li class="tab-link current" data-tab="tab-1">
-                            <img src = gallery_image class="Photo-list-img">
+                            <img src = {{Animal.gallery_image}} class="Photo-list-img">
                         </li>
-                        <li class="tab-link" data-tab="tab-2">
+                        <!-- <li class="tab-link" data-tab="tab-2">
                             <img src = gallery_image class="Photo-list-img">
                         </li>
                         <li class="tab-link" data-tab="tab-3">
                             <img src = gallery_image class="Photo-list-img">
                         </li>
-                        </ul>
-                    <div class="line"></div>
-
+                        </ul> -->
                     <!-- 갤러리 -->
+                    {% for Animal in mypages %}
                     <div id="tab-1" class="tab-content current">
-                        <img src = gallery_image class="Photo-img">
+                        <img src = {{Animal.gallery_image}} class="Photo-img">
                     </div>
+                    {% endfor %}
 
-                    <div id="tab-2" class="tab-content">
+                    <!-- <div id="tab-2" class="tab-content">
                         <img src = gallery_image class="Photo-img">
                     </div>
 
                     <div id="tab-3" class="tab-content">
                         <img src = gallery_image class="Photo-img">
-                    </div>
+                    </div> -->
 
                 </div>
             </div>

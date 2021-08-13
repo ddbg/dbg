@@ -14,7 +14,8 @@ def home(request):
     today = DateFormat(datetime.now()).format('md')
     month=today[1] if today[0]=='0' else today[:2]
     day=today[2:]
-    return render(request, "home.html",{"month":month, "day":day})
+    animals = Animal.objects.all()
+    return render(request, "home.html",{"month":month, "day":day, 'animals':animals})
 
 def honor(request):
 
@@ -23,6 +24,7 @@ def honor(request):
     month=today[1] if today[0]=='0' else today[:2]
     month = month.rjust(2, '0')
     day=today[2:]
+    
 
     # 카테고리가 honor인 동물들만 가져와 honor_animals에 저장
     honor_animals = Animal.objects.filter(
@@ -184,7 +186,7 @@ def searchMap(request):
     return render(request, "searchMap.html")
 
 def searchResult(request):
-    searchWord=request.POST['searchInput']
+    searchWord=request.POST.get('searchInput','')
 
     animals = Animal.objects.filter(
         Q(name__contains = searchWord)|
@@ -196,45 +198,56 @@ def searchResult(request):
         Q(introduce__contains = searchWord)
     )
     return render(request, "searchResult.html",{"searchWord":searchWord, "animals":animals
-    , "animals_num": len(animals), "empty_num":4-len(animals)%4})
+    , "animals_num": len(animals), "empty_num":4-len(animals)%4 })
 
 
-def mypage(request):
-    mypages = Animal.objects.all()
-    return render(request, 'mypage.html',{'mypages':mypages})
+def mypage(request, animal_id):
+    animal = get_object_or_404(Animal, animal_id=animal_id)
+    animals = Animal.objects.all()
+    return render(request, "mypage.html",{'animal':animal, 'animals':animals})
+
 
 def mypageDiary(request,animal_id):
-    mypagesDiary = get_object_or_404(Animal, pk = animal_id)
-    return render(request,'mypageDiary.html',{'mypagesDiary':mypagesDiary})
+    animal = get_object_or_404(Animal,pk = animal_id)
+    return render(request,'mypageDiary.html',{'animal':animal})
 
-def Diarycreate(request):
-    new_Diary = Animal() 
-    new_Diary.diary_title = request.POST['diarytitle']
-    new_Diary.diary_pub_date = datetime.now()
-    new_Diary.diary_body = request.POST['diarybody']
+def mypageDiaryCreate(request):
+    new_Diary = Diary()
+    new_Diary.title = request.POST['title']
+    new_Diary.pub_date = datetime.now
+    new_Diary.body = request.POST['body']
     new_Diary.save()
-    return redirect('mypageDiary',new_Diary.animal_id)
+    return redirect('mypageDiary', new_Diary.animal_id)
+
 
 def mypagePhoto(request,animal_id):
-    mypagesGallery = get_object_or_404(Animal,pk = animal_id)
-    return render(request,'mypagePhoto.html',{'mypagesGallery':mypagesGallery})
+    animal = get_object_or_404(Animal,pk = animal_id)
+    return render(request,'mypagePhoto.html',{'animal':animal})
 
-def Photocreate(request):
-    mypagePhoto = Animal()
-    mypagePhoto.gallery_listnum = request.POST['gallerylist']
-    mypagePhoto.gallery_image = request.FILES.get('animalImg', None)
-    mypagePhoto.save()
-    return redirect('mypagePhoto', mypagePhoto.animal_id)
+def mypagePhotoCreate(request):
+    new_Gallery = Gallery()
+    new_Gallery.image = request.FILES.get('animalImg',None)
+    return redirect('mypageGallery', new_Gallery.animal_id)
 
-def mypageVisitorBook(request):
-    return render(request, "mypageVisitorBook.html") 
 
-def mypageOption(request,id):
-    edit_mypage = Animal.objects.get(id=id)
-    return render(request, 'mypageOption.html',{'mypage':edit_mypage})
+def mypageVisitorBook(request,animal_id):
+    animal = get_object_or_404(Animal,pk = animal_id)
+    return render(request,'mypageVistorBook.html',{'animal':animal})
 
-def mypageUpdate(request,id):
-    update_mypage = Animal.objects.get(id=id)
+def mypageVisitorBookCreate(request):
+    new_vs = VisiterBook()    
+    new_vs.title = request.POST['title']
+    new_vs.pub_date = datetime.now
+    new_vs.body = request.POST['body']    
+    return redirect('mypageVisitorBook', new_vs.animal_id)
+
+
+def mypageOption(request,animal_id):
+    animal = get_object_or_404(Animal,pk = animal_id)
+    return render(request, 'mypageOption.html',{'animal':animal})
+
+def mypageUpdate(request,animal_id):
+    update_mypage = get_object_or_404(Animal,pk = animal_id)
     update_mypage.name = request.POST['animalName']
     update_mypage.birthday = request.POST['animalBirthDay']
     update_mypage.memorialday = request.POST['animalMemorialDay']
@@ -279,8 +292,8 @@ def normal(request):
     return render(request, "normal.html",{'normal_animals':normal_animals,'empty_num':4-len(normal_animals)%4,
     "month":month, 'day': day, 'normalToday':normalToday })
     
-def animal_delete(request,animal_id):
-    delete_animal = Animal.objects.get(id=id)
+def delete(request,animal_id):
+    delete_animal = get_object_or_404(Animal,pk = animal_id)
     delete_animal.delete()
     return redirect("home")
 

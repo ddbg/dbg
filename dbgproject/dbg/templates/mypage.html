@@ -147,23 +147,26 @@
 
     </head>
     <body onresize="parent.resizeTo(870,660)" onload="parent.resizeTo(870,660)" link="#726C7B", vlink="#726C7B", alink="#726C7B">
+        {% csrf_token %}
         <!-- 기본 모양 --> 
         <div class="mypageShape">
 
             <!-- 왼쪽 프레임 관리 -->
             <div class="left"> 
                 <br>
-                <img src = "https://mypetlife.co.kr/9989/kakaotalk_20180720_165306472/" class="profile-img">
+                <img src = "{{Animal.profile_photo.url}}" class="profile-img">
                 <br>
                 <h3>{{Animal.name}}</h3>
                 <strong>{{Animal.birthday}} ~ {{Animal.memorialday}}</strong>
                 <br>
                 <br>
                 <strong>{{Animal.introduce}}</strong>
+                <br><br><br><br><br><br><a href = "{%url 'mypageOption' animal.animal_id%}" style="text-decoration: none;">계정관리</a>
             </div>
 
             <!-- 오른쪽 프레임 관리 -->
             <div class="right">
+                {%csrf_token%}
 
                     <!-- 방 꾸미기 -->
                     <div class="MainImage"><br>
@@ -177,11 +180,11 @@
                             <!-- 오늘 하루를 들려줄게 -->
                             <table>
                                 <tbody class="Diary">
-                                    <h3><a href = "{%url 'mypageDiary'%}" style="text-decoration: none;"><span>오늘 하루를 들려줄게</span></a></h3>
+                                    <h3><a href = "{% url 'mypageDiary' animal.animal_id %}" style="text-decoration: none;"><span>오늘 하루를 들려줄게</span></a></h3>
                                     <div class = "line">
                                     </div>
-                                    {% for Diary in Diarys%}
-                                    <a herf = " {%url 'mypageDiary%}" sytle = "text-decoration: none;">{{Diary.Diary_pub_date}}<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{Diary.diary_title}}</span></a><br>
+                                    {% for Diary in mypageDiary%}
+                                    <a herf = " {% url 'mypageDiary' %}" sytle = "text-decoration: none;">{{Diary.pub_date}}<span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{Diary.title}}</span></a><br>
                                     {% endfor %}
                                 </tbody>
                             </table>
@@ -189,12 +192,12 @@
                             <!-- 너가 보고 싶은 날이야 -->
                             <table>
                                 <tbody class="Diary">
-                                    <h3><a href = "{%url 'mypagePhoto'%}" style="text-decoration: none;"><span>너가 보고 싶은 날이야</span></a></h3>
+                                    <h3><a href = "{%url 'mypagePhoto' animal.animal_id%}" style="text-decoration: none;"><span>너가 보고 싶은 날이야</span></a></h3>
                                     <div class="line">
                                     </div>
                                     <br>
-                                    {% for Gallery in Gallerys%}
-                                    <a herf = " {%url 'mypagePhoto%}" sytle = "text-decoration: none;"><img src = {{Gallery.gallery_image}} class ="Missyou-img" alt=""></a>
+                                    {% for Gallery in mypagePhoto%}
+                                    <a herf = " {%url 'mypagePhoto' animal.animal_id%}" sytle = "text-decoration: none;"><img src = {{Gallery.image}} class ="Missyou-img" alt=""></a>
                                     {% endfor %}
                                 </tbody>
                             </table>
@@ -205,23 +208,11 @@
                         <div class ="listright">
                             <table>
                                 <tbody class="VisitorBook">
-                                    <h3><a href = "{%url 'mypageVisitorBook'%}" style="text-decoration: none;"><span>방명록</span></a></h3>
+                                    <h3><a href = "{%url 'mypageVisitorBook' animal.animal_id%}" style="text-decoration: none;"><span>방명록</span></a></h3>
 
-                                    {% for VisitorBook in VisitorBooks%}
-                                    <a herf = " {%url 'mypageVisitorBook%}" sytle = "text-decoration: none;">{{VisitorBook.visitorbook_pub_date}}<span>&nbsp;&nbsp;{{VisitorBook.animal_id.animal_name}}</span></a><br>
+                                    {% for VisitorBook in mypageVisitorBook%}
+                                    <a herf = " {%url 'mypageVisitorBook'%}" sytle = "text-decoration: none;">{{VisitorBook.pub_date}}<span>&nbsp;&nbsp;{{VisitorBook.title}}</span></a><br>
                                     {% endfor %}
-                                    <tr>
-                                        <td class = "Visit-day">&nbsp;visbook_pub_date</td>
-                                        <td class = "Visit-title"><a href = "{%url 'mypageVisitorBook'%}" style="text-decoration: none;"><span>&nbsp;&nbsp;animal_id</span></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class = "Visit-day">&nbsp;visbook_pub_date</td>
-                                        <td class = "Visit-title"><a href = "{%url 'mypageVisitorBook'%}" style="text-decoration: none;"><span>&nbsp;&nbsp;animal_id</span></a></td>
-                                    </tr>
-                                    <tr>
-                                        <td class = "Visit-day">&nbsp;visbook_pub_date</td>
-                                        <td class = "Visit-title"><a href = "{%url 'mypageVisitorBook'%}" style="text-decoration: none;"><span>&nbsp;&nbsp;animal_id</span></a></td>
-                                    </tr>
                                 </tbody>
                             </table>
                         </div>

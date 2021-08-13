@@ -1,4 +1,4 @@
-{% load static %}
+<!-- {% load static %}
 <!DOCTYPE html>
 <html lang = "kr">
     <head>
@@ -154,39 +154,39 @@
             <!-- 왼쪽 프레임 관리 -->
             <div class="left"> 
                 <br>
-                <img src = {{Animal.profile.photo}} class="profile-img">
+                <img src = "{{Animal.profile.photo}}" class="profile-img">
                 <br>
                 <h3>{{Animal.name}}</h3>
                 <strong>{{Animal.birthday}} ~ {{Animal.memorialday}}</strong>
                 <br>
                 <br>
                 <strong>{{Animal.introduce}}</strong>
-                <br><br><br><br><br><br><a href = "{%url 'mypageOption'%}" style="text-decoration: none;">계정관리</a>
             </div>
 
             <!-- 오른쪽 프레임 관리 -->
             <div class="right">
+                {% csrf_token %}
 
-                <form action = "{%url 'mypageUpadte' animal.id %}" method="post">
+                <form action = "{%url 'mypageUpdate' animal.animal_id %}" method="post">
                     <div class = "namechange">
-                        <p>이름 : <input type ="text" name = "animal_id" value = "{{Animal.name}}"></p>
+                        <p>이름 : <input type ="text" name = "animal_id" value = {{Animal.name}}></p>
                     </div>
 
                     <div class = "MainImagechange">
-                        <p>프로필변경 <input type ="image" name = "profile_photo" value = "{{Animal.profile_photo}}"></p>
+                        <p>프로필변경 <input type ="image" name = "profile_photo" value = {{Animal.profile_photo}}></p>
                     </div>
 
                     <div class = "day">
-                        <p>탄생일 : <input type ="text" name = "birthday" value = "{{Animal.birthday}}"></p>
-                        <p>제삿날 : <input type ="text" name = "memorialday" value = "{{Animal.memorialday}}"></p>
+                        <p>탄생일 : <input type ="text" name = "birthday" value = {{Animal.birthday}}></p>
+                        <p>제삿날 : <input type ="text" name = "memorialday" value = {{Animal.memorialday}}></p>
                     </div>
 
                     <div class = "introduceChange">
-                        소개글 : <textarea name = "introduce" id="" cols="30" rows="10">"{{Animal.introduce}}"</textarea>
+                        소개글 : <textarea name = "introduce" id="" cols="30" rows="10">{{Animal.introduce}}</textarea>
                     </div>
 
                     <div class = "delete">
-                        <a herf = "{%url 'delete' blog_id %}"> 반려동물 탈퇴하기 </a>
+                        <a herf = "{%url 'delete' animal.animal_id %}"> 반려동물 탈퇴하기 </a>
                     </div>
                     <button type = "submit"> 수정완료 </button>
                 </form>
@@ -219,4 +219,4 @@
             </div>
         </div>
     </body>
-</html>
+</html> -->

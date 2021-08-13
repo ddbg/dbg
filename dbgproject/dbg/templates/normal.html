@@ -183,7 +183,7 @@
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="" onclick="pwin()"><span>MORE</span></a>
+                                <a href="{%url 'mypage' Animal.animal_id %}"><span>MORE</span></a>
                             </div>
                             <img src="{{today_stars.profile_photo.url}}" class="card-img-top">
                             <div class="card-body">
@@ -221,7 +221,7 @@
                 {%for normal_animal in normal_animals%}
                 <div class="card">
                     <div class="card-overlay">
-                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                        <a href="{%url 'mypage' Animal.animal_id %}"><span>MORE</span></a>
                     </div>
                     <img src="{{normal_animal.profile_photo.url}}" class="card-img-top" >
                     <div class="card-body">

@@ -235,7 +235,7 @@
                 {%for free_animal in free_animals%}
                 <div class="card">
                     <div class="card-overlay">
-                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                        <a href="{%url 'mypage' animal.animal_id %}"><span>MORE</span></a>
                     </div>
                     <img src="{{free_animal.profile_photo.url}}" class="card-img-top" >
                     <div class="card-body">

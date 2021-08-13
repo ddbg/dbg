@@ -16,15 +16,23 @@ urlpatterns = [
     path('aboutUs/',aboutUs, name="aboutUs"),
     path('searchMap/',searchMap,name="searchMap"),
     path('searchResult/',searchResult, name='searchResult'),
-    path('mypage/',mypage,name="mypage"),
-    #path('mypageDiary/',mypageDiary,name="mypageDiary"),
-    path('mypageDiary/<str:animal_id>',mypageDiary,name="mypageDiary"),
-    path('Diarycreate',Diarycreate,name="Diarycreate"),
-    path('mypagePhoto/<str:animal_id>',mypagePhoto,name="mypagePhoto"),
-    path('Photocreate',Photocreate,name = "Photocreate"),
-    path('mypageVisitorBook/', mypageVisitorBook, name="mypageVisitorBook"),
-    path('mypageOption/<str:animal_id>',mypageOption,name="mypageOption"),
-    path('mypageUpdate/<str:animal_id>',mypageUpdate,name="mypageUpdate"),
+    
+    path('mypage/<int:animal_id>',mypage,name="mypage"),
+    
+    path('mypageDiary/<int:animal_id>',mypageDiary,name="mypageDiary"),
+    path('mypageDiaryCreate/',mypageDiaryCreate,name="mypageDiaryCreate"),
+    
+    path('mypagePhoto/<int:animal_id>',mypagePhoto,name="mypagePhoto"),
+    path('mypagePhotoCreate/',mypagePhotoCreate,name="mypagePhotoCreate"),
+    
+    path('mypageVisitorBook/<int:animal_id>',mypageVisitorBook,name="mypageVisitorBook"),
+    path('mypageVisitorBookCreate/',mypageVisitorBookCreate,name="mypageVisitorBookCreate"),
+    
+    
+    path('mypageOption/<int:animal_id>',mypageOption,name="mypageOption"),
+    path('mypageUpdate/<int:animal_id>',mypageUpdate,name="mypageUpdate"),
+    
+    
     path('enroll/',enroll, name="enroll"),
     path('enroll2/',enroll2, name="enroll2"),
     path('enrolled/<str:animal_id>',enrolled, name="enrolled"),
@@ -34,8 +42,5 @@ urlpatterns = [
     path('idFind/', idFind, name="idFind"),
     path('pwFind/', pwFind, name="pwFind"),
     path('normal/',normal, name="normal"),
-    path('animal_delete/str:id',animal_delete,name="animal_delete"),
-    
-
-
-] 
+    path('animal_delete/<int:animal_id>',delete,name="delete"),
+]
