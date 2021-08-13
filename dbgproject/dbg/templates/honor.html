@@ -18,13 +18,13 @@
         }
         .todayStar>h3{
             text-align: center;
+            margin:50px;
             color:#BEB5D3;
         }
 
         /* 오늘 별이 된 아이들 슬라이드 구현 */
         .slide_wrapper{
             position: relative;
-            left: 10px;
             height: 320px;
             margin: 30px auto;
             overflow: hidden;
@@ -69,7 +69,7 @@
         /* 각 카드 */
         .card{
             width:230px; height:300px;
-            margin: 0 20px 50px 0;
+            margin: 0 10px 50px 10px;
             background-color: #EFECF4;
             border-radius: 10px 10px 0 0;
             border-style: none;
@@ -125,7 +125,7 @@
             color: #9184b1;
         }
         .card-text{
-            font-size:15px;
+            font-size:15.5px;
             font-weight: 800;
             color:gray;
         }
@@ -147,6 +147,7 @@
             flex-wrap: wrap;
             justify-content: space-around;
         }
+
         .freeRegister{position: relative;}
         .freeRegister span{
             position: absolute;
@@ -179,7 +180,7 @@
 
         <div class="currentCategory">
             <h1>"<br>명예관</h1><br>
-            <h6> 마약탐지견, 경찰견, 시각장애인 안내견 등 수고한 동물들을 추모하는 공간입니다.</h6>
+            <h6> 경찰견, 치료견, 안내견 등 수고한 동물들을 추모하는 공간입니다.</h6>
         </div>
         <br>
 
@@ -207,7 +208,6 @@
                             <div class="card-body">
                                 <span>
                                     <h5 class="card-title">{{today_star.name}}</h5>
-                                    <div clss="honorCategory">- 탐지견 -</div>
                                     <p class="card-text">{{today_star.birthday|date:"Y.m.d"}} ~ {{today_star.memorialday|date:"Y.m.d"}}</p>
                                 </span>
                             </div>

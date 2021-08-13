@@ -19,13 +19,13 @@
         }
         .todayStar>h3{
             text-align: center;
+            margin:50px;
             color:#BEB5D3;
         }
 
         /* 오늘 별이 된 아이들 슬라이드 구현 */
         .slide_wrapper{
             position: relative;
-            left: 10px;
             height: 320px;
             margin: 30px auto;
             overflow: hidden;
@@ -70,7 +70,7 @@
         /* 각 카드 */
         .card{
             width:230px; height:300px;
-            margin: 0 20px 50px 0;
+            margin: 0 10px 50px 10px;
             background-color: #EFECF4;
             border-radius: 10px 10px 0 0;
             border-style: none;
@@ -126,7 +126,7 @@
             color: #9184b1;
         }
         .card-text{
-            font-size:15px;
+            font-size: 15.5px;
             font-weight: 800;
             color:gray;
         }
@@ -321,7 +321,7 @@
             slideCount = slide.length,
             prevBtn=document.querySelector('.prev'),
             slideWidth=230,
-            slideMargin=20-2,
+            slideMargin=20,
             nextBtn=document.querySelector('.next'),
             today_stars_num = parseInt("{{today_stars_num}}");      // view.py의 free함수에서 받은 오늘 별이 된 아이들 갯수 변수
 
