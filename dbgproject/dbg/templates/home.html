@@ -6,25 +6,27 @@
         .container{
             height:1750px;
         }
+
         hr{
             margin:20px 0 10px;
         }
+
         /* 오늘 별이 된 아이들 감싸는 box */
         .todayStar{
             position: relative;
-            margin: 60px 65px 40px;
-            padding: 0 82px;
+            margin: 60px 65px;
         }
         .todayStar>h3{
             text-align: center;
             color:#BEB5D3;
+            margin:50px;
         }
         
         /* 오늘 별이 된 아이들 슬라이드 구현 */
         .today-slide_wrapper{
             position: relative;
             height: 320px;
-            margin: 50px auto;
+            margin: 30px auto;
             overflow: hidden;
         }
         .today-slides{
@@ -42,12 +44,12 @@
         
         /* today 슬라이드 넘기기 구현 */
         .today-controls{
-            text-align: center;
-            cursor:pointer;
+            margin:0px;
         }
         .today-controls span{    
+            cursor:pointer;
             position: absolute;
-            top:50%;
+            top:55%;
             transform: translateY(-50%);
             background-color:white;
             color:#BEB5D3;
@@ -66,18 +68,20 @@
         
         #more{
             position:relative;
-            left:90%;
-        }
-        #more>a{
+            left:84%;
             color:#BEB5D3;
             font-size:20px;
+
+            -webkit-user-select:none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
         }
 
         /*자유로운 영혼이 된 아이들 감싸는 box*/
         .freeStar{
             position: relative;
             margin: 60px 65px;
-            padding: 0 82px;
         }
         .freeStar>h3{
             text-align: center;
@@ -88,7 +92,6 @@
         /* 자유로운 영혼이 된 아이들 슬라이드 구현 */
         .free-slide_wrapper{
             position: relative;
-            width:100%;
             height: 320px;
             margin: 30px auto;
             overflow: hidden;
@@ -107,12 +110,12 @@
 
         /* free 슬라이드 넘기기 구현 */
         .free-controls{
-            text-align: center;
-            cursor:pointer;
+            margin:0;
         }
         .free-controls span{    
+            cursor:pointer;
             position: absolute;
-            top:50%;
+            top:55%;
             transform: translateY(-50%);
             background-color:white;
             color:#BEB5D3;
@@ -133,7 +136,6 @@
         .honorStar{
             position: relative;
             margin: 60px 65px;
-            padding: 0 82px;
         }
         .honorStar>h3{
             text-align: center;
@@ -144,7 +146,6 @@
         /*명예관 아이들 슬라이드 구현 */
         .honor-slide_wrapper{
             position: relative;
-            width:100%;
             height: 320px;
             margin: 30px auto;
             overflow: hidden;
@@ -163,12 +164,12 @@
 
         /* honor 슬라이드 넘기기 구현 */
         .honor-controls{
-            text-align: center;
-            cursor:pointer;
+            margin:0px;
         }
         .honor-controls span{    
+            cursor:pointer;
             position: absolute;
-            top:50%;
+            top:55%;
             transform: translateY(-50%);
             background-color:white;
             color:#BEB5D3;
@@ -249,7 +250,7 @@
             color:#FFE5FD;
         }
         .card-text{
-            font-size:15px;
+            font-size:15.5px;
             font-weight: 800;
             color:gray;
         }
@@ -268,7 +269,6 @@
         <div class="todayStar">
             <h3>{{month}}월 {{day}}일 별이 된 아이들</h3>
 
-            
             <!--X월 XX일 별이 된 아이들 슬라이드-->
             <div class="today-slide_wrapper">
                 <ul class="today-slides">
@@ -278,7 +278,12 @@
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="{%url 'mypage' animal.animal_id %}"><span>MORE</span></a>
+                                {% if not user.is_authenticated %}
+                                <a href="{% url 'login' %}"><span>MORE</span></a>
+                                {% endif %}
+                                {% if user.is_authenticated %}
+                                <a href="" onclick="pwin()"><span>MORE</span></a>
+                                {% endif %}
                             </div>
                             <img src="{{today_star.profile_photo.url}}" class="card-img-top" >
                             <div class="card-body">
@@ -308,9 +313,10 @@
                     </svg>
                 </span>
             </p>
-            <span id="more"><a href="{% url 'normal' %}">별이 된 동물들 더보기</a></span>
-        </div>
+
         
+        </div>
+        <a href="{% url 'normal' %}", id = "more">별이 된 동물들 더보기</a>
         
         <!--today 카드 슬라이드 효과-->
         <script>
@@ -319,9 +325,15 @@
                 currentIdx = 0,
                 slideCount = slide.length,
                 slideWidth = 230,
-                slideMargin = 23,
+                slideMargin = 22.8,
                 prevBtn=document.querySelector('.today-prev'),
-                nextBtn=document.querySelector('.today-next');
+                nextBtn=document.querySelector('.today-next'),
+                today_stars_num = parseInt("{{today_stars_num}}");
+
+                document.querySelector('.today-slides').style.width = today_stars_num*(slideWidth + slideMargin)+'px';
+
+                if(today_stars_num > 4){today_stars_num = 4;}
+                document.querySelector('.today-slide_wrapper').style.width = today_stars_num*(slideWidth + slideMargin)+'px';
 
             makeClone();
 
@@ -392,7 +404,6 @@
 
         </script>
         <hr>
-
         <br>
         <!--자유로운 영혼-->
         <div class="freeStar">
@@ -401,18 +412,27 @@
             <!--자유로운 영혼 슬라이드-->
             <div class="free-slide_wrapper">
                 <ul class="free-slides">
-                    {%for free_star in free_stars%}
+                    {%for free_animal in free_animals%}
                     <li>
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
+<<<<<<< HEAD
                                 <a href="{%url 'mypage' animal.animal_id %}"><span>MORE</span></a>
+=======
+                                {% if not user.is_authenticated %}
+                                <a href="{% url 'login' %}"><span>MORE</span></a>
+                                {% endif %}
+                                {% if user.is_authenticated %}
+                                <a href="" onclick="pwin()"><span>MORE</span></a>
+                                {% endif %}
+>>>>>>> 605c91dc0732507f7e47ca8903b6d06b041ed518
                             </div>
-                            <img src="{{free_star.profile_photo.url}}" class="card-img-top" >
+                            <img src="{{free_animal.profile_photo.url}}" class="card-img-top" >
                             <div class="card-body">
                                 <span>
-                                    <h5 class="card-title">{{free_star.name}}</h5>
-                                    <p class="card-text">{{free_star.birthday|date:"Y.m.d"}} ~ {{free_star.memorialday|date:"Y.m.d"}}</p>
+                                    <h5 class="card-title">{{free_animal.name}}</h5>
+                                    <p class="card-text">{{free_animal.birthday|date:"Y.m.d"}} ~ {{free_animal.memorialday|date:"Y.m.d"}}</p>
                                 </span>
                             </div>
                         </div>
@@ -442,9 +462,15 @@
                 freeCurrentIdx=0,
                 freeSlideCount = freeSlide.length,
                 freeSlideWidth=230,
-                freeSlideMargin=23,
+                freeSlideMargin=22.3,
                 freePrevBtn=document.querySelector('.free-prev'),
-                freeNextBtn=document.querySelector('.free-next');
+                freeNextBtn=document.querySelector('.free-next'),
+                free_animals_num = parseInt("{{free_animals_num}}");
+
+                document.querySelector('.free-slides').style.width = free_animals_num*(freeSlideWidth + freeSlideMargin)+'px'; 
+
+                if(free_animals_num > 4){free_animals_num = 4;}
+                document.querySelector('.free-slide_wrapper').style.width = free_animals_num*(freeSlideWidth + freeSlideMargin)+'px';
 
             makeFreeClone();
 
@@ -523,18 +549,27 @@
             <!--명예관 아이들 슬라이드-->
             <div class="honor-slide_wrapper">
                 <ul class="honor-slides">
-                    {%for honor_star in honor_stars%}
+                    {%for honor_animal in honor_animals%}
                     <li>
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
+<<<<<<< HEAD
                                 <a href="{%url 'mypage' animal.animal_id %}"><span>MORE</span></a>
+=======
+                                {% if not user.is_authenticated %}
+                                <a href="{% url 'login' %}"><span>MORE</span></a>
+                                {% endif %}
+                                {% if user.is_authenticated %}
+                                <a href="" onclick="pwin()"><span>MORE</span></a>
+                                {% endif %}
+>>>>>>> 605c91dc0732507f7e47ca8903b6d06b041ed518
                             </div>
-                            <img src="{{honor_star.profile_photo.url}}" class="card-img-top" >
+                            <img src="{{honor_animal.profile_photo.url}}" class="card-img-top" >
                             <div class="card-body">
                                 <span>
-                                    <h5 class="card-title">{{honor_star.name}}</h5>
-                                    <p class="card-text">{{honor_star.birthday|date:"Y.m.d"}} ~ {{honor_star.memorialday|date:"Y.m.d"}}</p>
+                                    <h5 class="card-title">{{honor_animal.name}}</h5>
+                                    <p class="card-text">{{honor_animal.birthday|date:"Y.m.d"}} ~ {{honor_animal.memorialday|date:"Y.m.d"}}</p>
                                 </span>
                             </div>
                         </div>
@@ -565,9 +600,15 @@
                 honorCurrentIdx=0,
                 honorSlideCount = honorSlide.length,
                 honorSlideWidth=230,
-                honorSlideMargin=23,
+                honorSlideMargin=22.3,
                 honorPrevBtn=document.querySelector('.honor-prev'),
-                honorNextBtn=document.querySelector('.honor-next');
+                honorNextBtn=document.querySelector('.honor-next'),
+                honor_animals_num = parseInt("{{honor_animals_num}}");
+
+                document.querySelector('.honor-slides').style.width = honor_animals_num*(honorSlideWidth + honorSlideMargin)+'px'; 
+           
+                if(honor_animals_num > 4){honor_animals_num = 4;}
+                document.querySelector('.honor-slide_wrapper').style.width = honor_animals_num*(honorSlideWidth + honorSlideMargin)+'px';
                 
             makeHonorClone();
 

@@ -3,28 +3,26 @@
     <!-- 이 html에 추가되는 CSS -->
     {% block css %}
     <style>
-        /* 현재 카테고리 설명하는 부분 */
         .currentCategory{
             margin: 30px;
             color:#BEB5D3;
             text-align: center;
         }
 
-        /* 별이 된 아이들 감싸는 box */
         .normalToday{
             position: relative;
             margin: 60px 65px;
             padding: 0 75px;
+            text-align: center;
         }
         .normalToday>h3{
             text-align: center;
+            margin:50px;
             color:#BEB5D3;
         }
 
-        /* 별이 된 아이들 슬라이드 구현 */
         .slide_wrapper{
             position: relative;
-            left: 10px;
             height: 320px;
             margin: 30px auto;
             overflow: hidden;
@@ -43,19 +41,17 @@
             float:left;
         }
 
-        /* 슬라이드 넘기기 구현 */
         .controls{
             text-align: center;
-            cursor:pointer;
         }
         .controls span{    
             position: absolute;
-            top:40%;
+            top:50%;
             transform: translateY(-50%);
             background-color:white;
             color:#BEB5D3;
             padding: 8px 12px;
-            margin:0 30px;
+            margin:0 10px;
             border: 1px solid #BEB5D3;
             border-radius: 100%;
         }
@@ -70,7 +66,7 @@
         /* 각 카드 */
         .card{
             width:230px; height:300px;
-            margin: 0 20px 50px 0;
+            margin: 0 10px 50px 10px;
             background-color: #EFECF4;
             border-radius: 10px 10px 0 0;
             border-style: none;
@@ -126,7 +122,7 @@
             color: #9184b1;
         }
         .card-text{
-            font-size:15px;
+            font-size:15.5px;
             font-weight: 800;
             color:gray;
         }
@@ -148,6 +144,7 @@
             flex-wrap: wrap;
             justify-content: space-around;
         }
+
         .pgn{
             display: flex;
             justify-content: center;
@@ -164,28 +161,34 @@
     {% block content %}
 
     <div class="container">
+
         <div class="currentCategory">
             <br>
             <h1>"</h1>
             <h4> 무지개 다리를 건넌 동물들을 추모하는 공간입니다.</h4>
         </div>
         <br>
-        
-        <!--xx월 xx일 별이 된 아이들 슬라이드-->
+
+        <!--X월 XX일 별이 된 아이들-->
         <div class="normalToday">
             <h3>{{month}}월 {{day}}일 별이 된 아이들</h3>
             
             <div class="slide_wrapper">
                 <ul class="slides">
-                    {% if today_stars %}
-                    {%for normal_animal in normal_animals%}
+                    {%if today_stars%}
+                    {%for today_star in today_stars%}
                     <li>
                         <!--bootstrap 카드 컴포넌트-->
                         <div class="card">
                             <div class="card-overlay">
-                                <a href="{%url 'mypage' Animal.animal_id %}"><span>MORE</span></a>
+                                {% if not user.is_authenticated %}
+                                <a href="{% url 'login' %}"><span>MORE</span></a>
+                                {% endif %}
+                                {% if user.is_authenticated %}
+                                <a href="" onclick="pwin()"><span>MORE</span></a>
+                                {% endif %}
                             </div>
-                            <img src="{{today_stars.profile_photo.url}}" class="card-img-top">
+                            <img src="{{today_star.profile_photo.url}}" class="card-img-top" >
                             <div class="card-body">
                                 <span>
                                     <h5 class="card-title">{{today_star.name}}</h5>
@@ -195,7 +198,7 @@
                         </div>
                     </li>
                     {%endfor%}
-                    {% endif %}
+                    {%endif%}  
                 </ul>
             </div>
 
@@ -213,7 +216,7 @@
                 </span>
             </p>
         </div>
-        
+
         <hr>
 
         <div class="animals">
@@ -221,7 +224,16 @@
                 {%for normal_animal in normal_animals%}
                 <div class="card">
                     <div class="card-overlay">
+<<<<<<< HEAD
                         <a href="{%url 'mypage' Animal.animal_id %}"><span>MORE</span></a>
+=======
+                        {% if not user.is_authenticated %}
+                        <a href="{% url 'login' %}"><span>MORE</span></a>
+                        {% endif %}
+                        {% if user.is_authenticated %}
+                        <a href="" onclick="pwin()"><span>MORE</span></a>
+                        {% endif %}
+>>>>>>> 605c91dc0732507f7e47ca8903b6d06b041ed518
                     </div>
                     <img src="{{normal_animal.profile_photo.url}}" class="card-img-top" >
                     <div class="card-body">
@@ -237,13 +249,16 @@
                 <div class="emptyCard"></div>
                 {%endfor%}
             </span>
-
         </div>
+
+
+
 
         <!--부트스트랩 Pagination 컴포넌트 -->
         <div class="pgn">
             <nav aria-label="Page navigation example">
                 <ul class="pagination">
+                <!--이전 글이 있으면 -->
                 {% if normal_animals.has_previous %}
                 <li class="page-item">
                     <a class="page-link" href="?page={{normal_animals.previous_page_number}}" aria-label="Previous">
@@ -255,14 +270,16 @@
                 {% for p in "x"|rjust:normal_animals.paginator.num_pages %}
                     {% if forloop.counter == normal_animals.number %}
                     <li class="page-item"><a class="page-link" href="?page={{forloop.counter}}" style="font-size: larger;">{{forloop.counter }}</a></li>
+                    
                     {% else %}
                     <li class="page-item"><a class="page-link" href="?page={{forloop.counter}}">{{forloop.counter }}</a></li>
                     {% endif %}
                 {% endfor %}
 
+                <!--다음 글이 있으면-->
                 {% if normal_animals.has_next %}
                 <li class="page-item">
-                    <a class="page-link" href="?page={{free_animals.next_page_number}}" aria-label="Next">
+                    <a class="page-link" href="?page={{normal_animals.next_page_number}}" aria-label="Next">
                     <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
@@ -272,7 +289,7 @@
         </div>
     </div>
 
-    <script>
+    <script> 
         var slides=document.querySelector('.slides'),
             slide=document.querySelectorAll('.slides li'),
             currentIdx=0,
@@ -280,14 +297,21 @@
             prevBtn=document.querySelector('.prev'),
             slideWidth=230,
             slideMargin=20,
-            nextBtn=document.querySelector('.next');
+            nextBtn=document.querySelector('.next'),
+            today_stars_num = parseInt("{{today_stars_num}}");
 
+            document.querySelector('.slides').style.width = today_stars_num*(slideWidth + slideMargin)+'px'; 
+           
+            if(today_stars_num > 4){today_stars_num = 4;}
+            document.querySelector('.slide_wrapper').style.width = today_stars_num*(slideWidth + slideMargin)+'px';
+            
+            
             function moveSlide(num){
                 slides.style.left =-num*(slideWidth+slideMargin)+'px';
                 currentIdx = num;
             }
             nextBtn.addEventListener('click', function(){
-                if(currentIdx<slideCount-5){
+                if(currentIdx<slideCount-(today_stars_num)){
                     moveSlide(currentIdx+1);
                 }
                 else{
@@ -299,10 +323,12 @@
                     moveSlide(currentIdx-1);
                 }
                 else{
-                    moveSlide(slideCount-5);
+                    moveSlide(slideCount-(today_stars_num));
                 }
             });
             
     </script>
+    
+</div>
 
 {% endblock %}

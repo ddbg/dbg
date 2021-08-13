@@ -34,12 +34,14 @@ def signUp(request):
             user = User.objects.create_user(
                 user_name=request.POST['name'],                #실명
                 user_nickname=request.POST['nickname'],        #닉네임
-                Username=request.POST['id'],                   #이메일
-                Password=request.POST['password1'],            #비밀번호
+                username=request.POST['id'],                   #이메일
+                password=request.POST['password1'],            #비밀번호
                 user_phone_number=request.POST['phone_number'],   #전화번호
-                user_link=request.POST['link_linkaccount'],           #계정
+                user_link_facebook=request.POST['link_linkaccount1'],        #페이스북계정
+                user_link_twitter=request.POST['link_linkaccount2'],         #트위터 계정
+                user_link_instagram=request.POST['link_linkaccount3'],        #인스타그램 계정
             )
-            auth.login(request.user)
+            auth.login(request, user)
             return redirect("home")
             
      else:
